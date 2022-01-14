@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Party, type: :model do
   before(:each) do
-    @bob_lvl1 = PlayerCharacter.new('Bob', 1)
-    @bob_lvl2 = PlayerCharacter.new('Bob', 2)
-    @henk_lvl1 = PlayerCharacter.new('Henk', 1)
+    @bob_lvl1 = PlayerCharacter.new(name: 'Bob', level: '1')
+    @bob_lvl2 = PlayerCharacter.new(name: 'Bob', level: '2')
+    @henk_lvl1 = PlayerCharacter.new(name: 'Henk', level: '1')
   end
 
   it 'has no PlayerCharacters by default' do
@@ -43,7 +43,7 @@ RSpec.describe Party, type: :model do
   it 'a party of one has the same xp thresholds as the player character' do
     party = Party.new([@bob_lvl1])
     party_xp = party.party_xp
-    expect(party_xp).to eq @bob_lvl1.get_xp_threshold
+    expect(party_xp).to eq @bob_lvl1.xp_threshold
   end
 
   it 'a party of two level one characters have their xp thresholds summed' do

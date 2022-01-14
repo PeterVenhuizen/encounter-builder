@@ -2,19 +2,19 @@ require 'rails_helper'
 
 RSpec.describe Encounter, type: :model do
   before(:each) do
-    @party_of_one = Party.new([PlayerCharacter.new('Bob', 1)])
-    @party_of_two = Party.new([PlayerCharacter.new('Bob', 1), PlayerCharacter.new('Henk', 1)])
+    @party_of_one = Party.new([PlayerCharacter.new(name: 'Bob', level: '1')])
+    @party_of_two = Party.new([PlayerCharacter.new(name: 'Bob', level: '1'), PlayerCharacter.new(name: 'Henk', level: '1')])
     @party_of_five = Party.new([
-                                 PlayerCharacter.new('Bob', 1),
-                                 PlayerCharacter.new('Henk', 1),
-                                 PlayerCharacter.new('Toos', 1),
-                                 PlayerCharacter.new('Mies', 1),
-                                 PlayerCharacter.new('Jaap', 1)
+                                 PlayerCharacter.new(name: 'Bob', level: '1'),
+                                 PlayerCharacter.new(name: 'Henk', level: '1'),
+                                 PlayerCharacter.new(name: 'Toos', level: '1'),
+                                 PlayerCharacter.new(name: 'Mies', level: '1'),
+                                 PlayerCharacter.new(name: 'Jaap', level: '1')
                                ])
 
-    @cat = Monster.new('Cat', 0)
-    @bandit = Monster.new('Bandit', 0.125)
-    @harpy = Monster.new('Harpy', 1)
+    @cat = Monster.new(name: 'Cat', cr: '0')
+    @bandit = Monster.new(name: 'Bandit', cr: '1/8')
+    @harpy = Monster.new(name: 'Harpy', cr: '1')
   end
 
   it 'has an empty party by default' do
@@ -63,7 +63,7 @@ RSpec.describe Encounter, type: :model do
   end
 
   it 'with two bandits and one level one player character is deadly' do
-    encounter = Encounter.new(@party_of_one, [@bandit, Monster.new('Bandit', 0.125)])
+    encounter = Encounter.new(@party_of_one, [@bandit, Monster.new(name: 'Bandit', cr: '1/8')])
     encounter_dto = encounter.calculate_difficulty
     expect(encounter_dto.award_xp).to eq 50
     expect(encounter_dto.adjusted_xp).to eq 100
@@ -72,7 +72,7 @@ RSpec.describe Encounter, type: :model do
   end
 
   it 'with two bandits and two level one player characters is of medium difficulty' do
-    encounter = Encounter.new(@party_of_two, [@bandit, Monster.new('Bandit', 0.125)])
+    encounter = Encounter.new(@party_of_two, [@bandit, Monster.new(name: 'Bandit', cr: '1/8')])
     encounter_dto = encounter.calculate_difficulty
     expect(encounter_dto.award_xp).to eq 50
     expect(encounter_dto.adjusted_xp).to eq 100
@@ -81,7 +81,7 @@ RSpec.describe Encounter, type: :model do
   end
 
   it 'with five players and two harpies is deadly' do
-    encounter = Encounter.new(@party_of_five, [@harpy, Monster.new('Harpy', 1)])
+    encounter = Encounter.new(@party_of_five, [@harpy, Monster.new(name: 'Harpy', cr: '1')])
     encounter_dto = encounter.calculate_difficulty
     expect(encounter_dto.award_xp).to eq 400
     expect(encounter_dto.adjusted_xp).to eq 600
@@ -90,8 +90,8 @@ RSpec.describe Encounter, type: :model do
   end
 
   it 'with six players and two harpies is of medium difficulty' do
-    encounter = Encounter.new(@party_of_five, [@harpy, Monster.new('Harpy', 1)])
-    encounter.party.join(PlayerCharacter.new('Held', 1))
+    encounter = Encounter.new(@party_of_five, [@harpy, Monster.new(name: 'Harpy', cr: '1')])
+    encounter.party.join(PlayerCharacter.new(name: 'Held', level: '1'))
     encounter_dto = encounter.calculate_difficulty
     expect(encounter_dto.award_xp).to eq 400
     expect(encounter_dto.adjusted_xp).to eq 400
