@@ -4,8 +4,11 @@ Rails.application.routes.draw do
   get '/angry', to: 'build#index'
   post '/build/test', to: 'build#test', as: 'test'
 
-  post '/build/player', to: 'build#player'
-  post '/build/monster', to: 'build#monster'
+  post '/build/player', to: 'build#add_player'
+  delete '/build/player/:id', to: 'build#delete_player'
+
+  post '/build/monster', to: 'build#add_monster'
+  delete '/build/monster/:id', to: 'build#delete_monster'
 
   get '/build/reset', to: 'build#reset'
 end

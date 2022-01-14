@@ -1,8 +1,22 @@
+<% 
+  emoji_per_difficulty = {
+    none: '&#x1f642;',
+    trivial: '&#x1f604;',
+    easy: '&#x1f642;',
+    medium: '&#x1f610;',
+    hard: '&#x1f628;',
+    deadly: '&#x1f635;'
+  }
+
+  emoji = emoji_per_difficulty[@dto.difficulty] 
+%>
+
 <% @players.each do |data| %>
   <% data.symbolize_keys! %>
+
   <% player = PlayerCharacter.new(data) %>
   <div class="player">
-    <div class="emoji">&#x1f642;</div>
+    <div class="emoji"><%= emoji.html_safe %></div>
     <span class="name"><%= player.name %></span>
 
     <div class="stats">
@@ -11,6 +25,6 @@
         <span class="level"><%= player.level %></span>
       </div>
     </div>
-    <%= link_to '&#10060;'.html_safe, build_player_path(uuid: data[:uuid]), remote: true, method: :post %>
+    <%= link_to '&#10060;'.html_safe,"build/player/#{data[:id]}", remote: true, method: :delete %>
   </div>
 <% end %>

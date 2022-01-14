@@ -5,26 +5,24 @@ class BuildController < ApplicationController
 
   def index; end
 
-  def player
-    if params.key?('uuid')
-      session[:players].delete_if { |h| h['uuid'] == params[:uuid] }
-    else
-      session[:players] << { name: params[:name],
-                             level: params[:level],
-                             uuid: SecureRandom.uuid }
-    end
-    calc_encounter
+  def add_player
+    session[:players] << { name: params[:name], level: params[:level], id: SecureRandom.uuid }
+    update
   end
 
-  def monster
-    if params.key?('uuid')
-      session[:monsters].delete_if { |h| h['uuid'] == params[:uuid] }
-    else
-      session[:monsters] << { name: params[:name],
-                              cr: params[:cr],
-                              uuid: SecureRandom.uuid }
-    end
-    calc_encounter
+  def delete_player
+    session[:players].delete_if { |h| h['id'] == params[:id] }
+    update
+  end
+
+  def add_monster
+    session[:monsters] << { name: params[:name], cr: params[:cr], id: SecureRandom.uuid }
+    update
+  end
+
+  def delete_monster
+    session[:monsters].delete_if { |h| h['id'] == params[:id] }
+    update
   end
 
   def reset
@@ -42,6 +40,13 @@ class BuildController < ApplicationController
     @players = session[:players]
     @monsters = session[:monsters]
     @dto = calc_encounter
+  end
+
+  def update
+    calc_encounter
+    respond_to do |format|
+      format.js { render 'build/update.js.erb' }
+    end
   end
 
   def calc_encounter

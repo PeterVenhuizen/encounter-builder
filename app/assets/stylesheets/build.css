@@ -11,6 +11,7 @@
     --medium: #ffc107;
     --hard: #dc3545;
     --deadly: #343a40;
+    --label-color: #738694;
 
 }
 
@@ -105,7 +106,7 @@ input[type="submit"] {
 }
 .stats label {
     text-transform: uppercase;
-    color: #738694;
+    color: var(--label-color);
 }
 
 /* encounter styling */
@@ -122,6 +123,9 @@ input[type="submit"] {
     padding: 0.25em 0.5em;
     font-weight: bold;
     color: white;
+}
+.none {
+    background-color: var(--label-color);
 }
 .easy {
     background-color: var(--easy);

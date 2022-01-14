@@ -15,6 +15,6 @@
         <span><%= monster.xp %></span>
       </div>
     </div>
-    <%= link_to '&#10060;'.html_safe, build_monster_path(uuid: data[:uuid]), remote: true, method: :post %>
+    <%= link_to '&#10060;'.html_safe, "build/monster/#{data[:id]}", remote: true, method: :delete %>
   </div>
 <% end %>
