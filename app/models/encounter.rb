@@ -18,9 +18,9 @@ class Encounter
     adjusted_xp = award_xp * multiplier
 
     # determine difficulty
-    difficulties = %i[easy medium hard deadly]
+    difficulties = %i[trivial easy medium hard deadly]
     diff_idx = party.party_xp.values.count { |v| adjusted_xp >= v }
-    diff_idx -= 1 unless diff_idx.zero?
+    # diff_idx -= 1 unless diff_idx.zero?
     
     # fix difficulty to :none if no players or monsters
     difficulty =  @monsters.empty? || @party.players.empty? ? :none : difficulties[diff_idx]

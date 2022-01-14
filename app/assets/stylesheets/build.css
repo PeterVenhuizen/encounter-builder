@@ -7,6 +7,7 @@
     --card-color: white;
     --form-element-height: 32px;
 
+    --trivial: #17a2b8;
     --easy: #28a755;
     --medium: #ffc107;
     --hard: #dc3545;
@@ -118,7 +119,7 @@ input[type="submit"] {
     justify-content: space-around;
     align-items: center;
 }
-.pill {
+.pill, .large-pill {
     border-radius: .5em;
     padding: 0.25em 0.5em;
     font-weight: bold;
@@ -127,6 +128,7 @@ input[type="submit"] {
 .none {
     background-color: var(--label-color);
 }
+.trivial { background-color: var(--trivial); }
 .easy {
     background-color: var(--easy);
 }
@@ -139,4 +141,7 @@ input[type="submit"] {
 }
 .deadly {
     background-color: var(--deadly);
+}
+.large-pill {
+    min-width: 55px;
 }

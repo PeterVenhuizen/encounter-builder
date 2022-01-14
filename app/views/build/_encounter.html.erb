@@ -1,15 +1,26 @@
 <div id="xp-threshold">
   XP Thresholds: 
   <% party_xp = @encounter.party.party_xp %>
-  <% deadly = party_xp[:deadly] %>
   <% party_xp.each do |k,v| %>
     <span class="pill <%= k.to_s %>"%><%= v %></span>
   <% end %>
 </div>
 
+<%
+
+  xp_threshold = party_xp.key?(:deadly) ? party_xp[:deadly] : 20
+  perc = [@dto.adjusted_xp.to_f / xp_threshold * 100, 100].min
+
+%>
+
 <div class="stats">
   <label>Difficulty</label>
-  <span class="pill <%= @dto.difficulty.to_s %>"><%= @dto.difficulty.to_s %></span>
+  <span 
+    class="large-pill <%= @dto.difficulty.to_s %>"
+    style="width: <%= "#{'%.2f' % perc}" %>%"  
+  >
+    <%= @dto.difficulty.to_s %>
+  </span>
   
   <label>Total XP</label>
   <span><%= @dto.award_xp %></span>
