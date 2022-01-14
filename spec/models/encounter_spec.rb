@@ -50,7 +50,7 @@ RSpec.describe Encounter, type: :model do
   it 'without any monsters has a difficulty of easy' do
     encounter = Encounter.new
     encounter_dto = encounter.calculate_difficulty
-    expect(encounter_dto.difficulty).to eq :easy
+    expect(encounter_dto.difficulty).to eq :none
   end
 
   it 'with a cat and a party of one is easy' do

@@ -22,7 +22,7 @@ class Encounter
     diff_idx = party.party_xp.values.count { |v| adjusted_xp >= v }
     diff_idx -= 1 unless diff_idx.zero?
 
-    EncounterDTO.new(award_xp, adjusted_xp, multiplier, difficulties[diff_idx])
+    EncounterDTO.new(award_xp, adjusted_xp, multiplier, @monsters.empty? ? :none : difficulties[diff_idx])
   end
 
   private

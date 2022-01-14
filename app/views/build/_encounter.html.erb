@@ -1,12 +1,27 @@
-Award XP: <%= @dto.award_xp %>
-Adjusted XP: <%= @dto.adjusted_xp %>
-Multiplier: <%= @dto.multiplier %>
-Difficulty: <%= @dto.difficulty %>
+<div id="xp-threshold">
+  XP Thresholds: 
+  <% party_xp = @encounter.party.party_xp %>
+  <% deadly = party_xp[:deadly] %>
+  <% party_xp.each do |k,v| %>
+    <span class="pill <%= k.to_s %>"%><%= v %></span>
+  <% end %>
+</div>
 
-<div>
+<div class="stats">
+  <label>Difficulty</label>
+  <span class="pill <%= @dto.difficulty.to_s %>"><%= @dto.difficulty.to_s %></span>
+  
+  <label>Total XP</label>
+  <span><%= @dto.award_xp %></span>
+
+  <label>Adjusted XP</label>
+  <span><%= @dto.adjusted_xp.to_i %> XP (x<%= @dto.multiplier %>)</span>
+</div>
+
+<%# <div>
   <span>trivial: &#x1f604;</span>
   <span>easy: &#x1f642;</span>
   <span>medium: &#x1f610;</span>
   <span>hard: &#x1f628;</span>
   <span>deadly: &#x1f635;</span>
-</div>
+</div> %>
