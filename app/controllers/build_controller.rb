@@ -31,13 +31,17 @@ class BuildController < ApplicationController
   end
 
   def monster
+    puts "params: " + params.inspect
     if params.key?('uuid')
+      puts params[:uuid]
       session[:monsters].delete_if { |h| h['uuid'] == params[:uuid] }
     else
       session[:monsters] << { name: params[:name],
                               cr: params[:cr],
                               uuid: SecureRandom.uuid }
     end
+    puts session[:monsters]
+    puts "#monsters: #{session[:monsters].count}"
 
     encounter
     # render :encounter
