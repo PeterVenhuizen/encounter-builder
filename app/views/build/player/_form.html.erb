@@ -1,0 +1,15 @@
+<%= form_with model: @player_character, url: build_player_path, remote: true, html: { class: 'add_form' } do |form|  %>
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :level %>
+    <%= form.select :level, 1..20 %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit '&#10133;'.html_safe, class: 'btn' %>
+  </div>
+<% end %>

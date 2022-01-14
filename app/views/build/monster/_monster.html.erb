@@ -1,0 +1,20 @@
+<% @monsters.each do |data| %>
+  <% data = OpenStruct.new(data) %>
+  <% monster = Monster.new(OpenStruct.new(data)) %>
+  <div class="player">
+    <div class="emoji">&#128126;</div>
+    <%# &#128128; %>
+    <span class="name"><%= monster.name %></span>
+    <div class="stats">
+      <div>
+        <label>CR: </label>
+        <span><%= monster.cr %></span>
+      </div>
+      <div>
+        <label>XP: </label>
+        <span><%= monster.xp %></span>
+      </div>
+    </div>
+    <%= link_to '&#10060;'.html_safe, build_monster_path(uuid: data.uuid), remote: true, method: :post %>
+  </div>
+<% end %>

@@ -1,0 +1,15 @@
+<%= form_with model: @monster, url: build_monster_path, remote: true, html: { class: 'add_form' } do |form| %>
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cr, 'CR' %>
+    <%= form.select :cr, [0, 0.125, 0.25, 0.5] + [*1..30] %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit '&#10133;'.html_safe, class: 'btn' %>
+  </div>  
+<% end %>

@@ -1,0 +1,25 @@
+<div id="counter">
+  <%= @counter %>
+</div>
+
+<%= link_to '-1', test_path(something: 'minus'), remote: true, method: :post %>
+<%= link_to '+1', test_path(something: 'plus'), remote: true, method: :post %>
+
+<h3>Party</h3>
+<%= render 'build/player/form' %>
+
+<div id="party">
+  <%= render partial: 'build/player/player' %>
+</div>
+
+  <h3>Monsters</h3>
+<%= render 'build/monster/form' %>
+<div id="monsters">
+  <%= render partial: 'build/monster/monster' %>
+</div>
+
+<div id="encounter">
+  <%= render partial: 'encounter' %>
+</div>
+
+<%= link_to 'Reset &#10226;'.html_safe, build_reset_path, remote: true %>
