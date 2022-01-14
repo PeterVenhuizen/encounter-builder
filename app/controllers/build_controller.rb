@@ -59,22 +59,24 @@ class BuildController < ApplicationController
   end
 
   def encounter
-    puts 'test'
     @encounter = Encounter.new
 
+    puts session[:players]
     # add all players to the party
     session[:players]
-      .map { |p| PlayerCharacter.new(OpenStruct.new(p)) }
+      # .map { |p| PlayerCharacter.new(OpenStruct.new(p)) }
+      .map { |p| PlayerCharacter.new(p) }
       .each { |p| @encounter.party.join(p) }
 
-    puts @encounter.party.inspect
+    puts "party" + @encounter.party.inspect
 
     # add all monsters
     session[:monsters]
-      .map { |m| Monster.new(OpenStruct.new(m)) }
+      # .map { |m| Monster.new(OpenStruct.new(m)) }
+      .map { |m| Monster.new(m) }
       .each { |m| @encounter.add_monster(m) }
 
-    puts @encounter.monsters
+    puts "monsters" + @encounter.monsters.inspect
 
     # calculate the difficulty
     @dto = @encounter.calculate_difficulty

@@ -1,6 +1,5 @@
 <% @players.each do |data| %>
-  <% data = OpenStruct.new(data) %>
-  <% player = PlayerCharacter.new(OpenStruct.new(data)) %>
+  <% player = PlayerCharacter.new(data) %>
   <div class="player">
     <div class="emoji">&#x1f642;</div>
     <span class="name"><%= player.name %></span>
@@ -11,6 +10,6 @@
         <span class="level"><%= player.level %></span>
       </div>
     </div>
-    <%= link_to '&#10060;'.html_safe, build_player_path(uuid: data.uuid), remote: true, method: :post %>
+    <%= link_to '&#10060;'.html_safe, build_player_path(uuid: data[:uuid]), remote: true, method: :post %>
   </div>
 <% end %>
