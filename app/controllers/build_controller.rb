@@ -13,12 +13,17 @@ class BuildController < ApplicationController
 
   def player
     if params.key?('uuid')
+      puts params[:uuid]
       session[:players].delete_if { |h| h['uuid'] == params[:uuid] }
     else
       session[:players] << { name: params[:name],
                              level: params[:level],
                              uuid: SecureRandom.uuid }
     end
+    puts session[:players]
+    puts "#players: #{session[:players].count}"
+
+    # debugger
 
     encounter
     # render partial :player
@@ -29,7 +34,6 @@ class BuildController < ApplicationController
     if params.key?('uuid')
       session[:monsters].delete_if { |h| h['uuid'] == params[:uuid] }
     else
-      puts params
       session[:monsters] << { name: params[:name],
                               cr: params[:cr],
                               uuid: SecureRandom.uuid }
@@ -61,22 +65,17 @@ class BuildController < ApplicationController
   def encounter
     @encounter = Encounter.new
 
-    puts session[:players]
     # add all players to the party
     session[:players]
       # .map { |p| PlayerCharacter.new(OpenStruct.new(p)) }
       .map { |p| PlayerCharacter.new(p) }
       .each { |p| @encounter.party.join(p) }
 
-    puts "party" + @encounter.party.inspect
-
     # add all monsters
     session[:monsters]
       # .map { |m| Monster.new(OpenStruct.new(m)) }
       .map { |m| Monster.new(m) }
       .each { |m| @encounter.add_monster(m) }
-
-    puts "monsters" + @encounter.monsters.inspect
 
     # calculate the difficulty
     @dto = @encounter.calculate_difficulty
