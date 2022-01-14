@@ -1,50 +1,30 @@
 require 'securerandom'
 
 class BuildController < ApplicationController
-  before_action :counter
+  before_action :init_encounter
 
   def index; end
 
-  def test
-    @counter = session[:counter]
-    @counter = params[:something] == 'plus' ? @counter += 1 : @counter -= 1
-    session[:counter] = @counter
-  end
-
   def player
     if params.key?('uuid')
-      puts params[:uuid]
       session[:players].delete_if { |h| h['uuid'] == params[:uuid] }
     else
       session[:players] << { name: params[:name],
                              level: params[:level],
                              uuid: SecureRandom.uuid }
     end
-    puts session[:players]
-    puts "#players: #{session[:players].count}"
-
-    # debugger
-
-    encounter
-    # render partial :player
-    # render partial :encounter
+    calc_encounter
   end
 
   def monster
-    puts "params: " + params.inspect
     if params.key?('uuid')
-      puts params[:uuid]
       session[:monsters].delete_if { |h| h['uuid'] == params[:uuid] }
     else
       session[:monsters] << { name: params[:name],
                               cr: params[:cr],
                               uuid: SecureRandom.uuid }
     end
-    puts session[:monsters]
-    puts "#monsters: #{session[:monsters].count}"
-
-    encounter
-    # render :encounter
+    calc_encounter
   end
 
   def reset
@@ -56,28 +36,26 @@ class BuildController < ApplicationController
 
   private
 
-  def counter
-    session[:counter] ||= 0
+  def init_encounter
     session[:players] ||= []
     session[:monsters] ||= []
-    @counter = session[:counter]
     @players = session[:players]
     @monsters = session[:monsters]
-    @dto = self.encounter
+    @dto = calc_encounter
   end
 
-  def encounter
+  def calc_encounter
     @encounter = Encounter.new
+    @players = session[:players]
+    @monsters = session[:monsters]
 
     # add all players to the party
-    session[:players]
-      # .map { |p| PlayerCharacter.new(OpenStruct.new(p)) }
+    @players
       .map { |p| PlayerCharacter.new(p) }
       .each { |p| @encounter.party.join(p) }
 
     # add all monsters
-    session[:monsters]
-      # .map { |m| Monster.new(OpenStruct.new(m)) }
+    @monsters
       .map { |m| Monster.new(m) }
       .each { |m| @encounter.add_monster(m) }
 
@@ -88,5 +66,4 @@ class BuildController < ApplicationController
 
     @dto
   end
-
 end

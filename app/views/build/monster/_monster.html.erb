@@ -1,4 +1,5 @@
 <% @monsters.each do |data| %>
+  <% data.symbolize_keys! %>
   <% monster = Monster.new(data) %>
   <div class="player">
     <div class="emoji">&#128126;</div>
@@ -14,6 +15,6 @@
         <span><%= monster.xp %></span>
       </div>
     </div>
-    <%= link_to '&#10060;'.html_safe, build_monster_path(uuid: data['uuid']), remote: true, method: :post %>
+    <%= link_to '&#10060;'.html_safe, build_monster_path(uuid: data[:uuid]), remote: true, method: :post %>
   </div>
 <% end %>
