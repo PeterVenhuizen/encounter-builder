@@ -88,6 +88,9 @@ input[type="submit"] {
     margin-block: 0.5em;
     background-color: var(--card-color);
     border: 1px solid var(--border-color);
+    -webkit-box-shadow: 5px 5px 5px -3px rgba(0,0,0,0.5); 
+    box-shadow: 5px 5px 5px -3px rgba(0,0,0,0.5);
+
 }
 .player .stats {
     text-align: right;
