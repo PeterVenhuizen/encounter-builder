@@ -25,7 +25,7 @@ stages:
     POSTGRES_DB: encounter_builder_gitlab
     POSTGRES_USER: test_user
     POSTGRES_PASSWORD: ''
-    RAILS_ENV: gitlab
+    RAILS_ENV: test
   before_script:
     - export APT_CACHE_DIR=`pwd`/apt-cache && mkdir -pv $APT_CACHE_DIR
     - apt-get update -qq && apt-get -o dir::cache::archives="$APT_CACHE_DIR" install -yqq nodejs
