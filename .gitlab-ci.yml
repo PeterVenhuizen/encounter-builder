@@ -22,8 +22,8 @@ stages:
   services:
     - postgres:latest
   variables:
-    POSTGRES_DB: encounter_builder_gitlab
-    POSTGRES_USER: test_user
+    POSTGRES_DB: dnd_test
+    POSTGRES_USER: peter
     POSTGRES_PASSWORD: ''
     POSTGRES_HOST_AUTH_METHOD: trust
     RAILS_ENV: test
