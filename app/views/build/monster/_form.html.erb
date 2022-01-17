@@ -1,12 +1,7 @@
 <%= form_with model: @monster, url: build_monster_path, remote: true, html: { class: 'add_form' } do |form| %>
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :cr, 'CR' %>
-    <%= form.select :cr, [0, '1/8', '1/4', '1/2'] + [*1..30] %>
+    <%= form.label 'Monsters' %>
+    <%= form.select(:id, Monster.all.collect { |m| [m.name, m.id] }, prompt: true) %>
   </div>
 
   <div class="actions">
