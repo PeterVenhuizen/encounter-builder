@@ -5,7 +5,7 @@ stages:
   - deploy
 
 .base:
-  image: ruby:2.6.3
+  image: ruby:3.0.3
   cache:
     key: gems_and_packages
     paths:
