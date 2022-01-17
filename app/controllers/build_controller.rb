@@ -16,7 +16,7 @@ class BuildController < ApplicationController
   end
 
   def add_monster
-    session[:monsters] << { name: params[:name], cr: params[:cr], id: SecureRandom.uuid }
+    session[:monsters] << { name: params[:name], challenge_rating: params[:cr], id: SecureRandom.uuid }
     update
   end
 

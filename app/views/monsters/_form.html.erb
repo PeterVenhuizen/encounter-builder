@@ -1,0 +1,47 @@
+<%= form_with(model: monster, local: true) do |form| %>
+  <% if monster.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(monster.errors.count, "error") %> prohibited this monster from being saved:</h2>
+
+      <ul>
+        <% monster.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :size %>
+    <%= form.select :size, ['Tiny', 'Small', 'Medium', 'Large', 'Huge', 'Gargantuan'] %>
+  </div>
+
+  <div class="field">
+    <%= form.label 'Type' %>
+    <%= form.select :species, ['Aberration', 'Beast', 'Celestial', 'Construct', 'Dragon', 'Elemental', 'Fey', 'Fiend', 'Giant', 'Humanoid', 'Monstrosity', 'Ooze', 'Plant', 'Undead'] %>
+  </div>
+
+  <div class="field">
+    <%= form.label :armor_class %>
+    <%= form.select :armor_class, [*1..30], :selected => 12 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :hit_points %>
+    <%= form.text_field :hit_points %>
+  </div>
+
+  <div class="field">
+    <%= form.label :challenge_rating %>
+    <%= form.select :challenge_rating, [0, '1/8', '1/4', '1/2'] + [*1..30] %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
