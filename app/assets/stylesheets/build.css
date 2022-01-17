@@ -95,6 +95,15 @@ input[type="submit"] {
     box-shadow: 5px 5px 5px -3px rgba(0,0,0,0.5);
 
 }
+.description { 
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+}
+.size-and-type {
+    font-size: 0.9em;
+    color: var(--label-color);
+}
 .player .stats {
     text-align: right;
 }
