@@ -23,7 +23,7 @@ class Encounter
     # diff_idx -= 1 unless diff_idx.zero?
     
     # fix difficulty to :none if no players or monsters
-    difficulty =  @monsters.empty? || @party.players.empty? ? :none : difficulties[diff_idx]
+    difficulty = @monsters.empty? || @party.players.empty? ? :none : difficulties[diff_idx]
 
     EncounterDTO.new(award_xp, adjusted_xp, multiplier, difficulty)
   end
