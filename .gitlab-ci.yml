@@ -25,6 +25,7 @@ stages:
     POSTGRES_DB: encounter_builder_gitlab
     POSTGRES_USER: test_user
     POSTGRES_PASSWORD: ''
+    POSTGRES_HOST_AUTH_METHOD: trust
     RAILS_ENV: test
   before_script:
     - export APT_CACHE_DIR=`pwd`/apt-cache && mkdir -pv $APT_CACHE_DIR
