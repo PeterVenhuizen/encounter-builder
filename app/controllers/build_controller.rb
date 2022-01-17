@@ -55,7 +55,7 @@ class BuildController < ApplicationController
   end
 
   def calc_encounter
-    @encounter = Encounter.new
+    @encounter = EncounterBuilder.new
     @players = session[:players]
     @monsters = session[:monsters]
 
