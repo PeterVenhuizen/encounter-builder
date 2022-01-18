@@ -5,16 +5,5 @@
     <%= form.label 'Description' %>
     <%= form.text_area :description %>
 
-    <%= form.submit %>
-<% end %>
-
-<%= form_with url: encounters_monster_path, remote: true, html: { class: 'inline' } do |form| %>
-   <div class="field">
-    <%= form.label 'Monsters' %>
-    <%= form.select(:id, Monster.all.collect { |m| [m.name, m.id] }, prompt: true) %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit '&#10133;'.html_safe, class: 'btn' %>
-  </div>
+    <%= form.submit 'Create Encounter', class: 'btn easy' %>
 <% end %>

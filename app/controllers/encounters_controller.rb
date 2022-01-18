@@ -1,7 +1,7 @@
 require 'securerandom'
 
 class EncountersController < ApplicationController
-  before_action :init_encounter
+  before_action :set_session, only: %i[new edit]
   before_action :set_encounter, only: %i[show edit update destroy]
 
   # GET /encounters
@@ -27,6 +27,7 @@ class EncountersController < ApplicationController
 
     respond_to do |format|
       if @encounter.save
+        session[:monsters] = []
         format.html { redirect_to encounter_url(@encounter), notice: 'Encounter was successfully created.' }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +39,13 @@ class EncountersController < ApplicationController
   def update; end
 
   # DELETE /encounters/:id
-  def destroy; end
+  def destroy
+    @encounter.destroy
+
+    respond_to do |format|
+      format.html { redirect_to encounters_url, notice: 'Encounter was successfully deleted.' }
+    end
+  end
 
   def add_player
     session[:players] << { name: params[:name], level: params[:level], id: SecureRandom.uuid }
@@ -73,14 +80,10 @@ class EncountersController < ApplicationController
     @encounter = Encounter.find(params[:id])
   end
 
-  def init_encounter
+  def set_session
     session[:players] ||= []
     session[:monsters] ||= []
-    @players = session[:players]
-    @monsters = session[:monsters]
-    @dto = calc_encounter
-
-    @mon = Monster.all
+    calc_encounter
   end
 
   def render_update
@@ -101,18 +104,10 @@ class EncountersController < ApplicationController
       .each { |p| @eb.party.join(p) }
 
     # add all monsters
-    # @monsters
-    #   .map { |m| Monster.new(m) }
-    #   .each { |m| @encounter.add_monster(m) }
-    puts session[:monsters]
     session[:monsters].each { |id| @eb.add_monster(Monster.find(id)) }
 
     # calculate the difficulty
     @dto = @eb.calculate_difficulty
-
-    # debugger
-
-    @dto
   end
 
   def encounter_params

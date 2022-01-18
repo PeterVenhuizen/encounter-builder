@@ -13,7 +13,6 @@
     --hard: #dc3545;
     --deadly: #343a40;
     --label-color: #738694;
-
 }
 
 * {
@@ -27,4 +26,12 @@ a {
 
 body {
     font-size: 13px;
+}
+
+.btn {
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: .5em;
+    border-radius: 3px;
+    border: none;
 }

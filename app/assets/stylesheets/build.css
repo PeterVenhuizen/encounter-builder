@@ -103,9 +103,13 @@
 .none {
     background-color: var(--label-color);
 }
-.trivial { background-color: var(--trivial); }
+.trivial { 
+    background-color: var(--trivial); 
+    color: white;
+}
 .easy {
     background-color: var(--easy);
+    color: white;
 }
 .medium {
     background-color: var(--medium);
@@ -113,9 +117,11 @@
 }
 .hard {
     background-color: var(--hard);
+    color: white;
 }
 .deadly {
     background-color: var(--deadly);
+    color: white;
 }
 .large-pill {
     min-width: 55px;

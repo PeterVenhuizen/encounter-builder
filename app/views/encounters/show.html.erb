@@ -4,4 +4,9 @@
   <h2><%= @encounter.name %></h2>
   <p><%= @encounter.description %></p>
   <%= @encounter.monsters %>
+
+  <div class="encounter-actions">
+    <%= link_to 'Edit', edit_encounter_path(@encounter), class: 'btn easy' %>
+    <%= link_to 'Delete'.html_safe, @encounter, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn hard' %>
+  </div>
 </div>

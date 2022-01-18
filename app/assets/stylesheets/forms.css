@@ -7,6 +7,7 @@ form {
     flex-direction: row;
     align-items: center;
     gap: 0.25em;
+    justify-content: space-between;
 }
 
 input[type="text"], select, textarea {
@@ -20,11 +21,11 @@ input[type="submit"] {
     cursor: pointer;
 }
 textarea {
-    min-height: 100px;
+    min-height: 150px;
     width: 100%;
 }
 
-.btn {
+/* .btn {
     background: none;
     border: 1px solid var(--border-color);
     border-radius: 5px;
@@ -32,4 +33,4 @@ textarea {
     font-weight: bold;
     height: var(--form-element-height);
     width: var(--form-element-height);
-}
+} */
