@@ -1,102 +1,49 @@
-@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,700;1,400&display=swap');
-
-:root {
-    --bg-color: white;
-    --border-color: #D3D3D3;
-    --font-color: black;
-    --card-color: white;
-    --form-element-height: 32px;
-
-    --trivial: #17a2b8;
-    --easy: #28a755;
-    --medium: #ffc107;
-    --hard: #dc3545;
-    --deadly: #343a40;
-    --label-color: #738694;
-
-}
-
-* {
-    box-sizing: border-box;
-    font-family: 'Be Vietnam Pro', sans-serif;
-    color: var(--font-color);
-}
-a {
-    text-decoration: none;
-}
-
-body {
-    background-color: var(--bg-color);
+/* manage characters */
+#party {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    font-size: 13px;
 }
 
-/* layout */
-#app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 1em;
-    padding: 1em;
-    width: 800px;
-}
-
-#encounter {
-    display: grid;
-    grid-column: 1 / 3;
-    /* justify-content: center; */
-}
-
-#encounter-party, #encounter-monsters {
-    align-self: flex-start;
-}
-
-/* form styling */
-input[type="text"], select {
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin: 0.25em;
-    padding: 0.25em;
-    height: var(--form-element-height);
-}
-input[type="submit"] {
-    cursor: pointer;
-}
-
-.btn {
-    background: none;
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
-    padding: .25em .5em;
+.summary, #xp-threshold {
+    align-self: center;
+    text-transform: uppercase;
     font-weight: bold;
-    height: var(--form-element-height);
-    width: var(--form-element-height);
+    color: var(--label-color);
 }
 
-.add_form {
-    display: flex;
-    align-items: center;
+
+/* manage encounter */
+#monsters {
+    /* display: flex; */
+    flex-wrap: wrap;
+    gap: 0 1em;
+    align-items: stretch;
 }
 
-.player {
+.card {
     display: flex;
     align-items: center;
     justify-content: space-between;
-
+    flex: 1;
     border-radius: 3px;
-    min-width: 200px;
-    height: 50px;
     padding: 0.5em;
     margin-block: 0.5em;
     background-color: var(--card-color);
     border: 1px solid var(--border-color);
     -webkit-box-shadow: 5px 5px 5px -3px rgba(0,0,0,0.5); 
     box-shadow: 5px 5px 5px -3px rgba(0,0,0,0.5);
-
 }
+.player {
+    height: 50px;
+    min-width: 150px;
+}
+.monster {
+    /* height: 75px; */
+    min-width: 200px;
+}
+
 .description { 
-    width: 60%;
+    width: 40%;
     display: flex;
     flex-direction: column;
 }
@@ -115,12 +62,17 @@ input[type="submit"] {
     flex-direction: column;
     font-weight: bold;
 }
-.stats label {
+.stats label, #xp-threshold label {
     text-transform: uppercase;
     color: var(--label-color);
 }
 
 /* encounter styling */
+#party-toggle {
+    font-size: 3em;
+    color: black;
+}
+
 #encounter label {
     margin-top: 0.5em;
 }
@@ -129,11 +81,24 @@ input[type="submit"] {
     justify-content: space-around;
     align-items: center;
 }
+#xp-threshold div {
+    /* margin-block: 0.5em; */
+}
+.xp {
+    margin-block: 1em;
+    display: flex;
+    justify-content: space-between;
+}
+.xp div:nth-of-type(2) {
+    align-items: flex-end;
+}
+
 .pill, .large-pill {
     border-radius: .5em;
     padding: 0.25em 0.5em;
     font-weight: bold;
     color: white;
+    text-align: center;
 }
 .none {
     background-color: var(--label-color);

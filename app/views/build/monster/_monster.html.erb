@@ -1,6 +1,9 @@
-<% @monsters.each do |id| %>
-  <% monster = Monster.find(id) %>
-  <div class="player">
+<h3>Added monsters:</h3>
+
+<% @monsters = @monsters.map { |id| Monster.find(id) } %>
+
+<% @monsters.each do |monster| %>
+  <div class="card monster">
     <div class="emoji">&#128126;</div>
     <%# &#128128; %>
     <div class="description">
@@ -17,6 +20,6 @@
         <span><%= monster.xp %></span>
       </div>
     </div>
-    <%= link_to '&#10060;'.html_safe, "build/monster/#{id}", remote: true, method: :delete %>
+    <%= link_to '&#10060;'.html_safe, "build/monster/#{monster.id}", remote: true, method: :delete %>
   </div>
 <% end %>

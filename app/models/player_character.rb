@@ -2,7 +2,7 @@ class PlayerCharacter
   include ActiveModel::Model
   include XP
 
-  attr_reader :name, :level
+  attr_reader :name, :level, :id
 
   def initialize(args = {})
     defaults = {

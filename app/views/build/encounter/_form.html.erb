@@ -1,0 +1,9 @@
+<%= form_with do |form| %>
+    <%= form.label 'Name of the encounter' %>
+    <%= form.text_field :name %>
+
+    <%= form.label 'Description' %>
+    <%= form.text_area :description %>
+
+    <%= form.submit %>
+<% end %>

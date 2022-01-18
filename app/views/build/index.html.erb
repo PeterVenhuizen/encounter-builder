@@ -1,28 +1,33 @@
 <div id="app">
   <h1>D&D 5e Encounter Builder</h1>
-  <div id="encounter">
+  <div id="party-builder">
     
-    <%= render partial: 'encounter' %>
-  </div>
+    <h2>Manage Characters</h2>
 
-  <div id="encounter-party">
-    <h3>Party</h3>
+    <strong>Add Player</strong>
     <%= render 'build/player/form' %>
 
+    <h3>Party</h3>
     <div id="party">
       <%= render partial: 'build/player/player' %>
     </div>
   </div>
 
-  <div id="encounter-monsters">
-    <h3>Monsters</h3>
-    <%= render 'build/monster/form' %>
-    
+  <div id="encounter-builder">
+
+    <div id="encounter-stats">
+      <%= render partial: 'build/encounter/encounter' %>
+    </div>
+
+    <%# <h2>Manage Encounter</h2> %>
+    <div>
+      <h3>Encounter details: </h3>
+      <%= render partial: 'build/encounter/form' %>
+      <%= render partial: 'build/monster/form' %>
+    </div>
     <div id="monsters">
       <%= render partial: 'build/monster/monster' %>
     </div>
-  </div>
-  
-  <%= link_to 'Reset &#10226;'.html_safe, build_reset_path, remote: true %>
 
+  </div>
 </div>

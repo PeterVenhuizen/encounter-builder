@@ -9,15 +9,21 @@
   }
 
   emoji = emoji_per_difficulty[@dto.difficulty] 
+
+  @players = @players.map { |data| data.symbolize_keys!; PlayerCharacter.new(data) }
+  avg_level = @players.count > 0 ? @players.sum { |p| p.level.to_f } / @players.count : 0
 %>
 
-<% @players.each do |data| %>
-  <% data.symbolize_keys! %>
+<span class="summary"># of characters: <%= @players.count %> | average party level: <%= '%.1f' % avg_level %></span>
 
-  <% player = PlayerCharacter.new(data) %>
-  <div class="player">
+<% @players.each do |player| %>
+
+  <div class="card player">
     <div class="emoji"><%= emoji.html_safe %></div>
-    <span class="name"><%= player.name %></span>
+
+    <div class="description">
+      <span class="name"><%= player.name %></span>
+    </div>
 
     <div class="stats">
       <div>
@@ -25,6 +31,6 @@
         <span class="level"><%= player.level %></span>
       </div>
     </div>
-    <%= link_to '&#10060;'.html_safe,"build/player/#{data[:id]}", remote: true, method: :delete %>
+    <%= link_to '&#10060;'.html_safe,"build/player/#{player.id}", remote: true, method: :delete %>
   </div>
 <% end %>

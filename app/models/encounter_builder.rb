@@ -7,7 +7,7 @@ class EncounterBuilder
   end
 
   def add_monster(monster)
-    @monsters << monster unless @monsters.include?(monster)
+    @monsters << monster
   end
 
   def calculate_difficulty
