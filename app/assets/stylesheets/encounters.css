@@ -1,0 +1,14 @@
+.encounter-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 3px;
+    padding: 1em;
+    margin-block: 0.5em;
+    background-color: var(--card-color);
+    border: 1px solid var(--border-color);
+}
+
+.encounter-name {
+    width: 40%;
+}

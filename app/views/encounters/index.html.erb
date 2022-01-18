@@ -1,0 +1,19 @@
+<%# <aside id="sidebar"></aside> %>
+<section id="main">
+  <% @encounters.each do |encounter| %>
+    <div class="encounter-row">
+      <span class="encounter-name">
+        <%= link_to encounter.name, encounter %>
+      </span>
+
+      <span class="encounter-created-at">
+        <%= encounter.created_at %>
+      </span>
+
+      <div class="encounter-actions">
+        <%= link_to '&#9998; Edit'.html_safe, edit_encounter_path(encounter) %>
+        <%= link_to '&#10060; Delete'.html_safe, encounter, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </div>
+    </div>
+  <% end %>
+</section>
