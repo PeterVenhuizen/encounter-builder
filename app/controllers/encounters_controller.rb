@@ -1,30 +1,44 @@
 require 'securerandom'
 
-class EncounterBuilderController < ApplicationController
+class EncountersController < ApplicationController
   before_action :init_encounter
+  before_action :set_encounter, only: %i[show edit update destroy]
 
-  # GET /encounter-builder
+  # GET /encounters
   def index
-    @encounter = Encounter.new
+    @encounters = Encounter.all
   end
 
-  # GET /encounter-builder/:id
+  # GET /encounters/:id
   def show; end
 
-  # GET /encounter-builder/new
+  # GET /encounters/new
   def new
     @encounter = Encounter.new
   end
 
-  # POST /encounter-builder
+  # Get /encounters/:id/edit
+  def edit; end
+
+  # POST /encounters
   def create
     params[:encounter][:monsters] = session[:monsters]
     @encounter = Encounter.new(encounter_params)
-    puts @encounter.inspect
+
+    respond_to do |format|
+      if @encounter.save
+        format.html { redirect_to encounter_url(@encounter), notice: 'Encounter was successfully created.' }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+      end
+    end
   end
 
-  # PATCH/PUT /encounter-builder/:id
+  # PATCH/PUT /encounters/:id
   def update; end
+
+  # DELETE /encounters/:id
+  def destroy; end
 
   def add_player
     session[:players] << { name: params[:name], level: params[:level], id: SecureRandom.uuid }
@@ -55,6 +69,10 @@ class EncounterBuilderController < ApplicationController
 
   private
 
+  def set_encounter
+    @encounter = Encounter.find(params[:id])
+  end
+
   def init_encounter
     session[:players] ||= []
     session[:monsters] ||= []
@@ -68,7 +86,7 @@ class EncounterBuilderController < ApplicationController
   def render_update
     calc_encounter
     respond_to do |format|
-      format.js { render 'encounter_builder/update.js.erb' }
+      format.js { render 'encounters/update.js.erb' }
     end
   end
 
