@@ -1,6 +1,6 @@
 require 'securerandom'
 
-class BuildController < ApplicationController
+class EncounterBuilderController < ApplicationController
   before_action :init_encounter
 
   def index
@@ -56,7 +56,7 @@ class BuildController < ApplicationController
   def update
     calc_encounter
     respond_to do |format|
-      format.js { render 'build/update.js.erb' }
+      format.js { render 'encounter_builder/update.js.erb' }
     end
   end
 

@@ -20,6 +20,6 @@
         <span><%= monster.xp %></span>
       </div>
     </div>
-    <%= link_to '&#10060;'.html_safe, "build/monster/#{monster.id}", remote: true, method: :delete %>
+    <%= link_to '&#10060;'.html_safe, "/monster/#{monster.id}", remote: true, method: :delete %>
   </div>
 <% end %>

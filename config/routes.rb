@@ -1,16 +1,17 @@
 Rails.application.routes.draw do
   resources :monsters
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  root 'build#index'
+  root to: redirect('encounter-builder/')
+  get 'encounter-builder', to: 'encounter_builder#index'
 
-  post '/build/player', to: 'build#add_player'
-  delete '/build/player/:id', to: 'build#delete_player'
+  post '/player', to: 'encounter_builder#add_player', as: 'encounter_builder_player'
+  delete '/player/:id', to: 'encounter_builder#delete_player'
 
-  post '/build/monster', to: 'build#add_monster'
-  delete '/build/monster/:id', to: 'build#delete_monster'
+  post '/monster', to: 'encounter_builder#add_monster', as: 'encounter_builder_monster'
+  delete '/monster/:id', to: 'encounter_builder#delete_monster'
 
-  post '/build/create', to: 'build#create'
+  post '/create', to: 'encounter_builder#create', as: 'encounter_builder_create'
 
 
-  get '/build/reset', to: 'build#reset'
+  get '/reset', to: 'encounter_builder#reset'
 end

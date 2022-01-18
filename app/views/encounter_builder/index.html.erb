@@ -5,27 +5,27 @@
     <h2>Manage Characters</h2>
 
     <strong>Add Player</strong>
-    <%= render 'build/player/form' %>
+    <%= render 'encounter_builder/player/form' %>
 
     <h3>Party</h3>
     <div id="party">
-      <%= render partial: 'build/player/player' %>
+      <%= render partial: 'encounter_builder/player/player' %>
     </div>
   </div>
 
   <div id="encounter-builder">
 
     <div id="encounter-stats">
-      <%= render partial: 'build/encounter/encounter' %>
+      <%= render partial: 'encounter_builder/encounter/encounter' %>
     </div>
 
     <%# <h2>Manage Encounter</h2> %>
     <div>
       <h3>Encounter details: </h3>
-      <%= render partial: 'build/encounter/form' %>
+      <%= render partial: 'encounter_builder/encounter/form' %>
     </div>
     <div id="monsters">
-      <%= render partial: 'build/monster/monster' %>
+      <%= render partial: 'encounter_builder/monster/monster' %>
     </div>
 
   </div>
