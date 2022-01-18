@@ -13,6 +13,9 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div id="app">
+      <%= render 'layouts/header' %>
+      <%= yield %>
+    </div>
   </body>
 </html>

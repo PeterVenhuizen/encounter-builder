@@ -5,7 +5,7 @@
 }
 
 .summary, #xp-threshold {
-    align-self: center;
+    /* align-self: center; */
     text-transform: uppercase;
     font-weight: bold;
     color: var(--label-color);
