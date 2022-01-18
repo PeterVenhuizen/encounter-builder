@@ -82,7 +82,9 @@ class EncountersController < ApplicationController
 
   def set_session
     session[:players] ||= []
-    session[:monsters] ||= []
+    session[:monsters] = []
+    @players = session[:players]
+    @monsters = []
     calc_encounter
   end
 
@@ -108,6 +110,7 @@ class EncountersController < ApplicationController
 
     # calculate the difficulty
     @dto = @eb.calculate_difficulty
+    @dto
   end
 
   def encounter_params
