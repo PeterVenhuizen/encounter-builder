@@ -3,35 +3,47 @@ require 'securerandom'
 class EncounterBuilderController < ApplicationController
   before_action :init_encounter
 
+  # GET /encounter-builder
   def index
     @encounter = Encounter.new
   end
 
-  def add_player
-    session[:players] << { name: params[:name], level: params[:level], id: SecureRandom.uuid }
-    update
+  # GET /encounter-builder/:id
+  def show; end
+
+  # GET /encounter-builder/new
+  def new
+    @encounter = Encounter.new
   end
 
-  def delete_player
-    session[:players].delete_if { |h| h['id'] == params[:id] }
-    update
-  end
-
-  def add_monster
-    session[:monsters] << params[:id]
-    update
-  end
-
-  def delete_monster
-    session[:monsters].slice!(session[:monsters].index(params[:id]))
-    update
-  end
-
-  # POST /build/
+  # POST /encounter-builder
   def create
     params[:encounter][:monsters] = session[:monsters]
     @encounter = Encounter.new(encounter_params)
     puts @encounter.inspect
+  end
+
+  # PATCH/PUT /encounter-builder/:id
+  def update; end
+
+  def add_player
+    session[:players] << { name: params[:name], level: params[:level], id: SecureRandom.uuid }
+    render_update
+  end
+
+  def delete_player
+    session[:players].delete_if { |h| h['id'] == params[:id] }
+    render_update
+  end
+
+  def add_monster
+    session[:monsters] << params[:id]
+    render_update
+  end
+
+  def delete_monster
+    session[:monsters].slice!(session[:monsters].index(params[:id]))
+    render_update
   end
 
   def reset
@@ -53,7 +65,7 @@ class EncounterBuilderController < ApplicationController
     @mon = Monster.all
   end
 
-  def update
+  def render_update
     calc_encounter
     respond_to do |format|
       format.js { render 'encounter_builder/update.js.erb' }
