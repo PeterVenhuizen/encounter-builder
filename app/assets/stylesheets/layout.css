@@ -13,13 +13,12 @@ html, body {
     /* width: 1200px; */
     display: grid;
     grid-template: 
-        "header header header header"
-        "party encounter encounter blank"
-        "party footer footer footer";
-    grid-template-columns: auto repeat(3, 2fr);
-    grid-template-rows: 50px 1fr 50px;
-    /* grid-gap: 1em; */
-    /* padding: 1em; */
+        "header header header"
+        "sidebar main blank";
+        /* "footer footer footer"; */
+    grid-template-columns: auto 2.5fr 1fr;
+    /* grid-template-rows: 50px 1fr 50px; */
+    grid-template-rows: 50px 1fr;
     height: 100vh;
     align-items: stretch;
 }
@@ -33,7 +32,7 @@ html, body {
 }
 
 #party-builder {
-    grid-area: party;
+    grid-area: sidebar;
     display: flex;
     flex-direction: column;
     /* display: none; */
@@ -44,7 +43,7 @@ html, body {
 }
 
 #encounter-builder {
-    grid-area: encounter;
+    grid-area: main;
     display: grid;
     grid-template-columns: 1.5fr 1fr;
     grid-template-rows: auto 1fr;
