@@ -3,7 +3,9 @@ require 'securerandom'
 class BuildController < ApplicationController
   before_action :init_encounter
 
-  def index; end
+  def index
+    @encounter = Encounter.new
+  end
 
   def add_player
     session[:players] << { name: params[:name], level: params[:level], id: SecureRandom.uuid }
@@ -16,16 +18,20 @@ class BuildController < ApplicationController
   end
 
   def add_monster
-    puts params
-    # session[:monsters] << { name: params[:name], challenge_rating: params[:cr], id: SecureRandom.uuid }
     session[:monsters] << params[:id]
     update
   end
 
   def delete_monster
-    # session[:monsters].delete_if { |h| h['id'] == params[:id] }
     session[:monsters].slice!(session[:monsters].index(params[:id]))
     update
+  end
+
+  # POST /build/
+  def create
+    params[:encounter][:monsters] = session[:monsters]
+    @encounter = Encounter.new(encounter_params)
+    puts @encounter.inspect
   end
 
   def reset
@@ -55,27 +61,31 @@ class BuildController < ApplicationController
   end
 
   def calc_encounter
-    @encounter = EncounterBuilder.new
+    @eb = EncounterBuilder.new
     @players = session[:players]
     @monsters = session[:monsters]
 
     # add all players to the party
     @players
       .map { |p| PlayerCharacter.new(p) }
-      .each { |p| @encounter.party.join(p) }
+      .each { |p| @eb.party.join(p) }
 
     # add all monsters
     # @monsters
     #   .map { |m| Monster.new(m) }
     #   .each { |m| @encounter.add_monster(m) }
     puts session[:monsters]
-    session[:monsters].each { |id| @encounter.add_monster(Monster.find(id)) }
+    session[:monsters].each { |id| @eb.add_monster(Monster.find(id)) }
 
     # calculate the difficulty
-    @dto = @encounter.calculate_difficulty
+    @dto = @eb.calculate_difficulty
 
     # debugger
 
     @dto
+  end
+
+  def encounter_params
+    params.require(:encounter).permit(:name, :description, monsters: [])
   end
 end

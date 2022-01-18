@@ -1,9 +1,22 @@
-<%= form_with do |form| %>
+<%= form_with model: @encounter, url: build_create_path, remote: true do |form| %>
     <%= form.label 'Name of the encounter' %>
     <%= form.text_field :name %>
 
     <%= form.label 'Description' %>
     <%= form.text_area :description %>
 
+
+
     <%= form.submit %>
+<% end %>
+
+<%= form_with url: build_monster_path, remote: true, html: { class: 'inline' } do |form| %>
+   <div class="field">
+    <%= form.label 'Monsters' %>
+    <%= form.select(:id, Monster.all.collect { |m| [m.name, m.id] }, prompt: true) %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit '&#10133;'.html_safe, class: 'btn' %>
+  </div>
 <% end %>
