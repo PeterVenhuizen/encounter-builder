@@ -16,12 +16,15 @@ class BuildController < ApplicationController
   end
 
   def add_monster
-    session[:monsters] << { name: params[:name], cr: params[:cr], id: SecureRandom.uuid }
+    puts params
+    # session[:monsters] << { name: params[:name], challenge_rating: params[:cr], id: SecureRandom.uuid }
+    session[:monsters] << params[:id]
     update
   end
 
   def delete_monster
-    session[:monsters].delete_if { |h| h['id'] == params[:id] }
+    # session[:monsters].delete_if { |h| h['id'] == params[:id] }
+    session[:monsters].slice!(session[:monsters].index(params[:id]))
     update
   end
 
@@ -40,6 +43,8 @@ class BuildController < ApplicationController
     @players = session[:players]
     @monsters = session[:monsters]
     @dto = calc_encounter
+
+    @mon = Monster.all
   end
 
   def update
@@ -60,9 +65,11 @@ class BuildController < ApplicationController
       .each { |p| @encounter.party.join(p) }
 
     # add all monsters
-    @monsters
-      .map { |m| Monster.new(m) }
-      .each { |m| @encounter.add_monster(m) }
+    # @monsters
+    #   .map { |m| Monster.new(m) }
+    #   .each { |m| @encounter.add_monster(m) }
+    puts session[:monsters]
+    session[:monsters].each { |id| @encounter.add_monster(Monster.find(id)) }
 
     # calculate the difficulty
     @dto = @encounter.calculate_difficulty

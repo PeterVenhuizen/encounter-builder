@@ -1,6 +1,5 @@
-<% @monsters.each do |data| %>
-  <% data.symbolize_keys! %>
-  <% monster = Monster.new(data) %>
+<% @monsters.each do |id| %>
+  <% monster = Monster.find(id) %>
   <div class="player">
     <div class="emoji">&#128126;</div>
     <%# &#128128; %>
@@ -8,13 +7,13 @@
     <div class="stats">
       <div>
         <label>CR: </label>
-        <span><%= monster.cr %></span>
+        <span><%= monster.challenge_rating %></span>
       </div>
       <div>
         <label>XP: </label>
         <span><%= monster.xp %></span>
       </div>
     </div>
-    <%= link_to '&#10060;'.html_safe, "build/monster/#{data[:id]}", remote: true, method: :delete %>
+    <%= link_to '&#10060;'.html_safe, "build/monster/#{id}", remote: true, method: :delete %>
   </div>
 <% end %>
