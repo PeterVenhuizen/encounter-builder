@@ -4,7 +4,7 @@
   <div id="encounter-builder">
     <div>
       <h2><%= @encounter.name %></h2>
-      <p><%= @encounter.description %></p>
+      <p><%= markdown(@encounter.description).html_safe %></p>
     </div>
 
     <div class="rectangle">
