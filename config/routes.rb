@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :encounters
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  root to: redirect('encounters/')
+  root to: redirect('encounters/new')
 
   # Add / Delete player
   post '/player', to: 'encounters#add_player', as: 'encounters_player'
