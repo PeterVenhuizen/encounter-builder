@@ -1,6 +1,5 @@
-<%# <aside id="sidebar"></aside> %>
 <section id="main">
-
+  <h1>Encounters</h1>
   <p id="notice"><%= notice %></p>
 
   <% @encounters.each do |encounter| %>
@@ -15,7 +14,7 @@
 
       <div class="encounter-actions">
         <%= link_to 'Edit', edit_encounter_path(encounter), class: 'btn easy' %>
-        <%= link_to 'Delete'.html_safe, encounter, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn hard' %>
+        <%= link_to 'Delete', encounter, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn hard' %>
       </div>
     </div>
   <% end %>

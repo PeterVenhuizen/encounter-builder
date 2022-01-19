@@ -1,37 +1,21 @@
-<p id="notice"><%= notice %></p>
+<section id="main">
+  <h1>Monsters</h1>
 
-<h1>Monsters</h1>
+  <p id="notice"><%= notice %></p>
+  <% @monsters.each do |monster| %>
+    <div class="encounter-row">
+      <span class="encounter-name">
+        <%= link_to monster.name, monster %>
+      </span>
+      <span><%= monster.species %></span>
+      <span><%= monster.challenge_rating %></span>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Size</th>
-      <th>Type</th>
-      <th>Armor class</th>
-      <th>Hit points</th>
-      <th>Challenge rating</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+      <div class="encounter-actions">
+        <%= link_to 'Edit', edit_monster_path(monster), class: 'btn easy' %>
+        <%= link_to 'Delete', monster, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn hard' %>
+      </div>
+    </div>
+  <% end %>
 
-  <tbody>
-    <% @monsters.each do |monster| %>
-      <tr>
-        <td><%= monster.name %></td>
-        <td><%= monster.size %></td>
-        <td><%= monster.species %></td>
-        <td><%= monster.armor_class %></td>
-        <td><%= monster.hit_points %></td>
-        <td><%= monster.challenge_rating %></td>
-        <td><%= link_to 'Show', monster %></td>
-        <td><%= link_to 'Edit', edit_monster_path(monster) %></td>
-        <td><%= link_to 'Destroy', monster, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Monster', new_monster_path %>
+  <%= link_to 'New Monster', new_monster_path, class: 'btn trivial' %>
+</section>
