@@ -16,7 +16,7 @@
     </div>
   </div>
 
-  <div class="encounter-actions">
+  <div class="encounter-actions mt-1">
     <%= link_to 'Edit', edit_encounter_path(@encounter), class: 'btn easy' %>
     <%= link_to 'Delete'.html_safe, @encounter, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn hard' %>
   </div>

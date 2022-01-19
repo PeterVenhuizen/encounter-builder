@@ -83,7 +83,7 @@ html, body {
     grid-template-rows: auto 1fr;
     grid-column-gap: 2em;
 
-    /* align-items: flex-start; */
+    align-items: flex-start;
     flex-grow: 0;
 }
 

@@ -21,16 +21,6 @@ input[type="submit"] {
     cursor: pointer;
 }
 textarea {
-    min-height: 150px;
+    min-height: 200px;
     width: 100%;
 }
-
-/* .btn {
-    background: none;
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
-    padding: .25em .5em;
-    font-weight: bold;
-    height: var(--form-element-height);
-    width: var(--form-element-height);
-} */

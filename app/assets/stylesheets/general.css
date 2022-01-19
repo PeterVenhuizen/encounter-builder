@@ -37,12 +37,25 @@ body {
 }
 
 .rectangle {
-    display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: space-between;
     border-radius: 3px;
     border: 1px solid var(--border-color);
     padding: 0.5em;
-    align-items: stretch;
+}
+
+p {
+    margin-block: 0.5em;
+}
+blockquote {
+    padding: 1em;
+    background-color: #ebedf3;
+    border-left: 5px solid #7593ee;
+}
+blockquote p {
+    margin: 0;
+}
+
+.mt-1 {
+    margin-top: 1em;
 }
