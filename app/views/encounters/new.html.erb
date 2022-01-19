@@ -1,34 +1,6 @@
-<aside id="sidebar">
-  
-  <h2>Manage Characters</h2>
-
-  <strong>Add Player</strong>
-  <%= render partial: 'encounters/player/form' %>
-
-  <h3>Party</h3>
-  <div id="party">
-    <%= render partial: 'encounters/player/player' %>
-  </div>
-  
-</aside>
+<%= render 'encounters/manage_characters' %>
 
 <section id="main">
-
   <h1>New Encounter</h1>
-
-  <div id="encounter-builder">
-    <div id="encounter-stats">
-      <%= render partial: 'encounters/encounter/encounter' %>
-    </div>
-
-    <%# <h2>Manage Encounter</h2> %>
-    <div>
-      <h3>Encounter details</h3>
-      <%= render 'encounters/encounter/form', encounter: @encounter %>
-    </div>
-    <div id="monsters">
-      <%= render partial: 'encounters/monster/monster' %>
-    </div>
-  </div>
-
+  <%= render 'encounters/encounter_builder' %>
 </section>

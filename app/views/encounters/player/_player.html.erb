@@ -1,7 +1,6 @@
 <% @players.each(&:symbolize_keys!) %>
 
 <% @players.each do |player| %>
-
   <div class="card player">
     <div class="emoji"><%= encounter_emoji(@dto.difficulty) %></div>
 
