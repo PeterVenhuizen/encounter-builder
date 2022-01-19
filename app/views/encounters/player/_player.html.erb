@@ -1,36 +1,20 @@
-<%
-  emoji_per_difficulty = {
-    none: '&#x1f642;',
-    trivial: '&#x1f604;',
-    easy: '&#x1f642;',
-    medium: '&#x1f610;',
-    hard: '&#x1f628;',
-    deadly: '&#x1f635;'
-  }
-
-  emoji = emoji_per_difficulty[@dto.difficulty] 
-
-  @players = @players.map { |data| data.symbolize_keys!; PlayerCharacter.new(data) }
-  avg_level = @players.count > 0 ? @players.sum { |p| p.level.to_f } / @players.count : 0
-%>
-
-<span class="summary"># of characters: <%= @players.count %> | average party level: <%= '%.1f' % avg_level %></span>
+<% @players.each(&:symbolize_keys!) %>
 
 <% @players.each do |player| %>
 
   <div class="card player">
-    <div class="emoji"><%= emoji.html_safe %></div>
+    <div class="emoji"><%= encounter_emoji(@dto.difficulty) %></div>
 
     <div class="description">
-      <span class="name"><%= player.name %></span>
+      <span class="name"><%= player[:name] %></span>
     </div>
 
     <div class="stats">
       <div>
         <label>LVL: </label>
-        <span class="level"><%= player.level %></span>
+        <span class="level"><%= player[:level] %></span>
       </div>
     </div>
-    <%= link_to '&#10060;'.html_safe, "/player/#{player.id}", remote: true, method: :delete %>
+    <%= link_to '&#10060;'.html_safe, "/player/#{player[:id]}", remote: true, method: :delete %>
   </div>
 <% end %>

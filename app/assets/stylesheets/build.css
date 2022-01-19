@@ -10,7 +10,9 @@
     font-weight: bold;
     color: var(--label-color);
 }
-
+.summary {
+    align-self: center;
+}
 
 /* manage encounter */
 h1 {
@@ -83,9 +85,6 @@ h1 {
     display: flex;
     justify-content: space-around;
     align-items: center;
-}
-#xp-threshold div {
-    /* margin-block: 0.5em; */
 }
 .xp {
     margin-block: 1em;
