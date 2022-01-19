@@ -6,11 +6,18 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'general.css' %>
+    <%= stylesheet_link_tag 'encounters.css' %>
     <%= stylesheet_link_tag 'build.css' %>
+    <%= stylesheet_link_tag 'forms.css' %>
+    <%= stylesheet_link_tag 'monsters.css' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <div id="app">
+      <%= render 'layouts/header' %>
+      <%= yield %>
+    </div>
   </body>
 </html>

@@ -1,0 +1,33 @@
+<div class="stats">
+  <div id="xp-threshold">
+    <% @eb.party.party_xp.each do |k,v| %>
+      <div class="col">
+        <label><%= k %></label>
+        <span class="pill <%= k.to_s %>"><%= v %></span>
+      </div>
+    <% end %>
+  </div>
+  <span class="summary mt-1"># of characters: <%= @players.count %> | average party level: <%= '%.1f' % avg_level(@players) %></span>
+</div>
+
+<div class="stats">
+  <label>Difficulty</label>
+  <span 
+    class="large-pill <%= @dto.difficulty.to_s %>"
+    style="width: <%= "#{'%.2f' % difficulty_perc(@dto.adjusted_xp, @eb.party)}" %>%"  
+  >
+    <%= @dto.difficulty.to_s %>
+  </span>
+  
+  <div class="xp">
+    <div class="col">
+      <label>Total XP</label>
+      <span><%= @dto.award_xp %></span>
+    </div>
+
+    <div class="col">
+      <label>Adjusted XP</label>
+      <span><%= @dto.adjusted_xp.to_i %> XP (x<%= @dto.multiplier %>)</span>
+    </div>
+  </div>
+</div>

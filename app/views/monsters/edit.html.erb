@@ -1,6 +1,8 @@
-<h1>Editing Monster</h1>
+<section id="main">
+  <h1>Editing Monster</h1>
 
-<%= render 'form', monster: @monster %>
+  <%= render 'form', monster: @monster %>
 
-<%= link_to 'Show', @monster %> |
-<%= link_to 'Back', monsters_path %>
+  <%= link_to 'Show', @monster, class: 'btn easy' %>
+  <%= link_to 'Back', monsters_path, class: 'btn medium' %>
+</section>

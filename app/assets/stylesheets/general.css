@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root {
+    --bg-color: white;
+    --border-color: #D3D3D3;
+    --font-color: black;
+    --card-color: white;
+    --form-element-height: 32px;
+
+    --trivial: #17a2b8;
+    --easy: #28a755;
+    --medium: #ffc107;
+    --hard: #dc3545;
+    --deadly: #343a40;
+    --label-color: #738694;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    /* color: var(--font-color); */
+}
+a {
+    text-decoration: none;
+}
+
+body {
+    font-size: 13px;
+}
+
+.btn {
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: .5em;
+    border-radius: 3px;
+    border: none;
+}
+
+.rectangle {
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 3px;
+    border: 1px solid var(--border-color);
+    padding: 0.5em;
+}
+
+p {
+    margin-block: 0.5em;
+}
+blockquote {
+    padding: 1em;
+    background-color: #ebedf3;
+    border-left: 5px solid #7593ee;
+}
+blockquote p {
+    margin: 0;
+}
+
+.mt-1 { margin-top: 1em; }
+.mb-1 { margin-bottom: 1em; }
+
+hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}

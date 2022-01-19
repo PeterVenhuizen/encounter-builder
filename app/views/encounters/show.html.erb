@@ -1,0 +1,23 @@
+<section id="main">
+  <p id="notice"><%= notice %></p>
+
+  <div id="encounter-builder">
+    <div>
+      <h2><%= @encounter.name %></h2>
+      <p><%= markdown(@encounter.description).html_safe %></p>
+    </div>
+
+    <div class="rectangle">
+      <h2>Monsters</h2>
+      <% @encounter.monsters.each do |id| %>
+        <% monster = Monster.find(id) %>
+        <%= render 'encounters/monster/monster_card', monster: monster, deletable: false %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="encounter-actions mt-1">
+    <%= link_to 'Edit', edit_encounter_path(@encounter), class: 'btn easy' %>
+    <%= link_to 'Delete'.html_safe, @encounter, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn hard' %>
+  </div>
+</div>

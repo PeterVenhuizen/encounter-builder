@@ -1,0 +1,19 @@
+<% @players.each(&:symbolize_keys!) %>
+
+<% @players.each do |player| %>
+  <div class="card player">
+    <div class="emoji"><%= encounter_emoji(@dto.difficulty) %></div>
+
+    <div class="description">
+      <span class="name"><%= player[:name] %></span>
+    </div>
+
+    <div class="stats">
+      <div>
+        <label>LVL: </label>
+        <span class="level"><%= player[:level] %></span>
+      </div>
+    </div>
+    <%= link_to '&#10060;'.html_safe, "/player/#{player[:id]}", remote: true, method: :delete %>
+  </div>
+<% end %>

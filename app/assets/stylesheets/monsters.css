@@ -1,0 +1,4 @@
+.stat-group { margin-block: 0.25em; }
+.stat-group label {
+    font-weight: bold;
+}

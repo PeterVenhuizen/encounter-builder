@@ -1,15 +1,17 @@
 Rails.application.routes.draw do
   resources :monsters
+  resources :encounters
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  root 'build#index'
-  get '/angry', to: 'build#index'
-  post '/build/test', to: 'build#test', as: 'test'
+  root to: redirect('encounters/new')
 
-  post '/build/player', to: 'build#add_player'
-  delete '/build/player/:id', to: 'build#delete_player'
+  # Add / Delete player
+  post '/player', to: 'encounters#add_player', as: 'encounters_player'
+  delete '/player/:id', to: 'encounters#delete_player'
 
-  post '/build/monster', to: 'build#add_monster'
-  delete '/build/monster/:id', to: 'build#delete_monster'
+  # Add / Delete monster
+  post '/monster', to: 'encounters#add_monster', as: 'encounters_monster'
+  delete '/monster/:id', to: 'encounters#delete_monster'
 
-  get '/build/reset', to: 'build#reset'
+  get '/reset', to: 'encounters#reset'
 end
