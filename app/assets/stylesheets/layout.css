@@ -16,7 +16,7 @@ html, body {
         "header header header"
         "sidebar main blank";
         /* "footer footer footer"; */
-    grid-template-columns: 1fr 2.5fr 1fr;
+    grid-template-columns: repeat(12, [col-start] 1fr);
     /* grid-template-rows: 50px 1fr 50px; */
     grid-template-rows: 50px 1fr;
     height: 100vh;
@@ -29,23 +29,50 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: red;
+    background-color: black;
+    grid-column: col-start / span 12;
+}
+#header a {
+    color: white;
+}
+#header a:hover {
+    text-decoration: underline;
+}
+.main-nav {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.navbar-brand {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.main-links {
+    list-style-type: none;
+    justify-self: flex-end;
+}
+.main-links li {
+    display: inline;
 }
 
 #sidebar {
     grid-area: sidebar;
+    grid-column: col-start / span 3;
     display: flex;
     flex-direction: column;
     /* display: none; */
     height: 100%;
     padding: 1em;
+    margin-right: 2em;
     background-color: #ebedf3;
     position: relative;
 }
 
 #main {
-    padding: 2em;
+    padding-top: 1em;
     grid-area: main;
+    grid-column: col-start 4 / span 6;
     display: flex;
     flex-direction: column;
 }

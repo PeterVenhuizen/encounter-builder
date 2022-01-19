@@ -36,7 +36,16 @@ class EncountersController < ApplicationController
   end
 
   # PATCH/PUT /encounters/:id
-  def update; end
+  def update
+    params[:encounter][:monsters] = session[:monsters]
+    respond_to do |format|
+      if @encounter.update(encounter_params)
+        format.html { redirect_to encounter_url(@encounter), notice: 'Encounter was successfully updated.' }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+      end
+    end
+  end
 
   # DELETE /encounters/:id
   def destroy

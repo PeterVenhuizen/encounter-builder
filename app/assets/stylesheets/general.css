@@ -18,7 +18,7 @@
 * {
     box-sizing: border-box;
     font-family: 'Be Vietnam Pro', sans-serif;
-    color: var(--font-color);
+    /* color: var(--font-color); */
 }
 a {
     text-decoration: none;
