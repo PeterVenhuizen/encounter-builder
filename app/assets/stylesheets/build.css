@@ -13,6 +13,9 @@
 
 
 /* manage encounter */
+h1 {
+    margin-bottom: 1em;
+}
 #monsters {
     /* display: flex; */
     flex-wrap: wrap;

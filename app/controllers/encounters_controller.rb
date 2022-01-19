@@ -18,7 +18,10 @@ class EncountersController < ApplicationController
   end
 
   # Get /encounters/:id/edit
-  def edit; end
+  def edit
+    session[:monsters] = @encounter.monsters
+    calc_encounter
+  end
 
   # POST /encounters
   def create

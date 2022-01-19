@@ -35,3 +35,14 @@ body {
     border-radius: 3px;
     border: none;
 }
+
+.rectangle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 3px;
+    border: 1px solid var(--border-color);
+    padding: 0.5em;
+    align-items: stretch;
+}

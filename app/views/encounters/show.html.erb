@@ -1,9 +1,20 @@
 <section id="main">
   <p id="notice"><%= notice %></p>
 
-  <h2><%= @encounter.name %></h2>
-  <p><%= @encounter.description %></p>
-  <%= @encounter.monsters %>
+  <div id="encounter-builder">
+    <div>
+      <h2><%= @encounter.name %></h2>
+      <p><%= @encounter.description %></p>
+    </div>
+
+    <div class="rectangle">
+      <h2>Monsters</h2>
+      <% @encounter.monsters.each do |id| %>
+        <% monster = Monster.find(id) %>
+        <%= render 'encounters/monster/monster_card', monster: monster, deletable: false %>
+      <% end %>
+    </div>
+  </div>
 
   <div class="encounter-actions">
     <%= link_to 'Edit', edit_encounter_path(@encounter), class: 'btn easy' %>
