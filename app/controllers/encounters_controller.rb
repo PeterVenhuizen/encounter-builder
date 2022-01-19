@@ -33,6 +33,7 @@ class EncountersController < ApplicationController
         session[:monsters] = []
         format.html { redirect_to encounter_url(@encounter), notice: 'Encounter was successfully created.' }
       else
+        calc_encounter
         format.html { render :new, status: :unprocessable_entity }
       end
     end
@@ -45,6 +46,7 @@ class EncountersController < ApplicationController
       if @encounter.update(encounter_params)
         format.html { redirect_to encounter_url(@encounter), notice: 'Encounter was successfully updated.' }
       else
+        calc_encounter
         format.html { render :edit, status: :unprocessable_entity }
       end
     end

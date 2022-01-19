@@ -1,4 +1,16 @@
-<%= form_with(model: encounter, local: false) do |form| %>
+<%= form_with(model: encounter, local: true) do |form| %>
+  <% if encounter.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(encounter.errors.count, "error") %> prohibited this encounter from being saved:</h2>
+
+      <ul>
+        <% encounter.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
     <%= form.label 'Name of the encounter' %>
     <%= form.text_field :name %>
 
