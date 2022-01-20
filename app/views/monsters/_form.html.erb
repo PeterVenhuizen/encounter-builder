@@ -18,12 +18,12 @@
 
   <div class="field">
     <%= form.label :size %>
-    <%= form.select :size, ['Tiny', 'Small', 'Medium', 'Large', 'Huge', 'Gargantuan'] %>
+    <%= form.select :size, %w[Tiny Small Medium Large Huge Gargantuan] %>
   </div>
 
   <div class="field">
     <%= form.label 'Type' %>
-    <%= form.select :species, ['Aberration', 'Beast', 'Celestial', 'Construct', 'Dragon', 'Elemental', 'Fey', 'Fiend', 'Giant', 'Humanoid', 'Monstrosity', 'Ooze', 'Plant', 'Undead'] %>
+    <%= form.select :species, %w[Aberration Beast Celestial Construct Dragon Elemental Fey Fiend Giant Humanoid Monstrosity Ooze Plant Undead] %>
   </div>
 
   <div class="field">
@@ -38,7 +38,7 @@
 
   <div class="field">
     <%= form.label :challenge_rating %>
-    <%= form.select :challenge_rating, [0, '1/8', '1/4', '1/2'] + [*1..30] %>
+    <%= form.select :challenge_rating, %w[0 1/8 1/4 1/2] + [*'1'..'30'] %>
   </div>
 
   <div class="actions">

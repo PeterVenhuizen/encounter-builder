@@ -17,11 +17,17 @@ RSpec.describe "/monsters", type: :request do
   # Monster. As you add validations to Monster, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      name: 'Animated Broom',
+      challenge_rating: '1/4'
+    }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+      name: '',
+      challenge_rating: ''
+    }
   }
 
   describe "GET /index" do

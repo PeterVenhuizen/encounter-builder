@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Party, type: :model do
-  before(:each) do
+  before(:all) do
     @bob_lvl1 = PlayerCharacter.new(name: 'Bob', level: '1')
     @bob_lvl2 = PlayerCharacter.new(name: 'Bob', level: '2')
     @henk_lvl1 = PlayerCharacter.new(name: 'Henk', level: '1')
