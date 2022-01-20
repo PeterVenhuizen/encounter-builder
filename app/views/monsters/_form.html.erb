@@ -18,17 +18,17 @@
 
   <div class="field">
     <%= form.label :size %>
-    <%= form.select :size, %w[Tiny Small Medium Large Huge Gargantuan] %>
+    <%= form.select :size, %w[Tiny Small Medium Large Huge Gargantuan], prompt: true %>
   </div>
 
   <div class="field">
     <%= form.label 'Type' %>
-    <%= form.select :species, %w[Aberration Beast Celestial Construct Dragon Elemental Fey Fiend Giant Humanoid Monstrosity Ooze Plant Undead] %>
+    <%= form.select :species, %w[Aberration Beast Celestial Construct Dragon Elemental Fey Fiend Giant Humanoid Monstrosity Ooze Plant Undead], prompt: true %>
   </div>
 
   <div class="field">
     <%= form.label :armor_class %>
-    <%= form.select :armor_class, [*1..30], :selected => 12 %>
+    <%= form.select :armor_class, [*1..30], :selected => 10 %>
   </div>
 
   <div class="field">

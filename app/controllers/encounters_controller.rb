@@ -73,12 +73,12 @@ class EncountersController < ApplicationController
 
   def add_monster
     session[:monsters] << params[:id]
-    render_update
+    render_update(true)
   end
 
   def delete_monster
     session[:monsters].slice!(session[:monsters].index(params[:id]))
-    render_update
+    render_update(true)
   end
 
   def reset
@@ -102,10 +102,10 @@ class EncountersController < ApplicationController
     calc_encounter
   end
 
-  def render_update
+  def render_update(render_monsters = false)
     calc_encounter
     respond_to do |format|
-      format.js { render 'encounters/update.js.erb' }
+      format.js { render 'encounters/update.js.erb', locals: { render_monsters: render_monsters } }
     end
   end
 
