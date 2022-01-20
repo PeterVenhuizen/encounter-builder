@@ -4,6 +4,17 @@
   <div id="encounter-builder">
     <div>
       <h2><%= @encounter.name %></h2>
+      <div class="col">
+        
+        <div class="summary">
+          <label>Difficulty:</label>
+          <span class="pill"><%= @encounter.summary['difficulty'] %></span>
+          <label>Total Experience:</label>
+          <span><%= @encounter.summary['total_experience'] %></span>
+        </div>
+
+        <span class="summary">Difficulty calculated for <%= @encounter.summary['number_of_players'] %> players of level <%= @encounter.summary['average_level'] %> (avg)</span>
+      </div>
       <p><%= markdown(@encounter.description).html_safe %></p>
     </div>
 

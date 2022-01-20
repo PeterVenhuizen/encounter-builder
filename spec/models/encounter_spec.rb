@@ -29,5 +29,12 @@ RSpec.describe Encounter, type: :model do
     expect(@encounter.errors.messages[:monsters]).to eq ['the encounter should have at least one']
   end
 
+  it 'has a default summary' do
+    expect(@encounter.summary['award_xp']).to eq '0'
+    expect(@encounter.summary['difficulty']).to eq 'none'
+    expect(@encounter.summary['number_of_players']).to eq '0'
+    expect(@encounter.summary['avg_level']).to eq '0'
+  end
+
   it 'only has monster uuids that are in the monster table'
 end

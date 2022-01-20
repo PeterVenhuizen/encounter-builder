@@ -126,6 +126,6 @@ class EncountersController < ApplicationController
   end
 
   def encounter_params
-    params.require(:encounter).permit(:name, :description, monsters: [])
+    params.require(:encounter).permit(:name, :description, monsters: [], summary: {})
   end
 end

@@ -57,4 +57,10 @@ RSpec.describe Party, type: :model do
     party_xp = party.party_xp
     expect(party_xp[:hard]).to eq 225
   end
+
+  it 'average player level of a party of a level one and a level two character is 1.5' do
+    party = Party.new([@bob_lvl2, @henk_lvl1])
+    avg_level = party.average_player_level
+    expect(avg_level).to eq 1.5
+  end
 end

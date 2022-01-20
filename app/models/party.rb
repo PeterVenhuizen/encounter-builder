@@ -6,7 +6,7 @@ class Party
   end
 
   def size
-    @players.size
+    @players.count
   end
 
   def join(player_character)
@@ -21,5 +21,9 @@ class Party
     @players.each_with_object({}) do |player, party_xp|
       party_xp.merge!(player.xp_threshold) { |_, v1, v2| v1 + v2 }
     end
+  end
+
+  def average_player_level
+    @players.count.positive? ? @players.sum { |p| p.level.to_f } / @players.count : 0
   end
 end
