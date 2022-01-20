@@ -1,4 +1,4 @@
-class EncounterBuilder
+class EncounterCalculator
   attr_reader :party, :monsters
 
   def initialize(party = Party.new, monsters = [])
@@ -10,22 +10,16 @@ class EncounterBuilder
     @monsters << monster
   end
 
-  def calculate_difficulty
-    # get the award xp
+  def summary
     award_xp = @monsters.sum(&:xp)
-
-    # get the adjusted xp
     adjusted_xp = award_xp * multiplier
 
-    # determine difficulty
+    # determine the difficulty
     difficulties = %i[trivial easy medium hard deadly]
-    diff_idx = party.party_xp.values.count { |v| adjusted_xp >= v }
-    # diff_idx -= 1 unless diff_idx.zero?
-    
-    # fix difficulty to :none if no players or monsters
-    difficulty = @monsters.empty? || @party.players.empty? ? :none : difficulties[diff_idx]
+    idx = party.party_xp.values.count { |v| adjusted_xp >= v }
+    difficulty = @monsters.empty? || @party.players.empty? ? :none : difficulties[idx]
 
-    EncounterDTO.new(award_xp, adjusted_xp, multiplier, difficulty)
+    { award_xp: award_xp, adjusted_xp: adjusted_xp, multiplier: multiplier, difficulty: difficulty }
   end
 
   private

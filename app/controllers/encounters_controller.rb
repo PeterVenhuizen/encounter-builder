@@ -110,21 +110,19 @@ class EncountersController < ApplicationController
   end
 
   def calc_encounter
-    @eb = EncounterBuilder.new
+    @encounter_calculator = EncounterCalculator.new
     @players = session[:players]
     @monsters = session[:monsters]
 
     # add all players to the party
     @players
       .map { |p| PlayerCharacter.new(p) }
-      .each { |p| @eb.party.join(p) }
+      .each { |p| @encounter_calculator.party.join(p) }
 
     # add all monsters
-    session[:monsters].each { |id| @eb.add_monster(Monster.find(id)) }
+    session[:monsters].each { |id| @encounter_calculator.add_monster(Monster.find(id)) }
 
-    # calculate the difficulty
-    @dto = @eb.calculate_difficulty
-    @dto
+    @summary = @encounter_calculator.summary
   end
 
   def encounter_params

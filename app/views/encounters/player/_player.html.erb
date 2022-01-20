@@ -2,7 +2,7 @@
 
 <% @players.each do |player| %>
   <div class="card player">
-    <div class="emoji"><%= encounter_emoji(@dto.difficulty) %></div>
+    <div class="emoji"><%= encounter_emoji(@summary[:difficulty]) %></div>
 
     <div class="description">
       <span class="name"><%= player[:name] %></span>
