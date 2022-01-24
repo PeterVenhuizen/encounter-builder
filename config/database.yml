@@ -10,19 +10,6 @@ development:
   <<: *default
   database: dnd_development
 
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
-test:
-  <<: *default
-default: &default
-  adapter: postgresql
-  encoding: unicode
-  username: peter
-  password: retreat-renegade-untrue
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
-
 development:
   <<: *default
   database: dnd_development
