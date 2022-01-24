@@ -24,6 +24,8 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 # Use Redcarpet for encounter markdown description
 gem 'redcarpet'
+gem 'rubocop', require: false
+gem 'brakeman'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
