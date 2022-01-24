@@ -21,11 +21,10 @@ stages:
   services:
     - postgres:latest
   variables:
+    POSTGRES_DB: postgres
     POSTGRES_USER: postgres
     POSTGRES_PASSWORD: postgres
-    DB_USERNAME: postgres
-    DB_PASSWORD: postgres
-    DB_HOST: postgres
+    POSTGRES_HOST_AUTH_METHOD: trust
     RAILS_ENV: test
     DISABLE_SPRING: 1
     BUNDLE_PATH: vendor/bundle
