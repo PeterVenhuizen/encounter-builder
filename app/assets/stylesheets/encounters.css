@@ -12,3 +12,7 @@
 .encounter-name {
     width: 40%;
 }
+
+#encounter-builder .summary {
+    margin-block: 0.25em;
+}

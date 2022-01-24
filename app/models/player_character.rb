@@ -6,6 +6,7 @@ class PlayerCharacter
 
   def initialize(args = {})
     defaults = {
+      id: SecureRandom.uuid,
       name: '',
       level: '1'
     }

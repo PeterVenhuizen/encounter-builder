@@ -8,7 +8,7 @@
         
         <div class="summary">
           <label>Difficulty:</label>
-          <span class="pill"><%= @encounter.summary['difficulty'] %></span>
+          <span class="pill <%= @encounter.summary['difficulty'] %>"><%= @encounter.summary['difficulty'] %></span>
           <label>Total Experience:</label>
           <span><%= @encounter.summary['total_experience'] %></span>
         </div>

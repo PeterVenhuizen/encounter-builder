@@ -7,7 +7,7 @@
       </div>
     <% end %>
   </div>
-  <span class="summary mt-1"># of characters: <%= @players.count %> | average party level: <%= '%.1f' % avg_level(@players) %></span>
+  <span class="summary mt-1"># of characters: <%= @players.count %> | average party level: <%= '%.1f' % @encounter_calculator.party.average_player_level %></span>
 </div>
 
 <div class="stats">

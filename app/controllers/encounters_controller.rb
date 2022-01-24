@@ -3,6 +3,7 @@ require 'securerandom'
 class EncountersController < ApplicationController
   before_action :set_session, only: %i[new edit]
   before_action :set_encounter, only: %i[show edit update destroy]
+  before_action :prepare_for_db, only: %i[create update]
 
   # GET /encounters
   def index
@@ -25,7 +26,6 @@ class EncountersController < ApplicationController
 
   # POST /encounters
   def create
-    params[:encounter][:monsters] = session[:monsters]
     @encounter = Encounter.new(encounter_params)
 
     respond_to do |format|
@@ -41,7 +41,6 @@ class EncountersController < ApplicationController
 
   # PATCH/PUT /encounters/:id
   def update
-    params[:encounter][:monsters] = session[:monsters]
     respond_to do |format|
       if @encounter.update(encounter_params)
         format.html { redirect_to encounter_url(@encounter), notice: 'Encounter was successfully updated.' }
@@ -123,6 +122,18 @@ class EncountersController < ApplicationController
     session[:monsters].each { |id| @encounter_calculator.add_monster(Monster.find(id)) }
 
     @summary = @encounter_calculator.summary
+  end
+
+  def prepare_for_db
+    summary = calc_encounter
+
+    params[:encounter][:monsters] = session[:monsters]
+    params[:encounter][:summary] = {
+      total_experience: summary[:award_xp],
+      difficulty: summary[:difficulty],
+      number_of_players: @encounter_calculator.party.size,
+      average_level: @encounter_calculator.party.average_player_level
+    }
   end
 
   def encounter_params

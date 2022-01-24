@@ -11,10 +11,6 @@ module EncounterHelper
     emoji_per_difficulty[difficulty].html_safe
   end
 
-  def avg_level(players)
-    players.count.positive? ? players.sum { |p| p[:level].to_f } / players.count : 0
-  end
-
   def difficulty_perc(adjusted_xp, party)
     party_xp = party.party_xp
     xp_threshold = party_xp.key?(:deadly) ? party_xp[:deadly] : 20
