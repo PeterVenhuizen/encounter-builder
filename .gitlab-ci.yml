@@ -21,9 +21,9 @@ stages:
   services:
     - postgres:latest
   variables:
-    POSTGRES_DB: my_app_gitlab
-    POSTGRES_USER: my_app
-    POSTGRES_PASSWORD: ''
+    POSTGRES_DB: dnd_test
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: 'postgres'
     RAILS_ENV: test
   before_script:
     - export APT_CACHE_DIR=`pwd`/apt-cache && mkdir -pv $APT_CACHE_DIR
