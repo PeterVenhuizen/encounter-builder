@@ -16,6 +16,16 @@
     <%= form.text_field :name %>
   </div>
 
+  <h2>Players</h2>
+  <div class='field'>
+    <%= form.fields_for :players do |player_form| %>
+      <%= render 'player_fields', f: player_form %>
+    <% end %>
+    <div class='links'>
+      <%= link_to_add_association 'add player', form, :players %>
+    </div>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

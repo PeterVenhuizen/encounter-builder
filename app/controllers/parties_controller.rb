@@ -13,6 +13,7 @@ class PartiesController < ApplicationController
   # GET /parties/new
   def new
     @party = Party.new
+    @party.players.build
   end
 
   # GET /parties/1/edit
@@ -58,13 +59,17 @@ class PartiesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_party
-      @party = Party.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def party_params
-      params.require(:party).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_party
+    @party = Party.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def party_params
+    params.require(:party).permit(
+      :name,
+      players_attributes: %i[name level _destroy id]
+    )
+  end
 end
