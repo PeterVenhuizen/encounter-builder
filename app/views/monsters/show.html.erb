@@ -1,34 +1,40 @@
-<p id="notice"><%= notice %></p>
+<section id="main">
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @monster.name %>
-</p>
+  <article class="stat-block">
+    <header class="mb-1">
+      <h2><%= @monster.name %></h2>
+      <span class="size-and-type"><%= "#{@monster.size} #{@monster.species}" %></span>
+    </header>
 
-<p>
-  <strong>Size:</strong>
-  <%= @monster.size %>
-</p>
+    <%# <hr> %>
 
-<p>
-  <strong>Species:</strong>
-  <%= @monster.species %>
-</p>
+    <section class="basic-stats mb-1">
+      <div class="stat-group">
+        <label>Armor Class</label>
+        <span><%= @monster.armor_class %>
+      </div>
 
-<p>
-  <strong>Armor class:</strong>
-  <%= @monster.armor_class %>
-</p>
+      <div class="stat-group">
+        <label>Hit Points</label>
+        <span><%= @monster.hit_points %>
+      </div>
+    </section>
 
-<p>
-  <strong>Hit points:</strong>
-  <%= @monster.hit_points %>
-</p>
+    <%# <hr> %>
 
-<p>
-  <strong>Challenge rating:</strong>
-  <%= @monster.challenge_rating %>
-</p>
+    <section class="ability-scores"></section>
 
-<%= link_to 'Edit', edit_monster_path(@monster) %> |
-<%= link_to 'Back', monsters_path %>
+    <section class="skills mb-1">
+
+      <div class="stat-group">
+        <label>Challenge</label>
+        <span><%= "#{@monster.challenge_rating} (#{@monster.xp} XP)" %>
+      </div>
+    </section>
+
+  </article>
+
+  <%= link_to 'Edit', edit_monster_path(@monster), class: 'btn easy' %>
+  <%= link_to 'Back', monsters_path, class: 'btn medium' %>
+</section>

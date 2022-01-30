@@ -4,7 +4,7 @@
 
 <% @parties.each do |party| %>
   <div class='party'>
-    <strong><%= party.name %></strong>
+    <strong><%= party.name %> # of characters: <%= party.party_size %> | average player level <%= '%.2f' % party.average_player_level %></strong>
     <%= link_to 'Show', party_path(party) %> |
     <%= link_to 'Edit', edit_party_path(party) %> |
     <%= link_to 'Destroy', party_path(party), method: :delete, data: { confirm: 'Are you sure?' } %>

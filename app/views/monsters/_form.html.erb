@@ -18,27 +18,27 @@
 
   <div class="field">
     <%= form.label :size %>
-    <%= form.text_field :size %>
+    <%= form.select :size, %w[Tiny Small Medium Large Huge Gargantuan], prompt: true %>
   </div>
 
   <div class="field">
-    <%= form.label :species %>
-    <%= form.text_field :species %>
+    <%= form.label 'Type' %>
+    <%= form.select :species, %w[Aberration Beast Celestial Construct Dragon Elemental Fey Fiend Giant Humanoid Monstrosity Ooze Plant Undead], prompt: true %>
   </div>
 
   <div class="field">
     <%= form.label :armor_class %>
-    <%= form.text_field :armor_class %>
+    <%= form.text_field :armor_class, placeholder: 'e.g. 12, or 15 (natural armor)' %>
   </div>
 
   <div class="field">
     <%= form.label :hit_points %>
-    <%= form.text_field :hit_points %>
+    <%= form.text_field :hit_points, placeholder: 'e.g. 22 (4d8 + 4)' %>
   </div>
 
   <div class="field">
     <%= form.label :challenge_rating %>
-    <%= form.text_field :challenge_rating %>
+    <%= form.select :challenge_rating, %w[0 1/8 1/4 1/2] + [*'1'..'30'] %>
   </div>
 
   <div class="actions">
