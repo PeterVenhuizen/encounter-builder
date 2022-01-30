@@ -27,6 +27,9 @@ gem 'redcarpet'
 gem 'rubocop', require: false
 gem 'brakeman'
 
+# Cocoon makes it easier to handle nested forms.
+gem 'cocoon'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
