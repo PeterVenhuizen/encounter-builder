@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   post '/encounters/(:id/)calculate_stats/', to: 'encounters#calculate_stats'
 
   # search monsters
-  resources :monster_search, only: [:index]
+  resources :monsters_search, only: [:index]
 end

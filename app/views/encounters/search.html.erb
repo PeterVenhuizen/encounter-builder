@@ -1,0 +1,6 @@
+<%= fields_for @encounter do |form| %>
+  <% @monsters.each do |monster| %>
+    <%= render 'encounters/monster_search', monster: monster, form_builder: form %>
+  <% end %>
+<% end %>
+

@@ -1,0 +1,22 @@
+<div class="monster card">
+  <div class="emoji">&#128126;</div>
+  <div class="description">
+    <%= link_to monster.name, monster_url(monster), target: '_blank', class: 'name' %>
+    <span class="size-and-type"><%= monster.armor_class %></span>
+  </div>
+  <div class="stats">
+    <div>
+      <label>CR:</label>
+      <span><%= monster.challenge_rating %></span>
+    </div>
+    <div>
+      <label>XP:</label>
+      <span><%= monster.xp %></span>
+    </div>
+  </div>
+  <div class='group-size-view'>
+    <button class='btn plus'>+</button>
+    <span class="group-size-value"><%= group_size %></span>
+    <button class='btn minus'>-</button>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<% monster_id ||= f.object.monster_id %>
+<% group_size = f.object.group_size.nil? ? 1 : f.object.group_size %>
+
+<% if monster_id %>
+  <div class='nested-fields monster-fields'>
+    <%= render 'shared/monster', monster: fetch_monster(monster_id), group_size: group_size %>
+
+    <%= f.hidden_field :group_size, class: 'group_size' %>
+    <%= f.hidden_field :monster_id, class: 'monster_id', value: monster_id %>
+
+    <%= link_to_remove_association 'remove monster', f %>
+  </div>
+<% end %>

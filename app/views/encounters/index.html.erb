@@ -1,0 +1,20 @@
+<h1>Encounters</h1>
+
+<% @encounters.each do |encounter| %>
+  <h2><%= encounter.name %></h2>
+
+  <ul>
+  <% encounter.fates.each do |fate| %>
+    <li>
+      <%= fate.monster.name %>, <%= fate.monster.challenge_rating %>, <%= fate.group_size %>
+    </li>
+  <% end %>
+  </ul>
+  <strong><%= link_to 'Show', encounter_path(encounter) %></strong> |
+  <strong><%= link_to 'Edit', edit_encounter_path(encounter) %></strong>
+<% end %>
+
+
+<br>
+
+<%= link_to 'new', new_encounter_path %>

@@ -1,0 +1,5 @@
+<%= fields_for @encounter do |form| %>
+  <%= link_to_add_association monster.name, form, :fates,
+    render_options: { locals: { monster_id: monster.id } }
+  %>
+<% end %>

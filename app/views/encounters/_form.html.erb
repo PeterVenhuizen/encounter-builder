@@ -1,0 +1,55 @@
+<% form_for_search = nil; fates_for_search = nil; %>
+
+<%= form_with model: @encounter, local: true, id: 'encounter-form' do |form| %>
+  <% if @encounter.errors.any? %>
+    <div id='error_explanation'>
+      <h2><%= pluralize(@encounter.errors.count, 'error') %> prohibited this recipe from being saved:</h2>
+      <ul>
+      <% @encounter.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class='field'>
+    <%= form.label :name %>
+    <%= form.text_field :name, placeholder: 'Encounter name' %>
+  </div>
+
+  <div class='field'>
+    <%= form.label :description %>
+    <%= form.text_area :description, placeholder: 'Short encounter description' %>
+  </div>
+
+  <div class='field'>
+    <%= form.label :party_id %>
+    <%= form.select(:party_id, Party.all.collect { |m| [m.name, m.id] }, { prompt: true }, { class: 'party-select' }) %>
+  </div>
+
+  <hr>
+  <h3>Monsters</h3>
+
+  <div class='encounter-monsters'>
+    <%= form.fields_for :fates do |fate_form| %>
+      <%= render 'shared/fate_fields', f: fate_form %>
+    <% end %>
+    <%# <div class='links'> %>
+      <%# link_to_add_association 'add monster', form, :fates,
+          render_options: { locals: { monster_id: 1 } }
+      %>
+    <%# </div> %>
+
+  </div>
+
+  <div class='actions'>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<div data-controller='live-search' id='search-monsters'>
+  <%= render 'shared/search_form' %>
+  <div data-live-search-target='results' class='search-monsters-results'></div>
+</div>
+
+<%= render 'html_templates' %>

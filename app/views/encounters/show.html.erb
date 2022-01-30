@@ -1,0 +1,17 @@
+<h1><%= @encounter.name %></h1>
+
+<%= @encounter.summary %>
+
+<p><%= @encounter.description %></p>
+
+<ul>
+<% @encounter.fates.each do |fate| %>
+  <li>
+    <%= fate.monster.name %>, <%= fate.monster.challenge_rating %>, <%= fate.group_size %>
+  </li>
+<% end %>
+</ul>
+
+<%= link_to 'Edit', edit_encounter_path(@encounter) %>
+<%= link_to 'Destroy', encounter_path(@encounter), method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to "Back to all encounters", encounters_path %>
