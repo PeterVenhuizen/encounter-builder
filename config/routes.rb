@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
-
-  resources :parties
   resources :monsters
+  resources :encounters
+  resources :parties
+
+  post '(/encounters)/calculate_party_stats/', to: 'encounters#calculate_party_stats'
+  post '(/encounters)/calculate_stats/', to: 'encounters#calculate_stats'
+  post '/encounters/(:id/)calculate_party_stats/', to: 'encounters#calculate_party_stats'
+  post '/encounters/(:id/)calculate_stats/', to: 'encounters#calculate_stats'
+
+  # search monsters
+  resources :monster_search, only: [:index]
 end

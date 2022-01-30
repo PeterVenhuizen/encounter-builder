@@ -1,0 +1,2 @@
+class MonsterSearchController < ApplicationController
+end
