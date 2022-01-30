@@ -1,0 +1,9 @@
+M13. The Chained Library
+>This room is bare except for a bookshelf covered in chains against one wall, a plain wooden bench, and a reading desk built into the shelves. A book with the bust of a mage on its cover sits on the desk.
+The three shelves are filled with bokks bound in iron covers, which are attached to chains that secure them to the shelves-a chained library. The reading desk is used to support the chained books while they are being read. This chained library has been enchanted to be jealously possesive of its contents. It attacks any creature that comes within its reach.
+
+Fistandia's most treasured knowledge is kept here. There are rare tomes on the sciences, arcana, and alchemy, as well as books about planar lore and the summoning of fantastic creatures. All the books are firmly affixed to the shelves by enchanted chains and can't be freed without being destroyed. 
+
+__Treasure.__ If the characters defeat the animated chained library, one of its books breaks free with a length of chain still attached and functions as a _+1 flail_. The books is entitled _Martial Attack Techniques_.
+
+__Puzzle Book.__ The book on the reading desk is the puzzle book with the letter L on its spine.
