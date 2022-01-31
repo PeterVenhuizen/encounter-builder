@@ -3,6 +3,7 @@
 :root {
     --bg-color: white;
     --border-color: #D3D3D3;
+    /* --border-color: #374785; */
     --font-color: black;
     --card-color: white;
     --form-element-height: 32px;
@@ -13,40 +14,32 @@
     --hard: #dc3545;
     --deadly: #343a40;
     --label-color: #738694;
+    /* --label-color: #808080; */
 }
 
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
     font-family: 'Be Vietnam Pro', sans-serif;
-    /* color: var(--font-color); */
 }
+
+html, body {
+    height: 100%;
+    /* background-color: #A8D0E6; */
+}
+
+/* links */
 a {
     text-decoration: none;
+    /* color: var(--trivial); */
+    color: black;
+}
+a:hover {
+    text-decoration: underline;
 }
 
-body {
-    font-size: 13px;
-}
-
-.btn {
-    text-transform: uppercase;
-    font-weight: bold;
-    padding: .5em;
-    border-radius: 3px;
-    border: none;
-}
-
-.rectangle {
-    align-items: center;
-    justify-content: space-between;
-    border-radius: 3px;
-    border: 1px solid var(--border-color);
-    padding: 0.5em;
-}
-
-p {
-    margin-block: 0.5em;
-}
+/* blockquote */
 blockquote {
     padding: 1em;
     background-color: #ebedf3;
@@ -56,11 +49,104 @@ blockquote p {
     margin: 0;
 }
 
+/* labels */
+label {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: var(--label-color);
+    margin-right: .25em;
+}
+
+/* paragraphs */
+p {
+    margin-block: 0.5em;
+}
+
+/* flex elements */
+.flex-row {
+    display: flex;
+    align-items: center;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* margin */
+.m-1 { margin: 1em; }
+.mr-1 { margin-right: 1em; }
+.ml-1 { margin-left: 1em; }
 .mt-1 { margin-top: 1em; }
 .mb-1 { margin-bottom: 1em; }
 
-hr {
-    border: 0;
-    height: 1px;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+/* padding */
+.p-1 { padding: 1em; }
+.pr-1 { padding-right: 1em; }
+.pl-1 { padding-left: 1em; }
+.pt-1 { padding-top: 1em; }
+.pb-1 { padding-bottom: 1em; }
+
+/* reset default button style */
+button {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.btn-outline {
+    border: 2px solid black;
+    padding: 0.25em 0.5em;
+}
+
+/* square container */
+.rectangle {
+    background-color: white;
+    padding: 1em;
+    border: 1px solid var(--border-color);
+    -webkit-box-shadow: 3px 3px 3px -3px rgba(0,0,0,0.5); 
+    box-shadow: 3px 3px 3px -3px rgba(0,0,0,0.5);
+}
+
+/* forms */
+form {
+    /* display: flex;
+    flex-direction: column; */
+}
+form label {
+    font-weight: unset;
+    text-transform: none;
+    color: black;
+}
+input[type], textarea, select {
+    /* background: white; */
+    outline: none;
+    padding: 0.5em;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+}
+input[type], textarea {
+    width: 100%;
+}
+input[type="submit"] {
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+textarea {
+    min-height: 250px;
+}
+
+.form-group {
+    margin-block: 0.5em;
+    align-items: flex-start;
+}
+.form-row {
+    margin-bottom: 1em;
 }

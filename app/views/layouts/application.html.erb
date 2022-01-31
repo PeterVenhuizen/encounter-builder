@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Encounter Builder</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -9,7 +10,6 @@
     <%= stylesheet_link_tag 'general.css' %>
     <%= stylesheet_link_tag 'encounters.css' %>
     <%= stylesheet_link_tag 'build.css' %>
-    <%= stylesheet_link_tag 'forms.css' %>
     <%= stylesheet_link_tag 'monsters.css' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -17,9 +17,7 @@
   <body>
     <div id="app">
       <%= render 'layouts/header' %>
-      <main>
-        <%= yield %>
-      <main>
+      <main><%= yield %></main>
     </div>
   </body>
 </html>

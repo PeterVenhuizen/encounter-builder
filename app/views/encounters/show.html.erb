@@ -1,17 +1,39 @@
-<h1><%= @encounter.name %></h1>
+<div class="encounter-show">
+  <h1><%= @encounter.name %></h1>
 
-<%= @encounter.summary %>
+  <p id="notice"><%= notice %></p>
 
-<p><%= @encounter.description %></p>
+  <div class="">
+    <div class="">
+      <% summary = @encounter.summary %>
 
-<ul>
-<% @encounter.fates.each do |fate| %>
-  <li>
-    <%= fate.monster.name %>, <%= fate.monster.challenge_rating %>, <%= fate.group_size %>
-  </li>
-<% end %>
-</ul>
+      <div class="flex-row stats">
+        <div class="flex-col">
+          <label>Difficulty</label>
+          <span class="pill <%= summary[:difficulty] %>"><%= summary[:difficulty] %></span>
+        </div>
 
-<%= link_to 'Edit', edit_encounter_path(@encounter) %>
-<%= link_to 'Destroy', encounter_path(@encounter), method: :delete, data: { confirm: 'Are you sure?' } %>
+        <div class="flex-col">
+          <label>Total Experience</label>
+          <span><%= summary[:total_experience] %></span>
+        </div>
+      </div>
+
+      <span class="summary">Difficulty calculated for <%= summary[:number_of_players] %> players of level <%= '%.2f' % summary[:average_player_level] %> (avg)</span>
+    </div>
+    <p><%= markdown(@encounter.description).html_safe %></p>
+  </div>
+
+  <div class="rectangle">
+    <h2>Monsters</h2>
+    <% group_size = @encounter.fates.map { |f| [f.monster_id, f.group_size] }.to_h %>
+    <% @encounter.monsters.each do |monster| %>
+      <%= render 'shared/monster', monster: monster, group_size: group_size[monster.id] %>
+    <% end %>
+  </div>
+
+</div>
+
+<%= link_to 'Edit', edit_encounter_path(@encounter), class: 'pill medium' %>
+<%= link_to 'Destroy', encounter_path(@encounter), method: :delete, data: { confirm: 'Are you sure?' }, class: 'pill hard' %>
 <%= link_to "Back to all encounters", encounters_path %>

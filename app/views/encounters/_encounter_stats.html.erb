@@ -1,44 +1,44 @@
-<div id='party-stats'></div>
-<div id='encounter-stats'></div>
-
 <template id='party-stats-template'>
-  <div class='stats'>
-    <div id='party-xp'>
-      <div class='col'>
-        <label>easy</label>
-        <span class='pill easy'></span>
-      </div>
-      <div class='col'>
-        <label>medium</label>
-        <span class='pill medium'></span>
-      </div>
-      <div class='col'>
-        <label>hard</label>
-        <span class='pill hard'></span>
-      </div>
-      <div class='col'>
-        <label>deadly</label>
-        <span class='pill deadly'></span>
-      </div>
+
+  <span class='summary mb-1'># of characters: 
+    <span class='number-of-players'></span> |
+    average player level: <span class='average-player-level'></span>
+  </span>
+
+  <div class="xp flex-row">
+    <div class='flex-col'>
+      <span class='pill easy'></span>
+      <label>easy</label>
     </div>
-    <span class='summary mt-1'># of characters: 
-      <span class='number-of-players'></span> |
-      average player level: <span class='average-player-level'></span>
-    </span>
+    <div class='flex-col'>
+      <span class='pill medium'></span>
+      <label>medium</label>
+    </div>
+    <div class='flex-col'>
+      <span class='pill hard'></span>
+      <label>hard</label>
+    </div>
+    <div class='flex-col'>
+      <span class='pill deadly'></span>
+      <label>deadly</label>
+    </div>
   </div>
+
 </template>
 
 <template id='encounter-stats-template'>
-  <label>Difficulty</label>
-  <span class='large-pill'></span>
+  <div class="flex-col">
+    <label>Difficulty</label>
+    <span class='large-pill pill'></span>
+  </div>
 
   <div class='xp'>
-    <div class='col'>
+    <div class='flex-col'>
       <label>Total XP</label>
       <span class='total-xp'></span>
     </div>
 
-    <div class='col'>
+    <div class='flex-col'>
       <label>Adjusted XP</label>
       <span>
         <span class='adjusted-xp'></span> XP (<span class='multiplier'></span>)

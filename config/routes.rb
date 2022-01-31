@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'encounters#index'
+
   resources :monsters
   resources :encounters
   resources :parties

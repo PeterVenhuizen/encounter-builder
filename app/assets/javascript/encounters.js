@@ -9,8 +9,8 @@ jQuery(function() {
     // update when a monster is removed
     $(document)
         .on('cocoon:after-insert', function() {
-            const encounterMonsters = document.querySelector('.encounter-monsters');
-            ($('.monster-fields').last().detach()).appendTo(encounterMonsters);
+            const monsters = document.querySelector('.monsters');
+            ($('.monster-fields').last().detach()).appendTo(monsters);
             calcEncounterStats(partySelect, authenticityToken);
             resetSearch();
         })
@@ -19,7 +19,7 @@ jQuery(function() {
         });
 
     // update if the party changes or the monster settings
-    $('#encounter-form').on('change', 'select, input[type="number"]', function() {
+    $('.encounter-form').on('change', 'select, input[type="number"]', function() {
         calcEncounterStats(partySelect, authenticityToken);
 
         if (this.classList.contains('party-select'))
@@ -54,7 +54,10 @@ getPartyStats = (partySelect, authenticityToken) => {
 }
 
 calcEncounterStats = (partySelect, authenticityToken) => {
-    const monsters = document.querySelectorAll('.monster-fields');
+    let monsters = document.querySelectorAll('.monster-fields');
+
+    // ignore to be deleted monsters
+    monsters = [...monsters].filter(m => m.style.display !== 'none');
 
     postData('calculate_stats', 
         {
@@ -123,7 +126,6 @@ displayPartyStats = data => {
 setGroupSize = (e, element) => {
     e.preventDefault();
 
-    console.log(element.closest('.group-size-value'));
     // get the group-size elements
     const visibleGroupSize = element.parentElement.querySelector('.group-size-value');
     const hiddenGroupSize = element.closest('.monster-fields').querySelector('.group_size');

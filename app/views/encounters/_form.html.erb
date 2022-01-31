@@ -1,6 +1,6 @@
 <% form_for_search = nil; fates_for_search = nil; %>
 
-<%= form_with model: @encounter, local: true, id: 'encounter-form' do |form| %>
+<%= form_with model: @encounter, local: true, class: 'encounter-form' do |form| %>
   <% if @encounter.errors.any? %>
     <div id='error_explanation'>
       <h2><%= pluralize(@encounter.errors.count, 'error') %> prohibited this recipe from being saved:</h2>
@@ -12,44 +12,53 @@
     </div>
   <% end %>
 
-  <div class='field'>
-    <%= form.label :name %>
-    <%= form.text_field :name, placeholder: 'Encounter name' %>
+  <!-- Encounter name & description -->
+  <div class="rectangle encounter-general">
+    <div class="form-group flex-col">
+      <%= form.label :name %>
+      <%= form.text_field :name, placeholder: 'Encounter name' %>
+    </div>
+
+    <div class="form-group flex-col">
+      <%= form.label :description %>
+      <%= form.text_area :description, placeholder: 'Short encounter description' %>
+    </div>
   </div>
 
-  <div class='field'>
-    <%= form.label :description %>
-    <%= form.text_area :description, placeholder: 'Short encounter description' %>
-  </div>
+  <div class="encounter-stats">
 
-  <div class='field'>
-    <%= form.label :party_id %>
-    <%= form.select(:party_id, Party.all.collect { |m| [m.name, m.id] }, { prompt: true }, { class: 'party-select' }) %>
-  </div>
+    <!-- Party stats -->
+    <div class="flex-col rectangle">
+      <div class="flex-row form-row">
+        <%= form.label :party_id %>
+        <%= form.select(:party_id, Party.all.collect { |m| [m.name, m.id] }, { prompt: true }, { class: 'party-select' }) %>  
+      </div>
 
-  <hr>
-  <h3>Monsters</h3>
+      <div id="party-stats"></div>
+    </div>
 
-  <div class='encounter-monsters'>
-    <%= form.fields_for :fates do |fate_form| %>
-      <%= render 'shared/fate_fields', f: fate_form %>
-    <% end %>
-    <%# <div class='links'> %>
-      <%# link_to_add_association 'add monster', form, :fates,
-          render_options: { locals: { monster_id: 1 } }
-      %>
-    <%# </div> %>
+    <!-- Encounter stats -->
+    <div class="flex-col rectangle">
+      <div id="encounter-stats"></div>
+    </div>
 
   </div>
 
-  <div class='actions'>
-    <%= form.submit %>
+  <div class="encounter-monsters rectangle">
+    <h3 class="mb-1">Monsters</h3>
+
+    <div class="monsters">
+      <%= form.fields_for :fates do |fate_form| %>
+        <%= render 'shared/fate_fields', f: fate_form %>
+      <% end %>
+    </div>
+
   </div>
+
+  <%= form.submit class: 'easy mb-1' %>
 <% end %>
 
 <div data-controller='live-search' id='search-monsters'>
   <%= render 'shared/search_form' %>
   <div data-live-search-target='results' class='search-monsters-results'></div>
 </div>
-
-<%= render 'html_templates' %>
