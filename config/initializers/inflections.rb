@@ -17,5 +17,4 @@
 
 ActiveSupport::Inflector.inflections do |inflect|
   inflect.acronym 'XP'
-  inflect.acronym 'DTO'
 end

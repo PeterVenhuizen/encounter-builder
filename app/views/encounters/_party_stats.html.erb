@@ -1,17 +1,11 @@
-<div id='party-stats'>
-  <div class='stats'>
-    <div id='party-xp'>
-    <% party_stats.xp.each do |key, value| %>
-      <div class='col'>
-        <label><%= key %></label>
-        <span class='pill <%= key.to_s %>'>><%= value %></span>
-      </div>
-    <% end %>
+<% presenter = PartyPresenter.new(@party) %>
+<span class='summary mb-1'><%= presenter.summary %></span>
+
+<div class="xp flex-row">
+  <% presenter.xp.each do |key, value| %>
+    <div class="flex-col">
+      <label><%= key %></label>
+      <span class="pill <%= key %>"><%= value %></span>
     </div>
-    <span class='summary mt-1'># of characters: 
-      <span class='number-of-players'><%= party_stats.number_of_players %></span>
-      | average player level: 
-      <span class='average-player-level'><%= party_stats.average_player_level %></span>
-    </span>
-  </div>
+  <% end %>
 </div>

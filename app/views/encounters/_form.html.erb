@@ -34,7 +34,10 @@
         <%= form.select(:party_id, Party.all.collect { |m| [m.name, m.id] }, { prompt: true }, { class: 'party-select' }) %>  
       </div>
 
-      <div id="party-stats"></div>
+      <div id="party-stats">
+        <%= render 'party_stats' %>
+      </div>
+      
     </div>
 
     <!-- Encounter stats -->

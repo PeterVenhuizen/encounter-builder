@@ -97,8 +97,13 @@ button {
     font-weight: bold;
     text-transform: uppercase;
 }
+.btn {
+    border-radius: 3px;
+    /* padding: 0.25em 0.5em; */
+}
 .btn-outline {
     border: 2px solid black;
+    border-radius: 3px;
     padding: 0.25em 0.5em;
 }
 

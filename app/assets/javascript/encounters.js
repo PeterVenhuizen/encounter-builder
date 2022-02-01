@@ -3,7 +3,6 @@ jQuery(function() {
     const authenticityToken = document.querySelector('input[name="authenticity_token"]').value;
     console.log(authenticityToken);
     
-    getPartyStats(partySelect, authenticityToken);
     calcEncounterStats(partySelect, authenticityToken);
 
     // update when a monster is removed
@@ -23,7 +22,8 @@ jQuery(function() {
         calcEncounterStats(partySelect, authenticityToken);
 
         if (this.classList.contains('party-select'))
-            getPartyStats(partySelect, authenticityToken);
+            // getPartyStats(partySelect, authenticityToken);
+            getPartyStats(partySelect);
     });
 
     // update group size
@@ -34,23 +34,12 @@ jQuery(function() {
 
 });
 
-getPartyStats = (partySelect, authenticityToken) => {
-    postData('calculate_party_stats', {
-            authenticity_token: authenticityToken,
-            party_id: partySelect.value
-        })
-        .then(data => {
-            console.log(data);
-            displayPartyStats(data);
-        });
-        // .catch(error => {
-        //     defaultData = {
-        //         average_player_level: 'NA',
-        //         number_of_players: 'NA',
-        //         party_xp: {easy: 0, medium: 0, hard: 0, deadly: 0}
-        //     };
-        //     displayPartyStats(defaultData);
-        // });
+// getPartyStats = (partySelect, authenticityToken) => {
+getPartyStats = (partySelect) => {
+    $.ajax({
+        type: 'GET',
+        url:  `party_stats/${partySelect.value}`
+    });
 }
 
 calcEncounterStats = (partySelect, authenticityToken) => {
@@ -104,23 +93,14 @@ async function postData(url = '', data = {}) {
     return response.json();
 }
 
-displayPartyStats = data => {
-    const partyStats = document.getElementById('party-stats');
-    const template = document.getElementById('party-stats-template');
-    const clone = template.content.cloneNode(true);
-
-    const pills = clone.querySelectorAll('.pill');
-    pills[0].textContent = data.party_xp.easy;
-    pills[1].textContent = data.party_xp.medium;
-    pills[2].textContent = data.party_xp.hard;
-    pills[3].textContent = data.party_xp.deadly;
-
-    const summary = clone.querySelectorAll('.summary span');
-    summary[0].textContent = data.number_of_players;
-    summary[1].textContent = data.average_player_level;
-
-    partyStats.innerHTML = '';
-    partyStats.appendChild(clone);
+async function getData(url = '', data = {}) {
+    // console.log(data);
+    const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'text/html'
+        }
+    });
 }
 
 setGroupSize = (e, element) => {

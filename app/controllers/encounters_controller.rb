@@ -11,9 +11,12 @@ class EncountersController < ApplicationController
   def new
     @encounter = Encounter.new
     @encounter.fates.build
+    @party = Party.new
   end
 
-  def edit; end
+  def edit
+    @party = Party.find(@encounter.party.id)
+  end
 
   def create
     @encounter = Encounter.create(encounter_params)
@@ -48,21 +51,8 @@ class EncountersController < ApplicationController
     end
   end
 
-  def calculate_party_stats
-    party = Party.where(id: params[:party_id]).first
-    if party.nil?
-      return render json: {
-        party_xp: { easy: 0, medium: 0, hard: 0, deadly: 0 },
-        number_of_players: 'NA',
-        average_player_level: 'NA'
-      }
-    end
-
-    render json: {
-      party_xp: party.party_xp,
-      number_of_players: party.party_size,
-      average_player_level: '%.2f' % party.average_player_level
-    }
+  def party_stats
+    @party = Party.where(id: params[:id]).exists? ? Party.find(params[:id]) : Party.new
   end
 
   def calculate_stats
