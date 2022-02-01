@@ -32,6 +32,15 @@ jQuery(function() {
         calcEncounterStats(partySelect, authenticityToken);
     });
 
+    // copy the submit button value
+    $('.alternative-submit').text($('.encounter-form input[type="submit"]').val());
+    console.log($('.encounter-form input[type="submit"]').val());
+
+    // submit form via alternative button
+    $(document).on('click', '.alternative-submit', function(e) {
+        $('.encounter-form').trigger('submit');
+    });
+
 });
 
 // getPartyStats = (partySelect, authenticityToken) => {

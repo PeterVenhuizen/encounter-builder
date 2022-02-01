@@ -15,5 +15,13 @@ module Angry
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+    ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
+      puts html_tag
+      if html_tag =~ /class="(.*?)"/
+        (html_tag.sub /class="(.*?)"/, 'class="\1 is-invalid"').html_safe
+      else
+        (html_tag.sub /(\/>|>)/, 'class="is-invalid" \1').html_safe
+      end
+    end
   end
 end

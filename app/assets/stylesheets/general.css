@@ -148,10 +148,20 @@ textarea {
     min-height: 250px;
 }
 
+/* error styling */
+.is-invalid {
+    color: var(--hard) !important;
+    border-color: var(--hard) !important;
+}
+
+/* display styles */
 .form-group {
     margin-block: 0.5em;
     align-items: flex-start;
 }
 .form-row {
     margin-bottom: 1em;
+}
+.hidden {
+    display: none;
 }

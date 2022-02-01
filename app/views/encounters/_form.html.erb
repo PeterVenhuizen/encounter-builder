@@ -2,7 +2,7 @@
 
 <%= form_with model: @encounter, local: true, class: 'encounter-form' do |form| %>
   <% if @encounter.errors.any? %>
-    <div id='error_explanation'>
+    <div id='error-explanation' class='rectangle'>
       <h2><%= pluralize(@encounter.errors.count, 'error') %> prohibited this recipe from being saved:</h2>
       <ul>
       <% @encounter.errors.full_messages.each do |message| %>
@@ -58,10 +58,12 @@
 
   </div>
 
-  <%= form.submit class: 'easy mb-1' %>
+  <%= form.submit class: 'easy mb-1 hidden' %>
 <% end %>
 
-<div data-controller='live-search' id='search-monsters'>
+<div data-controller='live-search' id='search-monsters' class='rectangle'>
   <%= render 'shared/search_form' %>
   <div data-live-search-target='results' class='search-monsters-results'></div>
 </div>
+
+<button class="alternative-submit" name="commit">Button</button>

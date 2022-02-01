@@ -1,3 +1,4 @@
+<% @party ||= Party.new %>
 <% presenter = PartyPresenter.new(@party) %>
 <span class='summary mb-1'><%= presenter.summary %></span>
 
