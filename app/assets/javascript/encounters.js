@@ -3,6 +3,7 @@ jQuery(function() {
     const authenticityToken = document.querySelector('input[name="authenticity_token"]').value;
     console.log(authenticityToken);
     
+    cloneMonsters();
     calcEncounterStats(partySelect, authenticityToken);
 
     // update when a monster is removed
@@ -11,10 +12,13 @@ jQuery(function() {
             const monsters = document.querySelector('.monsters');
             ($('.monster-fields').last().detach()).appendTo(monsters);
             calcEncounterStats(partySelect, authenticityToken);
-            resetSearch();
+            // resetSearch();
+            cloneMonsters();
         })
-        .on('cocoon:after-remove', function() {
+        .on('cocoon:after-remove', function(e, item) {
+            console.log(item[0].querySelectorAll('input[type="hidden"]'));
             calcEncounterStats(partySelect, authenticityToken);
+            cloneBack();
         });
 
     // update if the party changes or the monster settings
@@ -34,12 +38,14 @@ jQuery(function() {
 
     // copy the submit button value
     $('.alternative-submit').text($('.encounter-form input[type="submit"]').val());
-    console.log($('.encounter-form input[type="submit"]').val());
 
     // submit form via alternative button
     $(document).on('click', '.alternative-submit', function(e) {
         $('.encounter-form').trigger('submit');
     });
+
+    // $('.encounter-monsters').children().appendTo('.monsters-copy');
+    
 
 });
 
@@ -141,4 +147,12 @@ setGroupSize = (e, element) => {
 resetSearch = () => {
     document.getElementById('search').value = '';
     document.querySelector('.search-monsters-results').innerHTML = '';
+}
+
+cloneMonsters = function() {
+    $('.monsters-copy').html($('.encounter-monsters').children().clone());
+}
+
+cloneBack = function() {
+    $('.encounter-monsters').html($('.monsters-copy').children().clone());
 }

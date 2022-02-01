@@ -1,6 +1,6 @@
 <%= form_with url: monsters_search_index_path, method: :get, data: { action: "ajax:success->live-search#handleResults", 'live-search-target': "searchform" }, id: 'search-form' do |form| %>
   <div>
-    <%= form.label :search %>
-    <%= form.search_field :search, data: { action: "input->live-search#search" }, autocomplete: "off" %>
+    <%= form.label 'Search monsters' %>
+    <%= form.search_field :search, data: { action: "input->live-search#search" }, autocomplete: "off", placeholder: "E.g. 'Bandit' or 'Orc'" %>
   </div>
 <% end %>

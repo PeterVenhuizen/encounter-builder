@@ -47,7 +47,7 @@
 
   </div>
 
-  <div class="encounter-monsters rectangle">
+  <div class="encounter-monsters hidden">
     <h3 class="mb-1">Monsters</h3>
 
     <div class="monsters">
@@ -55,15 +55,18 @@
         <%= render 'shared/fate_fields', f: fate_form %>
       <% end %>
     </div>
-
   </div>
 
   <%= form.submit class: 'easy mb-1 hidden' %>
 <% end %>
 
-<div data-controller='live-search' id='search-monsters' class='rectangle'>
-  <%= render 'shared/search_form' %>
-  <div data-live-search-target='results' class='search-monsters-results'></div>
-</div>
+<div class="monsters-and-search mt-1">
+  <div class="monsters-copy rectangle"></div>
 
-<button class="alternative-submit" name="commit">Button</button>
+  <div data-controller='live-search' id='search-monsters' class='rectangle'>
+    <%= render 'shared/search_form' %>
+    <div data-live-search-target='results' class='search-monsters-results'></div>
+  </div>
+
+  <button class="alternative-submit btn easy" name="commit">Button</button>
+</div>
