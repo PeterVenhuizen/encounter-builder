@@ -11,6 +11,7 @@ require("jquery")
 require("@nathanvda/cocoon")
 
 import "controllers"
+require("views/general")
 
 Rails.start()
 
