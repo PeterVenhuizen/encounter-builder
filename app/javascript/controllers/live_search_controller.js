@@ -20,6 +20,7 @@ export default class extends Controller {
 
   search() {
     clearTimeout(this.timeout)
+    let q = this.searchformTarget.querySelector('#search');
     this.timeout = setTimeout(() => {
       Rails.fire(this.searchformTarget, 'submit')
     }, 200)

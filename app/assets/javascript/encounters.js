@@ -22,7 +22,7 @@ jQuery(function() {
         });
 
     // update if the party changes or the monster settings
-    $('.encounter-form').on('change', 'select, input[type="number"]', function() {
+    $('.encounter-form').on('change', 'select', function() {
         calcEncounterStats(partySelect, authenticityToken);
 
         if (this.classList.contains('party-select'))
@@ -33,6 +33,7 @@ jQuery(function() {
     // update group size
     $(document).on('click', '.plus, .minus', function(e) {
         setGroupSize(e, this);
+        cloneBack();
         calcEncounterStats(partySelect, authenticityToken);
     });
 
@@ -58,7 +59,7 @@ getPartyStats = (partySelect) => {
 }
 
 calcEncounterStats = (partySelect, authenticityToken) => {
-    let monsters = document.querySelectorAll('.monster-fields');
+    let monsters = document.querySelectorAll('.encounter-form .monster-fields');
 
     // ignore to be deleted monsters
     monsters = [...monsters].filter(m => m.style.display !== 'none');

@@ -1,5 +1,6 @@
 <%= fields_for @encounter do |form| %>
-  <%= link_to_add_association monster.name, form, :fates,
+  <% link_text = "<span>#{monster.name}</span><span>(CR: #{monster.challenge_rating})</span>" %>
+  <%= link_to_add_association link_text.html_safe, form, :fates,
     render_options: { locals: { monster_id: monster.id } }
   %>
 <% end %>

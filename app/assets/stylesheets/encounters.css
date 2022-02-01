@@ -62,6 +62,8 @@
     font-weight: bold;
     align-self: stretch;
 }
+
+/* encounter stats */
 .none {
     background-color: var(--label-color);
 }
@@ -87,6 +89,31 @@
 
 .difficulty-bar {
     align-items: flex-start;
+}
+
+/* search */
+.search-monsters-results {
+    display: flex;
+    flex-direction: column;
+}
+.search-monsters-results div {
+    padding: 0.5em;
+    font-weight: bold;
+    border: 1px solid var(--border-color);
+}
+.search-monsters-results > a {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5em; 
+    border: 1px solid var(--border-color);
+    border-top: none;
+}
+.search-monsters-results > a:last-child {
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+.search-monsters-results > a:hover {
+    background-color: var(--border-color);
 }
 
 @media all and (min-width: 850px) {

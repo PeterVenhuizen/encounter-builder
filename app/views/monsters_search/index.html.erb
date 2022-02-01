@@ -1,3 +1,8 @@
+<% if !params[:search].empty? %>
+  <div class="search-overview">
+    <%= "#{@monsters.count} results found" %>
+  </div>
+<% end %>
 <% @monsters.each do |monster| %>
   <%= render 'encounters/monster_search', monster: monster %>
 <% end %>
