@@ -1,20 +1,32 @@
 <h1>Encounters</h1>
 
 <% @encounters.each do |encounter| %>
-  <h2><%= encounter.name %></h2>
+  <% presenter = EncounterPresenter.new(encounter) %>
+  <div class="encounter-row">
+    <span class="encounter-name">
+      <%= link_to encounter.name, encounter %>
+    </span>
 
-  <ul>
-  <% encounter.fates.each do |fate| %>
-    <li>
-      <%= fate.monster.name %>, <%= fate.monster.challenge_rating %>, <%= fate.group_size %>
-    </li>
-  <% end %>
-  </ul>
-  <strong><%= link_to 'Show', encounter_path(encounter) %></strong> |
-  <strong><%= link_to 'Edit', edit_encounter_path(encounter) %></strong>
+    <span class="encounter-difficulty pill <%= presenter.difficulty %>">
+      <%= presenter.difficulty %>
+    </span>
+
+    <span class="encounter-monsters">
+      &#128126; <%= presenter.number_of_monsters %>
+    </span>
+
+    <span class="encounter-created-at">
+      <%= presenter.created_at %>
+    </span>
+
+    <div class="encounter-actions">
+      <%= link_to 'Edit', edit_encounter_path(encounter), class: 'btn easy' %>
+      <%= link_to 'Delete', encounter, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn hard' %>
+    </div>
+
+  </div>
 <% end %>
-
 
 <br>
 
-<%= link_to 'new', new_encounter_path %>
+<%= link_to 'new', new_encounter_path, class: 'btn trivial' %>

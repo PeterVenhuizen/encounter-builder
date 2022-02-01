@@ -1,4 +1,4 @@
-<div class="encounter-show">
+<div class="encounter-show mb-1">
   <h1><%= @encounter.name.titleize %></h1>
 
   <p id="notice"><%= notice %></p>
@@ -36,4 +36,4 @@
 
 <%= link_to 'Edit', edit_encounter_path(@encounter), class: 'btn medium' %>
 <%= link_to 'Destroy', encounter_path(@encounter), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn hard' %>
-<%= link_to "Back to all encounters", encounters_path %>
+<%= link_to "Back to all encounters", encounters_path, class: 'btn none' %>
