@@ -21,6 +21,7 @@
 
     <div class="form-group flex-col">
       <%= form.label :description %>
+      <p class="info">Give a short description of the encounter. Markdown can be used to add basic styling.</p>
       <%= form.text_area :description, placeholder: 'Short encounter description' %>
     </div>
   </div>
@@ -29,8 +30,10 @@
 
     <!-- Party stats -->
     <div class="flex-col rectangle">
+      <h3>Party Select</h3>
       <div class="flex-row form-row">
-        <%= form.label :party_id %>
+        <%# form.label :party_id %>
+        <p class="info">Select the party to which this encounter belongs</p>
         <%= form.select(:party_id, Party.all.collect { |m| [m.name, m.id] }, { prompt: true }, { class: 'party-select' }) %>  
       </div>
 
@@ -42,18 +45,21 @@
 
     <!-- Encounter stats -->
     <div class="flex-col rectangle">
+      <h3>Encounter Summary</h3>
       <div id="encounter-stats"></div>
     </div>
 
   </div>
 
   <div class="encounter-monsters hidden">
-    <h3 class="mb-1">Monsters</h3>
+    <h3 class="">Monsters</h3>
+    <p class="info">Add at least <strong>one</strong> monster.</p>
 
     <div class="monsters">
       <%= form.fields_for :fates do |fate_form| %>
         <%= render 'shared/fate_fields', f: fate_form %>
       <% end %>
+      
     </div>
   </div>
 

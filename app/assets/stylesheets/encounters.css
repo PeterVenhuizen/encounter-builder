@@ -1,3 +1,12 @@
+p.info {
+    font-size: .9em;
+}
+
+.encounter-stats h3 {
+    /* align-self: flex-start; */
+    margin-bottom: .5em;
+}
+
 /* monster */
 .monster-row {
     background-color: white;

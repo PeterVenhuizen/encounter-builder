@@ -1,6 +1,7 @@
+<p class="info">Search for (more) monsters to add to the encounter. Additional monsters can be created <%= link_to 'here', new_monster_path %>.</p>
 <%= form_with url: monsters_search_index_path, method: :get, data: { action: "ajax:success->live-search#handleResults", 'live-search-target': "searchform" }, id: 'search-form' do |form| %>
   <div>
-    <%= form.label 'Search for (more) monsters to add:' %>
+    <%# form.label 'Search for (more) monsters to add:' %>
     <%= form.search_field :search, data: { action: "input->live-search#search" }, autocomplete: "off", placeholder: "E.g. 'Bandit' or 'Orc'" %>
   </div>
 <% end %>
