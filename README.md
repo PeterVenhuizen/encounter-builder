@@ -24,5 +24,5 @@ Things you may want to cover:
 * ...
 
 erDiagram
-   ENCOUNTERS ||--|{ FATES
-   MONSTERS ||--|{ FATES
+   ENCOUNTERS ||--|{ FATES : has_many
+   MONSTERS ||--|{ FATES : has_many
