@@ -1,13 +1,13 @@
-<div class='nested-fields'>
-  <div class='field'>
+<div class='nested-fields flex-row mb-1'>
+  <div class='flex-row'>
     <%= f.label :name %>
     <%= f.text_field :name, placeholder: 'Player name, e.g. Henk' %>
   </div>
 
-  <div class='field'>
+  <div class='flex-row ml-1'>
     <%= f.label :level %>
     <%= f.select :level, 1..20 %>
   </div>
 
-  <%= link_to_remove_association 'remove player', f %>
+  <%= link_to_remove_association 'remove player', f, class: 'ml-1 btn hard-outline' %>
 </div>

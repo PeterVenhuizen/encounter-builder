@@ -2,8 +2,8 @@
 
 <% @encounters.each do |encounter| %>
   <% presenter = EncounterPresenter.new(encounter) %>
-  <div class="encounter-row">
-    <span class="encounter-name">
+  <div class="summary-row">
+    <span class="name">
       <%= link_to encounter.name, encounter %>
     </span>
 

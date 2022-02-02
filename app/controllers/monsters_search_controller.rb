@@ -10,5 +10,4 @@ class MonstersSearchController < ApplicationController
     @monster = Monster.find(id)
   end
   helper_method :fetch_monster
-
 end

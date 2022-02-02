@@ -1,22 +1,25 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @party.name %>
-  <strong>Summary:</strong>
-  # of characters: <%= @party.party_size %> | average player level <%= '%.2f' % @party.average_player_level %>
-</p>
+<% presenter = PartyPresenter.new(@party) %>
 
-<%= @party.average_player_level %>
+<article class="rectangle mt-1">
+  <header>
+    <h1><%= @party.name %></h1>
+    <span class="summary"><%= presenter.summary %></span>
+  </header>
+  <h3 class="mt-1">Party Members</h3>
+  <div class="players flex-row">
+    <% @party.players.each do |player| %>
+      <div class="flex-row summary-row mr-1">
+        <span class="name mr-1"><%= player.name %></span>
+        (<label>LVL:</label><%= player.level %>)
+      </div>
+    <% end %>
+  </div>
+</article>
 
-<ul>
-<% @party.players.each do |player| %>
-  <li>
-    <%= player.name %>, <%= player.level %>
-  </li>
-<% end %>
-</ul>
-
-<%= link_to 'Edit', edit_party_path(@party) %>
-<%= link_to 'Destroy', party_path(@party), method: :delete, data: { confirm: 'Are you sure?' } %>
-<%= link_to 'Back to party central!', parties_path %>
+<div class="controls mt-1">
+  <%= link_to 'Edit', edit_party_path(@party), class: 'btn medium-outline' %>
+  <%= link_to 'Delete', party_path(@party), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn hard-outline margin-inline-1' %>
+  <%= link_to 'Back', parties_path, class: 'btn none-outline' %>
+</div>

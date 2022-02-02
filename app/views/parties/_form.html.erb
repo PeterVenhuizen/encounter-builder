@@ -1,6 +1,6 @@
-<%= form_with(model: party, local: true) do |form| %>
+<%= form_with(model: party, local: true, class: 'rectangle') do |form| %>
   <% if party.errors.any? %>
-    <div id="error_explanation">
+    <div id="error-explanation">
       <h2><%= pluralize(party.errors.count, "error") %> prohibited this party from being saved:</h2>
 
       <ul>
@@ -11,22 +11,24 @@
     </div>
   <% end %>
 
-  <div class="field">
+  
+  <div class="flex-col form-group">
     <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
 
-  <h2>Players</h2>
-  <div class='field'>
-    <%= form.fields_for :players do |player_form| %>
-      <%= render 'player_fields', f: player_form %>
-    <% end %>
-    <div class='links'>
-      <%= link_to_add_association 'add player', form, :players %>
+  <div class="mt-1">
+    <h2>Players</h2>
+    <p class="info">The Adventuring Party should have at least <strong>one</strong> player</p>
+    <div class='field'>
+      <%= form.fields_for :players do |player_form| %>
+        <%= render 'player_fields', f: player_form %>
+      <% end %>
+      <div class='links'>
+        <%= link_to_add_association 'add player', form, :players, class: 'btn trivial-outline' %>
+      </div>
     </div>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <%= form.submit class: 'btn easy mt-1' %>
 <% end %>

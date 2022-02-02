@@ -2,5 +2,7 @@
 
 <%= render 'form', party: @party %>
 
-<%= link_to 'Show', @party %> |
-<%= link_to 'Back', parties_path %>
+<div class="controls mt-1">
+  <%= link_to 'Show', @party, class: 'btn easy-outline mr-1' %>
+  <%= link_to 'Back', parties_path, class: 'btn none-outline' %>
+</div>

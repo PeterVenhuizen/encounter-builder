@@ -3,12 +3,17 @@
 <h1>Party Manager</h1>
 
 <% @parties.each do |party| %>
-  <div class='party'>
-    <strong><%= party.name %> # of characters: <%= party.party_size %> | average player level <%= '%.2f' % party.average_player_level %></strong>
-    <%= link_to 'Show', party_path(party) %> |
-    <%= link_to 'Edit', edit_party_path(party) %> |
-    <%= link_to 'Destroy', party_path(party), method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% presenter = PartyPresenter.new(party) %>
+  <div class="summary-row">
+    <%= link_to party.name, party, class: 'name' %>
+    <span class="summary"><%= presenter.summary %></span>
+    <div class="actions">
+      <%= link_to 'Edit', edit_party_path(party), class: 'btn medium-outline' %>
+      <%= link_to 'Delete', party, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn hard-outline' %>
+    </div>
   </div>
 <% end %>
 
-<strong><%= link_to 'new', new_party_path %></strong>
+<br>
+
+<%= link_to 'new', new_party_path, class: 'btn trivial-outline' %>

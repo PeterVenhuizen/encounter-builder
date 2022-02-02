@@ -56,7 +56,7 @@ class EncountersController < ApplicationController
   end
 
   def calculate_stats
-    puts params
+    # puts params
     # debugger
 
     # get the party
