@@ -20,8 +20,8 @@
     </span>
 
     <div class="encounter-actions">
-      <%= link_to 'Edit', edit_encounter_path(encounter), class: 'btn easy' %>
-      <%= link_to 'Delete', encounter, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn hard' %>
+      <%= link_to 'Edit', edit_encounter_path(encounter), class: 'btn easy-outline' %>
+      <%= link_to 'Delete', encounter, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn hard-outline' %>
     </div>
 
   </div>
@@ -29,4 +29,4 @@
 
 <br>
 
-<%= link_to 'new', new_encounter_path, class: 'btn trivial' %>
+<%= link_to 'new', new_encounter_path, class: 'btn trivial-outline' %>

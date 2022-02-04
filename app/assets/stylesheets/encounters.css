@@ -143,6 +143,12 @@ p.info {
     display: flex;
     justify-content: center;
 }
+.encounter-show .plus, .encounter-show .minus {
+    visibility: hidden;
+}
+.group-size-value {
+    font-weight: bold;
+}
 
 /* index */
 .summary-row {

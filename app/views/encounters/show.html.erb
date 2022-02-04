@@ -6,6 +6,7 @@
   <div class="">
     <div class="">
       <% summary = @encounter.summary %>
+      <span>Encounter for <%= link_to @encounter.party.name, @encounter.party %></span>
 
       <div class="flex-row stats">
         <div class="flex-col">
@@ -19,7 +20,7 @@
         </div>
       </div>
 
-      <span class="summary">Difficulty calculated for <%= summary[:number_of_players] %> players of level <%= '%.2f' % summary[:average_player_level] %> (avg)</span>
+      <span class="summary">Difficulty calcutated for <%= summary[:number_of_players] %> players of level <%= '%.2f' % summary[:average_player_level] %> (avg)</span>
     </div>
     <p><%= markdown(@encounter.description).html_safe %></p>
   </div>
@@ -34,6 +35,6 @@
 
 </div>
 
-<%= link_to 'Edit', edit_encounter_path(@encounter), class: 'btn medium' %>
-<%= link_to 'Destroy', encounter_path(@encounter), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn hard' %>
-<%= link_to "Back to all encounters", encounters_path, class: 'btn none' %>
+<%= link_to 'Edit', edit_encounter_path(@encounter), class: 'btn medium-outline' %>
+<%= link_to 'Destroy', encounter_path(@encounter), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn hard-outline' %>
+<%= link_to "Back to all encounters", encounters_path, class: 'btn none-outline' %>

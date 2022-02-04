@@ -3,7 +3,7 @@
 <%= form_with model: @encounter, local: true, class: 'encounter-form' do |form| %>
   <% if @encounter.errors.any? %>
     <div id='error-explanation' class='rectangle'>
-      <h2><%= pluralize(@encounter.errors.count, 'error') %> prohibited this recipe from being saved:</h2>
+      <h2><%= pluralize(@encounter.errors.count, 'error') %> prohibited this encounter from being saved:</h2>
       <ul>
       <% @encounter.errors.full_messages.each do |message| %>
         <li><%= message %></li>
