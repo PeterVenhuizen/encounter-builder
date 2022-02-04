@@ -10,4 +10,8 @@ class PartyPresenter
   def xp
     @party.party_xp.stringify_keys
   end
+
+  def encounters?
+    @party.encounters.any?
+  end
 end

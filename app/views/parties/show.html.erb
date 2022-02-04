@@ -16,6 +16,21 @@
       </div>
     <% end %>
   </div>
+
+  <h3>Adventures</h3>
+  <% if presenter.encounters? %>
+    <div class="encounters">
+      <% @party.encounters.each do |encounter| %>
+        <% presenter = EncounterPresenter.new(encounter) %>
+        <div class="summary-row">
+          <%= link_to encounter.name, encounter %>
+          <span class="pill <%= presenter.difficulty %>"><%= presenter.difficulty %></span>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div>Hmm, might get a bit boring without any encounters... Maybe add a <%= link_to 'new', new_encounter_path, class: 'underline' %> one?</span>
+  <% end %>
 </article>
 
 <div class="controls mt-1">
