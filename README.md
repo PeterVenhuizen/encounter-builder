@@ -22,3 +22,7 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+erDiagram
+   ENCOUNTERS ||--|{ FATES : has_many
+   MONSTERS ||--|{ FATES : has_many
