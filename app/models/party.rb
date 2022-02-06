@@ -7,6 +7,8 @@ class Party < ApplicationRecord
 
   accepts_nested_attributes_for :players, allow_destroy: true
 
+  default_scope { order(name: :asc) }
+
   def party_size
     players.count
   end

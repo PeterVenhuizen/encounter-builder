@@ -8,6 +8,8 @@ class Encounter < ApplicationRecord
 
   accepts_nested_attributes_for :fates, allow_destroy: true
 
+  default_scope { order(name: :asc) }
+
   def summary
     {
       total_experience: total_experience,
