@@ -1,40 +1,32 @@
 jQuery(function() {
-    const partySelect = document.querySelector('.party-select');
-    const authenticityToken = document.querySelector('input[name="authenticity_token"]').value;
-    console.log(authenticityToken);
-    
+
+    // copy the hidden form monsters to the div outside the form where they are visible
     cloneMonsters();
-    calcEncounterStats(partySelect, authenticityToken);
 
     // update when a monster is removed
     $(document)
         .on('cocoon:after-insert', function() {
             const monsters = document.querySelector('.monsters');
             ($('.monster-fields').last().detach()).appendTo(monsters);
-            calcEncounterStats(partySelect, authenticityToken);
-            // resetSearch();
+            calcEncounterStats();
             cloneMonsters();
         })
         .on('cocoon:after-remove', function(e, item) {
-            console.log(item[0].querySelectorAll('input[type="hidden"]'));
-            calcEncounterStats(partySelect, authenticityToken);
+            calcEncounterStats();
             cloneBack();
         });
 
     // update if the party changes or the monster settings
     $('.encounter-form').on('change', 'select', function() {
-        calcEncounterStats(partySelect, authenticityToken);
-
-        if (this.classList.contains('party-select'))
-            // getPartyStats(partySelect, authenticityToken);
-            getPartyStats(partySelect);
+        calcEncounterStats();
+        getPartyStats();
     });
 
     // update group size
     $(document).on('click', '.plus, .minus', function(e) {
         setGroupSize(e, this);
         cloneBack();
-        calcEncounterStats(partySelect, authenticityToken);
+        calcEncounterStats();
     });
 
     // copy the submit button value
@@ -45,72 +37,35 @@ jQuery(function() {
         $('.encounter-form').trigger('submit');
     });
 
-    // $('.encounter-monsters').children().appendTo('.monsters-copy');
-    
-
 });
 
-// getPartyStats = (partySelect, authenticityToken) => {
-getPartyStats = (partySelect) => {
+getPartyStats = () => {
+    const partySelect = document.querySelector('.party-select');
     $.ajax({
         type: 'GET',
         url:  `party_stats/${partySelect.value}`
     });
 }
 
-calcEncounterStats = (partySelect, authenticityToken) => {
+calcEncounterStats = () => {
+    const partySelect = document.querySelector('.party-select');
     let monsters = document.querySelectorAll('.encounter-form .monster-fields');
 
     // ignore to be deleted monsters
     monsters = [...monsters].filter(m => m.style.display !== 'none');
 
-    postData('calculate_stats', 
-        {
-            authenticity_token: authenticityToken,
-            party_id: partySelect.value,
-            monsters: [...monsters].map(m => ({
-                ['group_size']: m.querySelector('.group_size').value,
-                ['id']: m.querySelector('.monster_id').value
-            }))
-        })
-        .then(data => {
-            console.log(data);
-            const encounterStats = document.getElementById('encounter-stats');
-            const template = document.getElementById('encounter-stats-template');
-            const clone = template.content.cloneNode(true);
+    fates = [...monsters].map(m => ({
+        ['group_size']: m.querySelector('.group_size').value,
+        ['monster_id']: m.querySelector('.monster_id').value
+    }));
 
-            const largePill = clone.querySelector('.large-pill');
-            largePill.classList.add(data.difficulty);
-            largePill.textContent = data.difficulty;
-
-            // to-do: adjust width of difficulty bar
-
-            clone.querySelector('.total-xp').textContent = data.total_experience
-            clone.querySelector('.adjusted-xp').textContent = data.adjusted_experience
-            clone.querySelector('.multiplier').textContent = data.multiplier
-
-            encounterStats.innerHTML = '';
-            encounterStats.appendChild(clone);
-        })
-        .catch(error => {
-            defaultData = {multiplier: 1, difficulty: 'none', total_experience: 0, adjusted_experience: 0};
-        });
-}
-
-async function postData(url = '', data = {}) {
-    // console.log(data);
-    const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
+    $.ajax({
+        type: 'GET',
+        url: `encounter_stats?party_id=${partySelect.value}&fates_attributes=${JSON.stringify(fates)}` 
     });
-    return response.json();
 }
 
 async function getData(url = '', data = {}) {
-    // console.log(data);
     const response = await fetch(url, {
         method: 'GET',
         headers: {
@@ -139,10 +94,6 @@ setGroupSize = (e, element) => {
         visibleGroupSize.textContent = groupSize + 1;
         hiddenGroupSize.value = groupSize + 1;
     }
-
-    console.log(groupSize);
-
-    console.log(element);
 }
 
 resetSearch = () => {

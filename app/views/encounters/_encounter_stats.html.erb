@@ -1,20 +1,22 @@
-<template id='encounter-stats-template'>
+<% if !@encounter.party.nil? %>
+  <% summary = @encounter.summary %>
+
   <div class="flex-col">
     <label>Difficulty</label>
-    <span class='large-pill pill'></span>
+    <span class='large-pill pill <%= summary[:difficulty] %>'><%= summary[:difficulty] %></span>
   </div>
 
   <div class='xp'>
     <div class='flex-col'>
       <label>Total XP</label>
-      <span class='total-xp'></span>
+      <span class='total-xp'><%= summary[:total_experience] %></span>
     </div>
 
     <div class='flex-col'>
       <label>Adjusted XP</label>
       <span>
-        <span class='adjusted-xp'></span> XP (x<span class='multiplier'></span>)
+        <span class='adjusted-xp'><%= summary[:adjusted_experience] %></span> XP (x<span class='multiplier'><%= summary[:multiplier] %></span>)
       </span>
     </div>
   </div>
-</template>
+<% end %>
