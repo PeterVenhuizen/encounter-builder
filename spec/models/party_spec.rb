@@ -29,7 +29,7 @@ RSpec.describe Party, type: :model do
 
   it 'accepts attributes for player addition'
   it 'cannot have the same player twice'
-  
+
   it 'accepts attributes for player destroy' do
     @party.update(players_attributes: { id: @party.players.first.id, _destroy: true })
     expect(@party.party_size).to eq 2
@@ -39,5 +39,11 @@ RSpec.describe Party, type: :model do
     expect(@party.average_player_level).to eq 5 / 3.0
   end
 
-  it 'reports the total party xp'
+  it 'reports the total party xp' do
+    party_xp = @party.party_xp
+    expect(party_xp[:easy]).to eq 125
+    expect(party_xp[:medium]).to eq 250
+    expect(party_xp[:hard]).to eq 375
+    expect(party_xp[:deadly]).to eq 600
+  end
 end
