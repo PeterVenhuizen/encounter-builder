@@ -10,11 +10,11 @@ class Party < ApplicationRecord
   default_scope { order(name: :asc) }
 
   def party_size
-    players.count
+    players.size
   end
 
   def average_player_level
-    players.sum(&:level) / players.count.to_f
+    players.sum(&:level) / players.size.to_f
   end
 
   def party_xp

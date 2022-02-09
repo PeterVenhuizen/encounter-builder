@@ -10,11 +10,11 @@ class Encounter < ApplicationRecord
 
   default_scope { order(name: :asc) }
 
-  def summary
+  def stats
     {
+      multiplier: multiplier,
       total_experience: total_experience,
-      number_of_players: party.party_size,
-      average_player_level: party.average_player_level,
+      adjusted_experience: adjusted_experience,
       difficulty: difficulty
     }
   end
@@ -22,13 +22,15 @@ class Encounter < ApplicationRecord
   private
 
   def total_experience
-    monsters.sum { |m| m.xp * Fate.find_by(encounter_id: id, monster_id: m.id).group_size }
+    fates.sum { |f| Monster.find_by(id: f.monster_id).xp * f.group_size }
   end
 
   def multiplier
+    return 1 if party.nil?
+
     multipliers = [0.5, 1, 1.5, 2, 2.5, 3, 4, 5]
 
-    number_of_monsters = monsters.sum { |m| Fate.find_by(encounter_id: id, monster_id: m.id).group_size }
+    number_of_monsters = fates.sum(&:group_size)
     case number_of_monsters
     when 0..1 then idx = 1
     when 2 then idx = 2
@@ -52,6 +54,8 @@ class Encounter < ApplicationRecord
   end
 
   def difficulty
+    return :none if party.nil?
+
     difficulties = %i[trivial easy medium hard deadly]
     idx = party.party_xp.values.count { |v| adjusted_experience >= v }
     difficulties[idx]
