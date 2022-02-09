@@ -5,7 +5,7 @@
 
   <div class="">
     <div class="">
-      <% summary = @encounter.summary %>
+      <% summary = @encounter.stats %>
       <span>Encounter for <%= link_to @encounter.party.name, @encounter.party %></span>
 
       <div class="flex-row stats">
@@ -20,7 +20,7 @@
         </div>
       </div>
 
-      <span class="summary">Difficulty calcutated for <%= summary[:number_of_players] %> players of level <%= '%.2f' % summary[:average_player_level] %> (avg)</span>
+      <span class="summary">Difficulty calcutated for <%= @encounter.party.party_size %> players of level <%= '%.2f' % @encounter.party.average_player_level %> (avg)</span>
     </div>
     <p><%= markdown(@encounter.description).html_safe %></p>
   </div>

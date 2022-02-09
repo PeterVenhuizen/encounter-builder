@@ -10,13 +10,11 @@ class Encounter < ApplicationRecord
 
   default_scope { order(name: :asc) }
 
-  def summary
+  def stats
     {
       multiplier: multiplier,
       total_experience: total_experience,
       adjusted_experience: adjusted_experience,
-      number_of_players: party.nil? ? 0 : party.party_size,
-      average_player_level: party.nil? ? 0 : party.average_player_level,
       difficulty: difficulty
     }
   end
@@ -56,7 +54,7 @@ class Encounter < ApplicationRecord
   end
 
   def difficulty
-    return :easy if party.nil?
+    return :none if party.nil?
 
     difficulties = %i[trivial easy medium hard deadly]
     idx = party.party_xp.values.count { |v| adjusted_experience >= v }
