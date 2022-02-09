@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_09_080456) do
+ActiveRecord::Schema.define(version: 2022_02_09_092055) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 2022_02_09_080456) do
     t.string "species"
     t.string "armor_class"
     t.string "hit_points"
-    t.string "challenge_rating"
+    t.string "challenge_rating", default: "0"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
