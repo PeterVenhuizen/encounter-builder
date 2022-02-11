@@ -3,7 +3,7 @@ class EncounterPresenter
 
   def initialize(encounter)
     @encounter = encounter
-    @difficulty = encounter.calculate_statistics[:difficulty]
+    @difficulty = encounter.stats['difficulty']
   end
 
   def number_of_monsters
