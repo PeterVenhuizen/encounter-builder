@@ -49,10 +49,8 @@ getPartyStats = () => {
 
 calcEncounterStats = () => {
     const partySelect = document.querySelector('.party-select');
-    let monsters = document.querySelectorAll('.encounter-form .monster-fields');
-
-    // ignore to be deleted monsters
-    monsters = [...monsters].filter(m => m.style.display !== 'none');
+    const monstersCopy = document.querySelector('.monsters-copy');
+    let monsters = monstersCopy.querySelectorAll('.monster-fields:not([style*="display: none"]');
 
     fates = [...monsters].map(m => ({
         ['group_size']: m.querySelector('.group_size').value,
