@@ -10,11 +10,15 @@ class Encounter < ApplicationRecord
 
   default_scope { order(name: :asc) }
 
-  def stats
+  before_save do
+    self.stats = calculate_statistics
+  end
+
+  def calculate_statistics
     {
       multiplier: multiplier,
       total_experience: total_experience,
-      adjusted_experience: adjusted_experience,
+      adjusted_experience: adjusted_experience.to_i,
       difficulty: difficulty
     }
   end

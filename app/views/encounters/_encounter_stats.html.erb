@@ -1,21 +1,21 @@
 <% if !@encounter.party.nil? %>
-  <% summary = @encounter.stats %>
+  <% stats = @encounter.calculate_statistics %>
 
   <div class="flex-col">
     <label>Difficulty</label>
-    <span class='large-pill pill <%= summary[:difficulty] %>'><%= summary[:difficulty] %></span>
+    <span class='large-pill pill <%= stats[:difficulty] %>'><%= stats[:difficulty] %></span>
   </div>
 
   <div class='xp'>
     <div class='flex-col'>
       <label>Total XP</label>
-      <span class='total-xp'><%= summary[:total_experience] %></span>
+      <span class='total-xp'><%= stats[:total_experience] %></span>
     </div>
 
     <div class='flex-col'>
       <label>Adjusted XP</label>
       <span>
-        <span class='adjusted-xp'><%= summary[:adjusted_experience] %></span> XP (x<span class='multiplier'><%= summary[:multiplier] %></span>)
+        <span class='adjusted-xp'><%= stats[:adjusted_experience] %></span> (x<span class='multiplier'><%= stats[:multiplier] %></span>)
       </span>
     </div>
   </div>

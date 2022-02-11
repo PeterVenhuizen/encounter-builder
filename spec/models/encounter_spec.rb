@@ -52,7 +52,7 @@ RSpec.describe Encounter, type: :model do
   end
 
   it 'has a default stats' do
-    stats = Encounter.new.stats
+    stats = Encounter.new.calculate_statistics
     expect(stats[:multiplier]).to eq 1
     expect(stats[:difficulty]).to eq :none
     expect(stats[:total_experience]).to eq 0
@@ -61,7 +61,7 @@ RSpec.describe Encounter, type: :model do
 
   it 'with a cat and one level one player is trivial' do
     encounter = Encounter.new(valid_attributes)
-    stats = encounter.stats
+    stats = encounter.calculate_statistics
     expect(stats[:multiplier]).to eq 1.5
     expect(stats[:difficulty]).to eq :trivial
     expect(stats[:total_experience]).to eq 10
@@ -71,7 +71,7 @@ RSpec.describe Encounter, type: :model do
   it 'with two bandits and one level one player is deadly' do
     valid_attributes[:fates_attributes] = [{ monster_id: @bandit.id, group_size: 2 }]
     encounter = Encounter.new(valid_attributes)
-    stats = encounter.stats
+    stats = encounter.calculate_statistics
     expect(stats[:multiplier]).to eq 2
     expect(stats[:difficulty]).to eq :deadly
     expect(stats[:total_experience]).to eq 50
@@ -82,7 +82,7 @@ RSpec.describe Encounter, type: :model do
     valid_attributes[:fates_attributes] = [{ monster_id: @bandit.id, group_size: 2 }]
     encounter = Encounter.new(valid_attributes)
     encounter.party_id = @party_of_two.id
-    stats = encounter.stats
+    stats = encounter.calculate_statistics
     expect(stats[:multiplier]).to eq 2
     expect(stats[:difficulty]).to eq :medium
     expect(stats[:total_experience]).to eq 50
@@ -93,10 +93,27 @@ RSpec.describe Encounter, type: :model do
     valid_attributes[:fates_attributes] = [{ monster_id: @harpy.id, group_size: 2 }]
     encounter = Encounter.new(valid_attributes)
     encounter.party_id = @party_of_six.id
-    stats = encounter.stats
+    stats = encounter.calculate_statistics
     expect(stats[:multiplier]).to eq 1
     expect(stats[:difficulty]).to eq :medium
     expect(stats[:total_experience]).to eq 400
     expect(stats[:adjusted_experience]).to eq 400
+  end
+
+  context "when encounter is not created" do
+    it "stats column is an empty hash" do
+      encounter = Encounter.new
+      expect(encounter.stats).to eq ({})
+    end
+  end
+
+  context "when encounter is created" do
+    it "stats column is populated" do
+      encounter = Encounter.create(valid_attributes)
+      expect(encounter.stats).to eq ({ 'multiplier' => 1.5, 
+                                       'difficulty' => 'trivial', 
+                                       'total_experience' => 10, 
+                                       'adjusted_experience' => 15 })
+    end
   end
 end

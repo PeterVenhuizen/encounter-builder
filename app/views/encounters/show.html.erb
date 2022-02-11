@@ -5,18 +5,18 @@
 
   <div class="">
     <div class="">
-      <% summary = @encounter.stats %>
+      <% stats = @encounter.stats %>
       <span>Encounter for <%= link_to @encounter.party.name, @encounter.party %></span>
 
       <div class="flex-row stats">
         <div class="flex-col">
           <label>Difficulty</label>
-          <span class="pill <%= summary[:difficulty] %>"><%= summary[:difficulty] %></span>
+          <span class="pill <%= stats['difficulty'] %>"><%= stats["difficulty"] %></span>
         </div>
 
         <div class="flex-col">
           <label>Total Experience</label>
-          <span><%= summary[:total_experience] %></span>
+          <span><%= stats['total_experience'] %></span>
         </div>
       </div>
 
