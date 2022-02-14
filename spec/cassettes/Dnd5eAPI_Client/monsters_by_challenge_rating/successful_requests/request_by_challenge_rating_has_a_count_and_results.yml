@@ -1,0 +1,54 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://www.dnd5eapi.co/api/monsters?challenge_rating=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.2.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Cowboy
+      Connection:
+      - keep-alive
+      X-Powered-By:
+      - Express
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '1891'
+      Etag:
+      - W/"763-lFyVTRaHMEm/Xd/pAbfXaec9YlU"
+      Date:
+      - Mon, 14 Feb 2022 15:56:50 GMT
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      string: '{"count":25,"results":[{"index":"animated-armor","name":"Animated Armor","url":"/api/monsters/animated-armor"},{"index":"brass-dragon-wyrmling","name":"Brass
+        Dragon Wyrmling","url":"/api/monsters/brass-dragon-wyrmling"},{"index":"brown-bear","name":"Brown
+        Bear","url":"/api/monsters/brown-bear"},{"index":"bugbear","name":"Bugbear","url":"/api/monsters/bugbear"},{"index":"copper-dragon-wyrmling","name":"Copper
+        Dragon Wyrmling","url":"/api/monsters/copper-dragon-wyrmling"},{"index":"death-dog","name":"Death
+        Dog","url":"/api/monsters/death-dog"},{"index":"dire-wolf","name":"Dire Wolf","url":"/api/monsters/dire-wolf"},{"index":"dryad","name":"Dryad","url":"/api/monsters/dryad"},{"index":"duergar","name":"Duergar","url":"/api/monsters/duergar"},{"index":"ghoul","name":"Ghoul","url":"/api/monsters/ghoul"},{"index":"giant-eagle","name":"Giant
+        Eagle","url":"/api/monsters/giant-eagle"},{"index":"giant-hyena","name":"Giant
+        Hyena","url":"/api/monsters/giant-hyena"},{"index":"giant-octopus","name":"Giant
+        Octopus","url":"/api/monsters/giant-octopus"},{"index":"giant-spider","name":"Giant
+        Spider","url":"/api/monsters/giant-spider"},{"index":"giant-toad","name":"Giant
+        Toad","url":"/api/monsters/giant-toad"},{"index":"giant-vulture","name":"Giant
+        Vulture","url":"/api/monsters/giant-vulture"},{"index":"harpy","name":"Harpy","url":"/api/monsters/harpy"},{"index":"hippogriff","name":"Hippogriff","url":"/api/monsters/hippogriff"},{"index":"imp","name":"Imp","url":"/api/monsters/imp"},{"index":"lion","name":"Lion","url":"/api/monsters/lion"},{"index":"quasit","name":"Quasit","url":"/api/monsters/quasit"},{"index":"specter","name":"Specter","url":"/api/monsters/specter"},{"index":"spy","name":"Spy","url":"/api/monsters/spy"},{"index":"swarm-of-quippers","name":"Swarm
+        of Quippers","url":"/api/monsters/swarm-of-quippers"},{"index":"tiger","name":"Tiger","url":"/api/monsters/tiger"}]}'
+  recorded_at: Mon, 14 Feb 2022 15:56:52 GMT
+recorded_with: VCR 6.0.0

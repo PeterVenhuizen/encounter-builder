@@ -30,6 +30,9 @@ gem 'brakeman'
 # Cocoon makes it easier to handle nested forms.
 gem 'cocoon'
 
+# Use Faraday for making HTTP requests
+gem 'faraday'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -40,6 +43,10 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'
+  # Library for stubbing and setting expectations on HTTP requests in Ruby.
+  gem 'webmock'
+  # Use for recording HTTP requests
+  gem 'vcr'
 end
 
 group :development do
