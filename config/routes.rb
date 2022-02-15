@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   get '(/encounters)/encounter_stats/(:party_id)/(:fates_attributes)', to: 'encounters#encounter_stats'
   get '/encounters/(:id/)encounter_stats/(:party_id)/(:fates_attributes)', to: 'encounters#encounter_stats'
 
+  # search monster using D&D 5e API
+  get '/search', to: 'monsters#search'
+
   resources :monsters
   resources :encounters
   resources :parties

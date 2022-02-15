@@ -7,7 +7,7 @@ RSpec.describe Dnd5eAPI::Client do
 
     it "returns error not found for an unknown monster", :vcr do
       response = client.monster_by_name('skdjfiwej')
-      expect(response).to eq ({ error: 'Not found' })
+      expect(response).to eq({ error: 'Not found' })
     end
 
     describe "successful requests", :vcr do
