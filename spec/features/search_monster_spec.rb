@@ -8,4 +8,7 @@ RSpec.describe 'Search a monster using D&D 5e API', type: :feature do
     click_button 'Search Monster'
     expect(page).to have_content('Bandit')
   end
+
+  scenario 'invalid input'
+  scenario 'duplicate monster'
 end

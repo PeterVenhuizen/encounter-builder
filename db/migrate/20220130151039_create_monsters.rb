@@ -5,7 +5,7 @@ class CreateMonsters < ActiveRecord::Migration[6.0]
       t.string :size
       t.string :species
       t.string :armor_class
-      t.string :hit_points
+      t.integer :hit_points
       t.string :challenge_rating
 
       t.timestamps

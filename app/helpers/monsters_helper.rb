@@ -13,8 +13,6 @@ module MonstersHelper
     response
   end
 
-  private
-
   def ability_modifier(score)
     (score - 10) / 2
   end

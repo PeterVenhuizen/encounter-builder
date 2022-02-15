@@ -11,9 +11,21 @@ class MonstersController < ApplicationController
   end
 
   def search
-    debugger
     dnd_client = Dnd5eAPI::Client.new
     response = dnd_client.monster_by_name(params[:search])
+
+    debugger
+
+    if response.ok?
+      # make monster from params
+      params = ActionController::Parameters.new(response.params)
+      @monster = Monster.new(monster_params)
+      # render stat-block and re-render form
+      # flash.now[:info] = "Monster available and form filled."
+    else
+      # flash monster not found
+      # flash.now[:alert] = "Monster not found."
+    end
   end
 
   # GET /monsters/new
@@ -71,6 +83,7 @@ class MonstersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def monster_params
-      params.require(:monster).permit(:name, :size, :species, :armor_class, :hit_points, :challenge_rating)
+      params.require(:monster).permit(:name, :size, :species, :alignment, :armor_class, :hit_points,
+                                      :hit_dice, :challenge_rating, { ability_scores: {} }, :xp)
     end
 end

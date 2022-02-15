@@ -1,16 +1,34 @@
 require 'rails_helper'
 
 RSpec.describe Monster, type: :model do
+  # fixtures :monsters
+
   let(:valid_attributes) do
     {
-      name: 'Animated Broom',
-      size: 'Small',
-      species: 'Construct',
-      hit_points: '17 (5d6)',
-      armor_class: '12',
-      challenge_rating: '1/4'
+      name: 'Bandit',
+      size: 'Medium',
+      species: 'Humanoid',
+      alignment: 'any non-lawful alignment',
+      armor_class: '12 (leather armor)',
+      hit_points: 11,
+      hit_dice: '2d8 + 2',
+      ability_scores: {
+        strength: 11,
+        dexterity: 12,
+        constitution: 12,
+        intelligence: 10,
+        wisdom: 10,
+        charisma: 10
+      },
+      challenge_rating: '1/8',
+      xp: 25,
+      proficiency_bonus: 2
     }
   end
+
+  # let(:valid_attributes) do
+  #   monsters(:bandit)
+  # end
 
   it 'has a name at least 2 characters long' do
     monster = Monster.new(valid_attributes)
@@ -33,6 +51,12 @@ RSpec.describe Monster, type: :model do
     expect(monster).to_not be_valid
 
     monster.challenge_rating = '1 1/2'
+    expect(monster).to_not be_valid
+  end
+
+  it 'has an integer xp value' do
+    monster = Monster.new
+    monster.xp = 'abc'
     expect(monster).to_not be_valid
   end
 
@@ -78,33 +102,52 @@ RSpec.describe Monster, type: :model do
     expect(monster).to_not be_valid
   end
 
-  it 'has 30 hit points' do
+  it 'has hit dice' do
     monster = Monster.new(valid_attributes)
-    monster.hit_points = '30'
-    expect(monster).to be_valid
-  end
-
-  it '1 (1d4 - 1) is valid' do
-    monster = Monster.new(valid_attributes)
-    monster.hit_points = '1 (1d4 - 1)'
-    expect(monster).to be_valid
-  end
-
-  it 'abc is not a valid hit points value' do
-    monster = Monster.new(valid_attributes)
-    monster.hit_points = 'abc'
+    monster.hit_dice = ''
     expect(monster).to_not be_valid
   end
 
-  it 'it can have a value and dice' do
+  # it 'has 30 hit points' do
+  #   monster = Monster.new(valid_attributes)
+  #   monster.hit_points = '30'
+  #   expect(monster).to be_valid
+  # end
+
+
+
+  it 'abc is not a valid hit dice value' do
     monster = Monster.new(valid_attributes)
-    monster.hit_points = '17 (5d6)'
+    monster.hit_dice = 'abc'
+    expect(monster).to_not be_valid
+  end
+
+  it 'hit dice can be just dice' do
+    monster = Monster.new(valid_attributes)
+    monster.hit_dice = '5d6'
     expect(monster).to be_valid
   end
 
-  it 'can add more than a single digit number to the dice' do
+  it 'hit dice can consist of dice minus something' do
     monster = Monster.new(valid_attributes)
-    monster.hit_points = '45 (6d10 + 12)'
+    monster.hit_dice = '1d4 - 1'
     expect(monster).to be_valid
+  end
+
+  it 'hit dice can consist of dice plus something' do
+    monster = Monster.new(valid_attributes)
+    monster.hit_dice = '6d10 + 12'
+    expect(monster).to be_valid
+  end
+
+  it 'has an alignment' do
+    monster = Monster.new(valid_attributes)
+    monster.alignment = ''
+    expect(monster).to_not be_valid
+  end
+
+  it 'has a default proficiency bonus of two' do
+    monster = Monster.new
+    expect(monster.proficiency_bonus).to eq 2
   end
 end

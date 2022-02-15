@@ -25,7 +25,7 @@ module Dnd5eAPI
 
     def request(endpoint:, params: {})
       response = client.public_send(:get, endpoint, params)
-      JSON.parse(response.body, symbolize_names: true)
+      Response.new(JSON.parse(response.body, symbolize_names: true))
     end
   end
 end
