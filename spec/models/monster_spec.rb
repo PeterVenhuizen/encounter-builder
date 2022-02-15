@@ -102,6 +102,12 @@ RSpec.describe Monster, type: :model do
     expect(monster).to_not be_valid
   end
 
+  it "can't have zero hit points" do
+    monster = Monster.new(valid_attributes)
+    monster.hit_points = 0
+    expect(monster).to_not be_valid
+  end
+
   it 'has hit dice' do
     monster = Monster.new(valid_attributes)
     monster.hit_dice = ''

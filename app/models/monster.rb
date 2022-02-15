@@ -8,8 +8,10 @@ class Monster < ApplicationRecord
   validates :challenge_rating, inclusion: { in: %w[1/8 1/4 1/2] + [*'0'..'30'] }
   validates :size, inclusion: { in: %w[Tiny Small Medium Large Huge Gargantuan] }
   validates :species, inclusion: { in: %w[Aberration Beast Celestial Construct Dragon Elemental Fey Fiend Giant Humanoid Monstrosity Ooze Plant Undead] }
+  validates :alignment, presence: true
   validates :armor_class, presence: true
-  validates_format_of :hit_points, with: /(\d+)(?: \((\d+d\d+(?: [+-] \d+)?)\))?/i
+  validates :hit_points, numericality: { only_integer: true, greater_than: 0 }
+  validates_format_of :hit_dice, with: /(\d+d\d+(?: [+-] \d+)?)/i
 
   XP_BY_CHALLENGE_RATING = {
     '0' => 10,
