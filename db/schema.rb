@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 2022_02_15_115255) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "alignment"
     t.string "hit_dice"
-    t.hstore "ability_scores", default: {}
+    t.hstore "ability_scores", default: {"wisdom"=>"10", "charisma"=>"10", "strength"=>"10", "dexterity"=>"10", "constitution"=>"10", "intelligence"=>"10"}
     t.integer "xp"
     t.integer "proficiency_bonus", default: 2
   end
