@@ -67,6 +67,11 @@
     <%= form.number_field :xp, min: 0 %>
   </div>
 
+  <div class="field">
+    <%= form.label :proficiency_bonus %>
+    <%= form.select :proficiency_bonus, 2..9 %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Monster, type: :model do
-  # fixtures :monsters
 
   let(:valid_attributes) do
     {
@@ -25,10 +24,6 @@ RSpec.describe Monster, type: :model do
       proficiency_bonus: 2
     }
   end
-
-  # let(:valid_attributes) do
-  #   monsters(:bandit)
-  # end
 
   it 'has a name at least 2 characters long' do
     monster = Monster.new(valid_attributes)
@@ -58,12 +53,6 @@ RSpec.describe Monster, type: :model do
     monster = Monster.new
     monster.xp = 'abc'
     expect(monster).to_not be_valid
-  end
-
-  it 'with challenge rating of zero gives 10 XP' do
-    monster = Monster.new(valid_attributes)
-    monster.challenge_rating = '0'
-    expect(monster.xp).to eq 10
   end
 
   it 'has a size' do
@@ -114,14 +103,6 @@ RSpec.describe Monster, type: :model do
     expect(monster).to_not be_valid
   end
 
-  # it 'has 30 hit points' do
-  #   monster = Monster.new(valid_attributes)
-  #   monster.hit_points = '30'
-  #   expect(monster).to be_valid
-  # end
-
-
-
   it 'abc is not a valid hit dice value' do
     monster = Monster.new(valid_attributes)
     monster.hit_dice = 'abc'
@@ -155,5 +136,30 @@ RSpec.describe Monster, type: :model do
   it 'has a default proficiency bonus of two' do
     monster = Monster.new
     expect(monster.proficiency_bonus).to eq 2
+  end
+
+  it 'challenge rating determines the proficiency bonus' do
+    monster = Monster.new
+
+    monster.challenge_rating = '5'
+    expect(monster.proficiency_bonus).to eq 3
+
+    monster.challenge_rating = '9'
+    expect(monster.proficiency_bonus).to eq 4
+
+    monster.challenge_rating = '13'
+    expect(monster.proficiency_bonus).to eq 5
+
+    monster.challenge_rating = '17'
+    expect(monster.proficiency_bonus).to eq 6
+
+    monster.challenge_rating = '21'
+    expect(monster.proficiency_bonus).to eq 7
+
+    monster.challenge_rating = '25'
+    expect(monster.proficiency_bonus).to eq 8
+
+    monster.challenge_rating = '29'
+    expect(monster.proficiency_bonus).to eq 9
   end
 end
