@@ -23,14 +23,14 @@ class MonstersController < ApplicationController
         # check if monster exists
         if @monster = Monster.where(name: response.data[:name]).first
           @monster.assign_attributes(monster_params)
-          format.js { flash.now[:info] = "Monster already exists, form filled with API data and set to update." }
+          format.js { flash.now[:warning] = "Monster already exists, form filled with API data and set to update." }
         else
           @monster = Monster.new(monster_params)
           format.js { flash.now[:success] = "Monster found and form filled with API data." }
         end
       else
         @monster = Monster.new
-        format.js { flash.now[:warning] = "Monster not found." }
+        format.js { flash.now[:danger] = "Monster not found." }
       end
     end
   end

@@ -39,7 +39,7 @@ RSpec.describe 'Search a monster using D&D 5e API', type: :feature, js: true do
     visit new_monster_path
     fill_in 'search', with: 'sdfsdjf'
     click_button 'Search Monster'
-    expect(page).to have_css '.alert.alert-warning'
+    expect(page).to have_css '.alert.alert-danger'
   end
 
   scenario 'duplicate monster and update', :vcr do
@@ -47,7 +47,7 @@ RSpec.describe 'Search a monster using D&D 5e API', type: :feature, js: true do
     visit new_monster_path
     fill_in 'search', with: 'Bandit'
     click_button 'Search Monster'
-    expect(page).to have_css '.alert.alert-info'
+    expect(page).to have_css '.alert.alert-warning'
     expect {
       click_button 'Update Monster'
     }.to change(Monster, :count).by(0)
