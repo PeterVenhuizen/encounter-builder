@@ -27,18 +27,41 @@
   </div>
 
   <div class="field">
+    <%= form.label :alignment %>
+    <%= form.text_field :alignment %>
+  </div>
+
+  <div class="field">
     <%= form.label :armor_class %>
     <%= form.text_field :armor_class, placeholder: 'e.g. 12, or 15 (natural armor)' %>
   </div>
 
   <div class="field">
     <%= form.label :hit_points %>
-    <%= form.text_field :hit_points, placeholder: 'e.g. 22 (4d8 + 4)' %>
+    <%= form.number_field :hit_points, min: 1 %>
   </div>
+
+  <div class="field">
+    <%= form.label :hit_dice %>
+    <%= form.text_field :hit_dice, placeholder: 'e.g. 4d8, or 1d4 - 1' %>
+  </div>
+
+  <%= @monster.ability_scores %>
+  <%= form.fields_for :ability_scores, OpenStruct.new(@monster.ability_scores) do |ability_scores| %>
+    <% ability_scores.object.each_pair do |key, value| %>
+      <%= ability_scores.label key %>
+      <%= ability_scores.number_field key, min: 0 %>
+    <% end %>
+  <% end %>
 
   <div class="field">
     <%= form.label :challenge_rating %>
     <%= form.select :challenge_rating, %w[0 1/8 1/4 1/2] + [*'1'..'30'] %>
+  </div>
+
+  <div class="field">
+    <%= form.label :xp %>
+    <%= form.number_field :xp, min: 0 %>
   </div>
 
   <div class="actions">
