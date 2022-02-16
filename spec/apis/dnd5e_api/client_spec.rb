@@ -5,6 +5,18 @@ RSpec.describe Dnd5eAPI::Client do
   describe "monster_by_name" do
     let(:client) { Dnd5eAPI::Client.new }
 
+    it "transform the search term to lowercase" do
+      prepared_search_term = client.prepare_search_term("Bandit")
+      expect(prepared_search_term).to eq "bandit"
+    end
+
+    it "replaces spaces by dashes in the search term", :vcr do
+      prepared_search_term = client.prepare_search_term("Adult Black Dragon")
+      expect(prepared_search_term).to eq "adult-black-dragon"
+      response = client.monster_by_name("Adult Black Dragon")
+      expect(response.ok?).to be true
+    end
+
     it "returns error not found for an unknown monster", :vcr do
       response = client.monster_by_name('skdjfiwej')
       expect(response.ok?).to be false
@@ -22,7 +34,7 @@ RSpec.describe Dnd5eAPI::Client do
       end
 
       it "the challenge ratings with a fraction are transformed to rationals" do
-        expect(response.params[:challenge_rating]).to eq '1/8'
+        expect(response.data[:challenge_rating]).to eq '1/8'
       end
     end
   end

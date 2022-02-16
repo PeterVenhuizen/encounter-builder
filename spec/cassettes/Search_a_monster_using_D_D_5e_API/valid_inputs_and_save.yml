@@ -1,0 +1,50 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://www.dnd5eapi.co/api/monsters/bandit
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.2.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Cowboy
+      Connection:
+      - keep-alive
+      X-Powered-By:
+      - Express
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '1108'
+      Etag:
+      - W/"454-s0ShvsIkem5Vf2glSPGXgC54VDA"
+      Date:
+      - Wed, 16 Feb 2022 12:55:05 GMT
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      string: '{"index":"bandit","name":"Bandit","size":"Medium","type":"humanoid","subtype":"any
+        race","alignment":"any non-lawful alignment","armor_class":12,"hit_points":11,"hit_dice":"2d8","speed":{"walk":"30
+        ft."},"strength":11,"dexterity":12,"constitution":12,"intelligence":10,"wisdom":10,"charisma":10,"proficiencies":[],"damage_vulnerabilities":[],"damage_resistances":[],"damage_immunities":[],"condition_immunities":[],"senses":{"passive_perception":10},"languages":"any
+        one language (usually Common)","challenge_rating":0.125,"xp":25,"actions":[{"name":"Scimitar","desc":"Melee
+        Weapon Attack: +3 to hit, reach 5 ft., one target. Hit: 4 (1d6 + 1) slashing
+        damage.","attack_bonus":3,"damage":[{"damage_type":{"index":"slashing","name":"Slashing","url":"/api/damage-types/slashing"},"damage_dice":"1d6+1"}]},{"name":"Light
+        Crossbow","desc":"Ranged Weapon Attack: +3 to hit, range 80 ft./320 ft., one
+        target. Hit: 5 (1d8 + 1) piercing damage.","attack_bonus":3,"damage":[{"damage_type":{"index":"piercing","name":"Piercing","url":"/api/damage-types/piercing"},"damage_dice":"1d8+1"}]}],"url":"/api/monsters/bandit"}'
+  recorded_at: Wed, 16 Feb 2022 10:46:24 GMT
+recorded_with: VCR 6.0.0
