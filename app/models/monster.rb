@@ -13,6 +13,8 @@ class Monster < ApplicationRecord
   validates :hit_points, numericality: { only_integer: true, greater_than: 0 }
   validates_format_of :hit_dice, with: /(\d+d\d+(?: [+-] \d+)?)/i
 
+  after_initialize :order_abilities
+
   XP_BY_CHALLENGE_RATING = {
     '0' => 10,
     '1/8' => 25,
@@ -53,4 +55,12 @@ class Monster < ApplicationRecord
   def xp
     XP_BY_CHALLENGE_RATING[challenge_rating]
   end
-end  
+
+  private
+
+  # Enforce expected order for D&D ability scores
+  def order_abilities
+    order = %w[strength dexterity constitution intelligence wisdom charisma]
+    ability_scores.slice!(*order)
+  end
+end

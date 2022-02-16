@@ -46,12 +46,16 @@
     <%= form.text_field :hit_dice, placeholder: 'e.g. 4d8, or 1d4 - 1' %>
   </div>
 
-  <%= form.fields_for :ability_scores, OpenStruct.new(@monster.ability_scores) do |ability_scores| %>
-    <% ability_scores.object.each_pair do |key, value| %>
-      <%= ability_scores.label key %>
-      <%= ability_scores.number_field key, min: 0 %>
+  <div class="flex-row">
+    <%= form.fields_for :ability_scores, OpenStruct.new(@monster.ability_scores) do |ability_scores| %>
+      <% ability_scores.object.each_pair do |key, value| %>
+        <div class="flex-col ability-score">
+          <%= ability_scores.label key %>
+          <%= ability_scores.number_field key, min: 0 %>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 
   <div class="field">
     <%= form.label :challenge_rating %>
