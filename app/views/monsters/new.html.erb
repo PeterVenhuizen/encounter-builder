@@ -1,16 +1,30 @@
 <h1>New Monster</h1>
 
-<%= form_with url: '/search', method: :get, local: false do |form| %>
-  <%= form.search_field :search %>
-  <%= form.submit 'Search Monster' %>
-<% end %>
+<div class="api-monster-search">
+  <p class="info">
+    Use the search form to retrieve monsters from the official D&D 5e SRD available via the 
+    <a href="https://www.dnd5eapi.co/" class="underscore">D&D 5e API</a>. The search terms
+    are case insensitive, but the API only supports <strong>exact</strong> matches!</p>
+  <p class="info">The retrieved data will be used to auto-fill the below monster form.
+  If a monster already exists in the database, submitting the below form will <em>update</em>
+  the monster's data.</p>
+  
+  <%= form_with url: '/search', method: :get, local: false do |form| %>
+    <%= form.search_field :search, placeholder: 'e.g. Bandit or Adult Black Dragon' %>
+    <%= form.submit 'Search Monster', class: 'trivial mt-1' %>
+  <% end %>
+</div>
 
 <div id="flash-messages">
   <%= render 'layouts/flash' %>
 </div>
 
-<div id="monster-form">
+
+
+<div id="monster-form" class="mt-1">
+  <h2>Monster data</h2>
+
   <%= render 'form' %>
 </div>
 
-<%= link_to 'Back', monsters_path %>
+<%= link_to 'Back', monsters_path, class: 'underscore' %>

@@ -14,8 +14,6 @@ class MonstersController < ApplicationController
     dnd_client = Dnd5eAPI::Client.new
     response = dnd_client.monster_by_name(params[:search])
 
-    #debugger
-
     respond_to do |format|
       if response.ok?
         params[:monster] = response.data

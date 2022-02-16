@@ -2,3 +2,7 @@
 .stat-group label {
     font-weight: bold;
 }
+
+.ability-score {
+    align-items: center;
+}

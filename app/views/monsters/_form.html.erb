@@ -1,6 +1,6 @@
-<%= form_with model: @monster, local: true do |form| %>
+<%= form_with model: @monster, local: true, class: 'margin-block' do |form| %>
   <% if @monster.errors.any? %>
-    <div id="error_explanation">
+    <div id="error-explanation" class="mb-1">
       <h2><%= pluralize(@monster.errors.count, "error") %> prohibited this monster from being saved:</h2>
 
       <ul>
@@ -11,42 +11,48 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="flex-row">
     <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
 
-  <div class="field">
-    <%= form.label :size %>
-    <%= form.select :size, %w[Tiny Small Medium Large Huge Gargantuan], prompt: true %>
+  <div class="flex-row mt-1">
+    <div class="flex-col">
+      <%= form.label :size %>
+      <%= form.select :size, %w[Tiny Small Medium Large Huge Gargantuan], prompt: true %>
+    </div>
+
+    <div class="flex-col margin-inline">
+      <%= form.label 'Type' %>
+      <%= form.select :species, %w[Aberration Beast Celestial Construct Dragon Elemental Fey Fiend Giant Humanoid Monstrosity Ooze Plant Undead], prompt: true %>
+    </div>
+
+    <div class="flex-col">
+      <%= form.label :alignment %>
+      <%= form.text_field :alignment %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label 'Type' %>
-    <%= form.select :species, %w[Aberration Beast Celestial Construct Dragon Elemental Fey Fiend Giant Humanoid Monstrosity Ooze Plant Undead], prompt: true %>
+  <hr class="margin-block">
+
+  <div class="flex-row margin-block">
+    <div class="flex-col">
+      <%= form.label :armor_class %>
+      <%= form.text_field :armor_class, placeholder: 'e.g. 12, or 15 (natural armor)' %>
+    </div>
+
+    <div class="flex-col margin-inline">
+      <%= form.label :hit_points %>
+      <%= form.number_field :hit_points, min: 1 %>
+    </div>
+
+    <div class="flex-col">
+      <%= form.label :hit_dice %>
+      <%= form.text_field :hit_dice, placeholder: 'e.g. 4d8, or 1d4 - 1' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :alignment %>
-    <%= form.text_field :alignment %>
-  </div>
-
-  <div class="field">
-    <%= form.label :armor_class %>
-    <%= form.text_field :armor_class, placeholder: 'e.g. 12, or 15 (natural armor)' %>
-  </div>
-
-  <div class="field">
-    <%= form.label :hit_points %>
-    <%= form.number_field :hit_points, min: 1 %>
-  </div>
-
-  <div class="field">
-    <%= form.label :hit_dice %>
-    <%= form.text_field :hit_dice, placeholder: 'e.g. 4d8, or 1d4 - 1' %>
-  </div>
-
-  <div class="flex-row">
+  <div class="flex-row space-between">
     <%= form.fields_for :ability_scores, OpenStruct.new(@monster.ability_scores) do |ability_scores| %>
       <% ability_scores.object.each_pair do |key, value| %>
         <div class="flex-col ability-score">
@@ -57,22 +63,26 @@
     <% end %>
   </div>
 
-  <div class="field">
-    <%= form.label :challenge_rating %>
-    <%= form.select :challenge_rating, %w[0 1/8 1/4 1/2] + [*'1'..'30'] %>
+  <hr class="margin-block">
+
+  <div class="flex-row">
+    <div class="flex-col">
+      <%= form.label :challenge_rating %>
+      <%= form.select :challenge_rating, %w[0 1/8 1/4 1/2] + [*'1'..'30'] %>
+    </div>
+
+    <div class="flex-col margin-inline">
+      <%= form.label :xp %>
+      <%= form.number_field :xp, min: 0 %>
+    </div>
+
+    <div class="flex-col">
+      <%= form.label :proficiency_bonus %>
+      <%= form.select :proficiency_bonus, 2..9 %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :xp %>
-    <%= form.number_field :xp, min: 0 %>
-  </div>
-
-  <div class="field">
-    <%= form.label :proficiency_bonus %>
-    <%= form.select :proficiency_bonus, 2..9 %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions mt-1">
+    <%= form.submit class: 'easy' %>
   </div>
 <% end %>

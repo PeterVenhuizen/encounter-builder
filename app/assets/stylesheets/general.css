@@ -58,11 +58,6 @@ label {
     margin-right: .25em;
 }
 
-/* paragraphs */
-p {
-    margin-block: 0.5em;
-}
-
 /* flex elements */
 .flex-row {
     display: flex;
@@ -75,14 +70,21 @@ p {
     /* align-items: center; */
 }
 
+/* hr */
+hr {
+    border: none;
+    height: 1px;
+    background: var(--deadly);
+}
+
 /* margin */
 .m-1 { margin: 1em; }
 .mr-1 { margin-right: 1em; }
 .ml-1 { margin-left: 1em; }
 .mt-1 { margin-top: 1em; }
 .mb-1 { margin-bottom: 1em; }
-.margin-inline-1 { margin-inline: 1em; }
-.margin-block-1 { margin-block: 1em; }
+.margin-inline { margin-inline: 1em; }
+.margin-block { margin-block: 1em; }
 
 /* padding */
 .p-1 { padding: 1em; }
@@ -90,6 +92,11 @@ p {
 .pl-1 { padding-left: 1em; }
 .pt-1 { padding-top: 1em; }
 .pb-1 { padding-bottom: 1em; }
+
+/* paragraphs */
+p {
+    margin-block: 0.5em;
+}
 
 /* reset default button style */
 button {
@@ -170,6 +177,9 @@ input[type], textarea, select {
 input[type], textarea {
     width: 100%;
 }
+input[type="number"] {
+    max-width: 80px;
+}
 input[type="submit"] {
     border: none;
     border-radius: 3px;
@@ -226,4 +236,9 @@ textarea {
 }
 .hidden {
     display: none !important;
+}
+
+/* spacing */
+.space-between {
+    justify-content: space-between;
 }
