@@ -1,10 +1,12 @@
 <h1>New Monster</h1>
 
-<%= form_with url: '/search', method: :get do |form| %>
+<%= form_with url: '/search', method: :get, local: false do |form| %>
   <%= form.search_field :search %>
   <%= form.submit 'Search Monster' %>
 <% end %>
 
-<%= render 'form', monster: @monster %>
+<div id="monster-form">
+  <%= render 'form' %>
+</div>
 
 <%= link_to 'Back', monsters_path %>

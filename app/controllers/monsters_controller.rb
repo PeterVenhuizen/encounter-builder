@@ -14,17 +14,18 @@ class MonstersController < ApplicationController
     dnd_client = Dnd5eAPI::Client.new
     response = dnd_client.monster_by_name(params[:search])
 
-    debugger
+    #debugger
 
     if response.ok?
       # make monster from params
-      params = ActionController::Parameters.new(response.params)
+      params[:monster] = response.data
       @monster = Monster.new(monster_params)
       # render stat-block and re-render form
       # flash.now[:info] = "Monster available and form filled."
     else
       # flash monster not found
       # flash.now[:alert] = "Monster not found."
+      @monster = Monster.new
     end
   end
 
