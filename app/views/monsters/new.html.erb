@@ -5,6 +5,10 @@
   <%= form.submit 'Search Monster' %>
 <% end %>
 
+<div id="flash-messages">
+  <%= render 'layouts/flash' %>
+</div>
+
 <div id="monster-form">
   <%= render 'form' %>
 </div>

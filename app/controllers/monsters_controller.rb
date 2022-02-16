@@ -16,16 +16,15 @@ class MonstersController < ApplicationController
 
     #debugger
 
-    if response.ok?
-      # make monster from params
-      params[:monster] = response.data
-      @monster = Monster.new(monster_params)
-      # render stat-block and re-render form
-      # flash.now[:info] = "Monster available and form filled."
-    else
-      # flash monster not found
-      # flash.now[:alert] = "Monster not found."
-      @monster = Monster.new
+    respond_to do |format|
+      if response.ok?
+        params[:monster] = response.data
+        @monster = Monster.new(monster_params)
+        format.js { flash.now[:info] = "Monster retrieved and form filled" }
+      else
+        @monster = Monster.new
+        format.js { flash.now[:warning] = "Monster not found." }
+      end
     end
   end
 

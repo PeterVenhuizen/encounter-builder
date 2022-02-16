@@ -1,2 +1,5 @@
-let monsterForm = document.getElementById('monster-form');
+var flashMessages = document.getElementById('flash-messages');
+flashMessages.innerHTML = "<%= j render partial: 'layouts/flash' %>";
+
+var monsterForm = document.getElementById('monster-form');
 monsterForm.innerHTML = "<%= j render partial: 'form' %>";
