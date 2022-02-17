@@ -1,8 +1,23 @@
-.stat-group { margin-block: 0.25em; }
-.stat-group label {
-    font-weight: bold;
+.stat-block {
+    max-width: 400px;
+    font-size: 0.9em;
+}
+.stat-block span {
+    /* color: var(--label-color); */
+}
+.stat-block hr {
+    margin-block: .35em;
 }
 
-.ability-score {
-    align-items: center;
+.stat-group { 
+    margin-block: 0.25em; 
+}
+.stat-group label {
+    /* font-weight: bold; */
+    color: black;
+    text-transform: capitalize;
+}
+
+.ability-scores {
+    padding: .5em;
 }
