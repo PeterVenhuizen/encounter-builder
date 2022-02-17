@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_15_115255) do
+ActiveRecord::Schema.define(version: 2022_02_17_053025) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 2022_02_15_115255) do
     t.hstore "ability_scores", default: {"wisdom"=>"10", "charisma"=>"10", "strength"=>"10", "dexterity"=>"10", "constitution"=>"10", "intelligence"=>"10"}
     t.integer "xp"
     t.integer "proficiency_bonus", default: 2
+    t.hstore "speed", default: {"fly"=>"0", "swim"=>"0", "walk"=>"0", "climb"=>"0", "burrow"=>"0"}
   end
 
   create_table "parties", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

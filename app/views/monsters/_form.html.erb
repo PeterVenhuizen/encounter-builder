@@ -53,9 +53,22 @@
   </div>
 
   <div class="flex-row space-between">
+    <%= form.fields_for :speed, OpenStruct.new(@monster.speed) do |speed| %>
+      <% speed.object.each_pair do |key, value| %>
+        <div class="flex-col align-center">
+          <%= speed.label key %>
+          <%= speed.number_field key, min: 0 %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <hr class="margin-block">
+
+  <div class="flex-row space-between">
     <%= form.fields_for :ability_scores, OpenStruct.new(@monster.ability_scores) do |ability_scores| %>
       <% ability_scores.object.each_pair do |key, value| %>
-        <div class="flex-col ability-score">
+        <div class="flex-col align-center">
           <%= ability_scores.label key %>
           <%= ability_scores.number_field key, min: 0 %>
         </div>

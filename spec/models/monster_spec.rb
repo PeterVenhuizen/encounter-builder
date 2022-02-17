@@ -8,6 +8,7 @@ RSpec.describe Monster, type: :model do
       size: 'Medium',
       species: 'Humanoid',
       alignment: 'any non-lawful alignment',
+      speed: '[{"name": "walk", "distance": 30}]',
       armor_class: '12 (leather armor)',
       hit_points: 11,
       hit_dice: '2d8 + 2',
@@ -23,6 +24,11 @@ RSpec.describe Monster, type: :model do
       xp: 25,
       proficiency_bonus: 2
     }
+  end
+
+  it 'is valid' do
+    monster = Monster.new(valid_attributes)
+    expect(monster).to be_valid
   end
 
   it 'has a name at least 2 characters long' do

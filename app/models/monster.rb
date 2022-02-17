@@ -12,7 +12,7 @@ class Monster < ApplicationRecord
   validates :hit_points, numericality: { only_integer: true, greater_than: 0 }
   validates_format_of :hit_dice, with: /(\d+d\d+(?: [+-] \d+)?)/i
 
-  after_initialize :order_abilities
+  after_initialize :order_hstores
 
   def proficiency_bonus
     cr = Rational(challenge_rating).to_i
@@ -22,8 +22,11 @@ class Monster < ApplicationRecord
   private
 
   # Enforce expected order for D&D ability scores
-  def order_abilities
+  def order_hstores
     order = %w[strength dexterity constitution intelligence wisdom charisma]
     ability_scores.slice!(*order)
+
+    order = %w[walk burrow climb fly swim]
+    speed.slice!(*order)
   end
 end

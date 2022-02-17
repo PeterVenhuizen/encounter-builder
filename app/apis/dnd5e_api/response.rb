@@ -21,6 +21,10 @@ module Dnd5eAPI
         data[:challenge_rating] = @body[:challenge_rating].to_r.to_s
       end
 
+      # speed
+      speeds = %i[walk burrow climb fly swim]
+      data[:speed] = speeds.to_h { |s| [s, @body[:speed][s].to_i] }
+
       # ability scores
       abilities = %i[strength dexterity constitution intelligence wisdom charisma]
       data[:ability_scores] = abilities.to_h { |a| [a, @body[a]] }

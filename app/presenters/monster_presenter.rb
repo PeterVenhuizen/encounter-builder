@@ -15,6 +15,13 @@ class MonsterPresenter
     "#{@monster.hit_points} (#{@monster.hit_dice})"
   end
 
+  def speed
+    @monster.speed.filter { |_, v| !v.to_i.zero? }
+                  .map { |k, v| "#{k} #{v} ft." }
+                  .join(', ')
+                  .sub("walk ", '')
+  end
+
   def shorten(ability)
     ability.slice(0, 3).upcase
   end
