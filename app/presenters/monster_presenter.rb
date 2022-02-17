@@ -31,6 +31,10 @@ class MonsterPresenter
     "#{score} (#{mod})"
   end
 
+  def languages
+    @monster.languages.blank? ? '&#8212;'.html_safe : @monster.languages
+  end
+
   def challenge_and_xp
     "#{@monster.challenge_rating} (#{ActiveSupport::NumberHelper.number_to_delimited(@monster.xp)} XP)"
   end
