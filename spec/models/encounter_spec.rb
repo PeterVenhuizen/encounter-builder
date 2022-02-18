@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Encounter, type: :model do
+  fixtures :monsters, :players
+
   before(:each) do
     @party_of_one = Party.create(name: 'Just Bob', players_attributes: [{name: 'Bob', level: 1}])
     @party_of_two = Party.create(name: 'Bob + Henk', players_attributes: [{name: 'Bob', level: 1}, {name: 'Henk', level: 1}])
@@ -15,9 +17,9 @@ RSpec.describe Encounter, type: :model do
       ]
     )
 
-    @cat = Monster.create(name: 'Cat', size: 'Tiny', species: 'Beast', challenge_rating: '0', hit_points: '2 (1d4)', armor_class: '12')
-    @bandit = Monster.create(name: 'Bandit', size: 'Medium', species: 'Humanoid', challenge_rating: '1/8', hit_points: '11 (2d8)', armor_class: '12')
-    @harpy = Monster.create(name: 'Harpy', size: 'Medium', species: 'Monstrosity', challenge_rating: '1', hit_points: '38 (7d8)', armor_class: '11')
+    @cat = monsters(:cat)
+    @bandit = monsters(:bandit)
+    @harpy = monsters(:harpy)
   end
 
   let(:valid_attributes) do

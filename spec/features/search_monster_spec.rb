@@ -3,51 +3,53 @@ require 'vcr_setup'
 
 RSpec.describe 'Search a monster using D&D 5e API', type: :feature, js: true do
 
-  let(:bandit_attributes) do
+  let(:bat_attributes) do
     {
-      name: 'Bandit',
-      size: 'Medium',
-      species: 'Humanoid',
-      alignment: 'any non-lawful alignment',
-      armor_class: '12 (leather armor)',
-      hit_points: 11,
-      hit_dice: '2d8 + 2',
+      name: 'Bat',
+      size: 'Tiny',
+      species: 'Beast',
+      alignment: 'unaligned',
+      armor_class: '12',
+      hit_points: 1,
+      hit_dice: '1d4',
       ability_scores: {
-        strength: 11,
-        dexterity: 12,
-        constitution: 12,
-        intelligence: 10,
-        wisdom: 10,
-        charisma: 10
+        strength: 2,
+        dexterity: 15,
+        constitution: 8,
+        intelligence: 2,
+        wisdom: 12,
+        charisma: 4
       },
-      challenge_rating: '1/8',
-      xp: 25,
+      challenge_rating: '0',
+      xp: 10,
       proficiency_bonus: 2
     }
   end
 
   scenario 'valid inputs and save', :vcr do
     visit new_monster_path
-    fill_in 'search', with: 'Bandit'
+    fill_in 'search', with: 'Bat'
     click_button 'Search Monster'
-    expect(page).to have_css '.alert.alert-success'
-    click_button 'Create Monster'
-    expect(Monster.where(name: 'Bandit')).to exist
+    expect(page).to have_css '.alert-success'
+    expect {
+      click_button 'Create Monster'
+    }.to change(Monster, :count).by(1)
+    expect(Monster.where(name: 'Bat')).to exist
   end
 
   scenario 'invalid inputs', :vcr do
     visit new_monster_path
-    fill_in 'search', with: 'sdfsdjf'
+    fill_in 'search', with: 'pikachu'
     click_button 'Search Monster'
-    expect(page).to have_css '.alert.alert-danger'
+    expect(page).to have_css '.alert-danger'
   end
 
   scenario 'duplicate monster and update', :vcr do
-    Monster.create! bandit_attributes
+    Monster.create! bat_attributes
     visit new_monster_path
-    fill_in 'search', with: 'Bandit'
+    fill_in 'search', with: 'Bat'
     click_button 'Search Monster'
-    expect(page).to have_css '.alert.alert-warning'
+    expect(page).to have_css '.alert-warning'
     expect {
       click_button 'Update Monster'
     }.to change(Monster, :count).by(0)
