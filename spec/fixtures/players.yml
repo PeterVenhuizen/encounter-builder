@@ -1,7 +1,14 @@
 henk:
   name: Henk
   level: 1
+  party: party_of_three
 
 mies:
   name: Mies
   level: 1
+  party: party_of_three
+
+bob:
+  name: Bob
+  level: 1
+  party: party_of_three

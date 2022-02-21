@@ -1,0 +1,5 @@
+two_bandits:
+  name: Two Bandits
+  description: Short description
+  party: party_of_three
+  
