@@ -1,0 +1,2 @@
+class CombatTrackersController < ApplicationController
+end
