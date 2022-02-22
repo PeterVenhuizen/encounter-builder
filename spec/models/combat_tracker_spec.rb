@@ -28,4 +28,17 @@ RSpec.describe CombatTracker, type: :model do
   it "the CombatTracker should be valid" do
     expect(@combat_tracker).to be_valid
   end
+
+  it "a new CombatTracker is in it's first round" do
+    expect(@combat_tracker.round).to eq 1
+  end
+
+  it "it starts off on turn one" do
+    expect(@combat_tracker.turn).to eq 1
+  end
+
+  it "contains all the Combatants in the Encounter" do
+    combatants = @combat_tracker.combatants
+    expect(combatants.size).to eq 6
+  end
 end
