@@ -14,6 +14,10 @@ class Encounter < ApplicationRecord
     self.stats = calculate_statistics
   end
 
+  def players
+    party.players
+  end
+
   def calculate_statistics
     {
       multiplier: multiplier,

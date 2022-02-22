@@ -48,6 +48,14 @@ RSpec.describe Encounter, type: :model do
     expect(encounter).to_not be_valid
   end
 
+  it 'has players' do
+    encounter = Encounter.new(valid_attributes)
+    expect(encounter.players.size).to eq 1
+
+    encounter.party_id = @party_of_six.id
+    expect(encounter.players.size).to eq 6
+  end
+
   it 'must have at least one fate' do
     encounter = Encounter.new(valid_attributes[:fates_attributes] = {})
     expect(encounter).to_not be_valid
