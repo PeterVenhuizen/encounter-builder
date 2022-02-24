@@ -16,13 +16,12 @@ RSpec.describe CombatTracker, type: :model do
   end
 
   before(:each) do
-    encounter = Encounter.new(encounter_attributes)
-    @combat_tracker = CombatTracker.new(encounter)
+    @encounter = Encounter.create(encounter_attributes)
+    @combat_tracker = @encounter.create_combat_tracker
   end
 
   it "the used Encounter should be valid" do
-    encounter = Encounter.new(encounter_attributes)
-    expect(encounter).to be_valid
+    expect(@encounter).to be_valid
   end
 
   it "the CombatTracker should be valid" do
@@ -40,5 +39,9 @@ RSpec.describe CombatTracker, type: :model do
   it "contains all the Combatants in the Encounter" do
     combatants = @combat_tracker.combatants
     expect(combatants.size).to eq 6
+    expect(Combatant.count).to eq 6
   end
+
+  it "should create the combatants"
+  it "should only create the combatants once"
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_21_143724) do
+ActiveRecord::Schema.define(version: 2022_02_21_143725) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -46,16 +46,25 @@ ActiveRecord::Schema.define(version: 2022_02_21_143724) do
   end
 
   create_table "combat_trackers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.bigint "encounter_id"
+    t.integer "round", default: 1
+    t.integer "turn", default: 1
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["encounter_id"], name: "index_combat_trackers_on_encounter_id"
   end
 
   create_table "combatants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.integer "initiative", default: 0
     t.boolean "turn", default: false
     t.integer "hit_points", default: 0
+    t.string "combatable_type"
+    t.bigint "combatable_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.uuid "combat_tracker_id", null: false
+    t.index ["combat_tracker_id"], name: "index_combatants_on_combat_tracker_id"
+    t.index ["combatable_type", "combatable_id"], name: "index_combatants_on_combatable"
   end
 
   create_table "encounters", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -114,6 +123,7 @@ ActiveRecord::Schema.define(version: 2022_02_21_143724) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "combatants", "combat_trackers"
   add_foreign_key "encounters", "parties"
   add_foreign_key "fates", "encounters"
   add_foreign_key "fates", "monsters"

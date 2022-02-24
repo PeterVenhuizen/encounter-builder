@@ -1,5 +1,6 @@
 class Player < ApplicationRecord
   belongs_to :party
+  has_many :combatants, as: :combatable
 
   validates :name, length: { minimum: 2 }
   validates :level, inclusion: { in: 1..20 }

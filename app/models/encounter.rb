@@ -1,6 +1,7 @@
 class Encounter < ApplicationRecord
   has_many :fates, dependent: :destroy
   has_many :monsters, through: :fates
+  has_one :combat_tracker
   belongs_to :party
 
   validates_presence_of :name, :description

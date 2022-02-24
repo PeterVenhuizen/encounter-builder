@@ -1,6 +1,7 @@
 class Monster < ApplicationRecord
   has_many :fates
   has_many :encounters, through: :fates
+  has_many :combatants, as: :combatable
 
   default_scope { order(name: :asc) }
 
