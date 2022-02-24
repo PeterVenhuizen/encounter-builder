@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 2022_02_21_143725) do
     t.boolean "turn", default: false
     t.integer "hit_points", default: 0
     t.string "combatable_type"
-    t.bigint "combatable_id"
+    t.uuid "combatable_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.uuid "combat_tracker_id", null: false

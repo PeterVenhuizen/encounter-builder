@@ -1,63 +1,68 @@
 require 'rails_helper'
 
 RSpec.describe Combatant, type: :model do
-  fixtures :monsters, :players
+  fixtures :monsters, :parties, :players
 
-  let(:valid_attributes) do
+  let(:encounter_attributes) do
     {
-      parent: players(:henk),
-      initiative: 13
+      name: 'Two bandits',
+      description: 'Two bandits and a cat',
+      fates_attributes: [
+        { monster_id: monsters(:bandit).id, group_size: 2 },
+        { monster_id: monsters(:cat).id }
+      ]
     }
   end
 
   before(:each) do
-    @player = players(:henk)
-    @monster = monsters(:bandit)
-    @combatant = Combatant.new(valid_attributes)
+    party = parties(:party_of_three)
+    encounter = party.encounters.create(encounter_attributes)
+    combat_tracker = encounter.create_combat_tracker
+    @combatants = combat_tracker.combatants
+    @player_combatant = Combatant.find_by(combatable_type: "Player")
+    @monster_combatant = Combatant.find_by(combatable_type: "Monster")
   end
 
-  it "is valid with a Player" do
-    expect(@combatant).to be_valid
-  end
-
-  it "is valid with a Monster" do
-    @combatant.parent = @monster
-    expect(@combatant).to be_valid
+  it "can be a Player or a Monster" do
+    expect(@combatants.size).to eq 6
+    @combatants.each do |combatant|
+      expect(combatant).to respond_to(:combatable)
+    end
   end
 
   it "has a name" do
-    expect(@combatant.name).to eq 'Henk'
-
-    @combatant.parent = @monster
-    expect(@combatant.name).to eq 'Bandit'
+    @combatants.each do |combatant|
+      expect(combatant).to respond_to(:name)
+      expect(combatant).to be_an_instance_of(Combatant)
+    end
   end
 
   it "knows when it is a Monster" do
-    expect(@combatant.monster?).to be false
-
-    @combatant.parent = @monster
-    expect(@combatant.monster?).to be true
+    expect(@player_combatant.monster?).to be false
+    expect(@monster_combatant.monster?).to be true
   end
 
   it "has an initiative higher than zero" do
-    @combatant.initiative = -1
-    expect(@combatant).to_not be_valid
+    @player_combatant.initiative = -1
+    expect(@player_combatant).to_not be_valid
   end
 
   it "has a turn when they are up" do
-    expect(@combatant.turn).to eq false
-    @combatant.turn = true
-    expect(@combatant.turn?).to eq true
+    expect(@player_combatant.turn).to eq false
+    @player_combatant.turn = true
+    expect(@player_combatant.turn?).to eq true
   end
 
   it "has hit points" do
-    expect(@combatant.hit_points).to eq 0
+    @combatants.each do |combatant|
+      expect(combatant.hit_points).to eq 0
+    end
   end
 
   it "is inactive with zero hit points" do
-    expect(@combatant.inactive?).to be true
+    expect(@player_combatant.inactive?).to be true
 
-    @combatant.hit_points = 31
-    expect(@combatant.inactive?).to be false
+    @player_combatant.hit_points = 31
+    expect(@player_combatant.inactive?).to be false
   end
 end

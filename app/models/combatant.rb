@@ -2,16 +2,14 @@ class Combatant < ApplicationRecord
   belongs_to :combat_tracker
   belongs_to :combatable, polymorphic: true
 
-  attr_accessor :parent
-
   validates :initiative, numericality: { greater_than_or_equal_to: 0 }
 
   def name
-    parent.name
+    self.combatable.name
   end
 
   def monster?
-    parent.instance_of?(Monster)
+    self.combatable.instance_of?(Monster)
   end
 
   def turn?
