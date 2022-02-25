@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2022_02_25_082351) do
   end
 
   create_table "combat_trackers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.bigint "encounter_id"
+    t.uuid "encounter_id"
     t.integer "round", default: 1
     t.integer "turn", default: 1
     t.datetime "created_at", precision: 6, null: false
