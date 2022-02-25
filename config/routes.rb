@@ -18,4 +18,6 @@ Rails.application.routes.draw do
 
   # search monsters
   resources :monsters_search, only: [:index]
+
+  resources :combat_trackers, only: %i[create show update destroy]
 end

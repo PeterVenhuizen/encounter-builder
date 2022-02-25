@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.descibe 'Combat Tracker', type: :feature, js: true do
+RSpec.describe 'Combat Tracker', type: :feature, js: true do
   fixtures :monsters, :parties, :players
 
   let(:encounter_attributes) do
@@ -26,7 +26,7 @@ RSpec.descibe 'Combat Tracker', type: :feature, js: true do
 
     # click on play encounter
     expect {
-      click_on 'Play Encounter'
+      click_on 'Start Encounter'
     }.to change(Combatant, :count).by(1)
 
     # assert redirect_to combat_tracker show
