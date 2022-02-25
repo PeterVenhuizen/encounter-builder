@@ -22,15 +22,15 @@ RSpec.describe 'Combat Tracker', type: :feature, js: true do
 
   scenario 'is started' do
     # go to encounter
-    visit encounters_path @encounter
+    visit encounter_path @encounter
 
     # click on play encounter
     expect {
       click_on 'Start Encounter'
-    }.to change(Combatant, :count).by(1)
+    }.to change(CombatTracker, :count).by(1)
 
     # assert redirect_to combat_tracker show
-    expect(response).to render_template 'combat_trackers/show'
+    # expect(response).to render_template 'combat_trackers/show'
     expect(page).to have_css '.alert-success'
     expect(page).to have_text 'Combat Tracker'
   end

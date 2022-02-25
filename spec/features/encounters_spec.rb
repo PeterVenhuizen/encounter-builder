@@ -19,16 +19,19 @@ RSpec.describe 'Encounters', type: :feature, js: true do
     @encounter = party.encounters.create(encounter_attributes)
   end
 
-  scenario 'has button to start and continue encounter' do
-    # unplayed encounter
-    visit encounters_path @encounter
+  scenario 'has button to start and resume encounter' do
+    # create and start combat tracker
+    visit encounter_path @encounter
     expect(page).to have_selector(:link_or_button, 'Start Encounter')
     click_on 'Start Encounter'
+    expect(page).to have_css '.alert-success'
 
-    # encounter already started
-    visit encounters_path @encounter
-    expect(page).to have_selector(:link_or_button, 'Continue Encounter')
-    click_on 'Continue Encounter'
-    expect(response).to render_template 'combat_trackers/show'
+    # resume
+    visit encounter_path @encounter
+    expect(page).to have_selector(:link_or_button, 'Resume Encounter')
+    expect {
+      click_on 'Resume Encounter'
+    }.to_not change(CombatTracker, :count)
+    expect(page).to have_text 'Combat Tracker'
   end
 end

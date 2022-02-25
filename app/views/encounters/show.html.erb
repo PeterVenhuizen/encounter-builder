@@ -35,6 +35,19 @@
 
 </div>
 
+<div>
+  <% if @encounter.combat_tracker.nil? %>
+    <!-- start encounter -->
+    <%= form_with(model: @encounter.build_combat_tracker, local: true) do |f| %>
+      <%= hidden_field_tag :encounter_id, @encounter.id %>
+      <%= f.submit "Start Encounter" %>
+    <% end %>
+  <% else %>
+    <!-- resume encounter -->
+    <%= link_to "Resume Encounter", @encounter.combat_tracker %>
+  <% end %>
+</div>
+
 <%= link_to 'Edit', edit_encounter_path(@encounter), class: 'btn medium-outline' %>
 <%= link_to 'Destroy', encounter_path(@encounter), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn hard-outline' %>
 <%= link_to "Back to all encounters", encounters_path, class: 'btn none-outline' %>
