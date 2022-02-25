@@ -21,6 +21,8 @@ RSpec.describe Combatant, type: :model do
     @combatants = combat_tracker.combatants
     @player_combatant = Combatant.find_by(combatable_type: "Player")
     @monster_combatant = Combatant.find_by(combatable_type: "Monster")
+    @henk_combatant = Combatant.create(combatable: players(:pietje))
+    @cat_combatant = Combatant.create(combatable: monsters(:cat))
   end
 
   it "can be a Player or a Monster" do
@@ -53,16 +55,23 @@ RSpec.describe Combatant, type: :model do
     expect(@player_combatant.turn?).to eq true
   end
 
-  it "has hit points" do
+  it "current_hp and max_hp are the same" do
     @combatants.each do |combatant|
-      expect(combatant.hit_points).to eq 0
+      expect(combatant.current_hp).to eq combatant.max_hp
     end
   end
 
-  it "is inactive with zero hit points" do
-    expect(@player_combatant.inactive?).to be true
+  it "player combatants have 1 max_hp by default" do
+    expect(@player_combatant.max_hp).to eq 1
+  end
 
-    @player_combatant.hit_points = 31
+  it "monster combatants have max_hp equal to its parent's hit_points by default" do
+    expect(@monster_combatant.max_hp).to eq @monster_combatant.combatable.hit_points
+  end
+
+  it "is inactive with zero hit points" do
     expect(@player_combatant.inactive?).to be false
+    @player_combatant.current_hp = 0
+    expect(@player_combatant.inactive?).to be true
   end
 end

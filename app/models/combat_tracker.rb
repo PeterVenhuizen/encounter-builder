@@ -1,5 +1,5 @@
 class CombatTracker < ApplicationRecord
-  has_many :combatants, dependent: :destroy
+  has_many :combatants, -> { order(initiative: :desc) }, dependent: :destroy
   belongs_to :encounter
 
   after_create :create_combatants

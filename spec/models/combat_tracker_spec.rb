@@ -45,6 +45,13 @@ RSpec.describe CombatTracker, type: :model do
 
     expect {
       CombatTracker.first
-    }.to change { Combatant.count }.by(0)
+    }.to_not change(Combatant, :count)
+  end
+
+  it "combatants are ordered based on initiative" do
+    combatant = @combat_tracker.combatants.fourth
+    expect(@combat_tracker.combatants.fourth).to eq combatant
+    combatant.update_attribute(:initiative, 20)
+    expect(@combat_tracker.combatants.first).to eq combatant
   end
 end

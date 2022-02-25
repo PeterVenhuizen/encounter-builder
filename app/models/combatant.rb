@@ -4,6 +4,8 @@ class Combatant < ApplicationRecord
 
   validates :initiative, numericality: { greater_than_or_equal_to: 0 }
 
+  before_create :set_monster_hp, if: :monster?
+
   def name
     self.combatable.name
   end
@@ -17,6 +19,12 @@ class Combatant < ApplicationRecord
   end
 
   def inactive?
-    hit_points.zero?
+    current_hp.zero?
+  end
+
+  private
+
+  def set_monster_hp
+    self.max_hp = self.current_hp = combatable.hit_points
   end
 end

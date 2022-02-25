@@ -3,7 +3,6 @@ bandit:
   size: Medium
   species: Humanoid
   alignment: any non-lawful alignment
-  speed: {"walk": 30}
   armor_class: 12 (leather armor)
   hit_points: 11
   hit_dice: 2d8 + 2

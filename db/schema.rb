@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_21_143725) do
+ActiveRecord::Schema.define(version: 2022_02_25_082351) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -57,12 +57,13 @@ ActiveRecord::Schema.define(version: 2022_02_21_143725) do
   create_table "combatants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.integer "initiative", default: 0
     t.boolean "turn", default: false
-    t.integer "hit_points", default: 0
     t.string "combatable_type"
     t.uuid "combatable_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.uuid "combat_tracker_id", null: false
+    t.integer "max_hp", default: 1
+    t.integer "current_hp", default: 1
     t.index ["combat_tracker_id"], name: "index_combatants_on_combat_tracker_id"
     t.index ["combatable_type", "combatable_id"], name: "index_combatants_on_combatable"
   end
