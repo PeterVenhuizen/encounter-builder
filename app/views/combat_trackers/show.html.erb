@@ -28,3 +28,9 @@
 <% end %>
 
 <%= button_to 'Next turn', { action: 'next_turn', id: @combat_tracker.id } %>
+
+<script>
+  var activeCombatant = document.querySelector('.combatant-row:nth-of-type(<%= @combat_tracker.turn %>)');
+  activeCombatant.style.border = "1px solid #28a755";
+  activeCombatant.style.background = "rgba(40, 167, 85, .2)";
+</script>

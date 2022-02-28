@@ -2,7 +2,6 @@ class CombatTrackersController < ApplicationController
   before_action :set_combat_tracker, only: %i[show update next_turn destroy]
 
   def show
-    # @combat_tracker = CombatTracker.find(params[:id])
     @combat_tracker.combatants.build
   end
 
