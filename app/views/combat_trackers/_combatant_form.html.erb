@@ -1,11 +1,16 @@
-<div class="monster-row flex-row">
+<div class="flex-row combatant-row">
 
-  <%= f.number_field :initiative, min: 0 %>
+  <div class="initiative">
+    <%= f.number_field :initiative, min: 0 %>
+  </div>
 
-  <%= f.object.name %>
+  <div class="flex-row combatant">
+    <%= render 'player', combatant: f.object unless f.object.monster? %>
+    <%= render 'monster', combatant: f.object if f.object.monster? %>
+  </div>
 
-  <div class="hit-points flex-row">
-    <%= f.number_field :current_hp %> / 
-    <%= f.number_field :max_hp %>
+  <div class="hit-points">
+    <%= f.number_field :current_hp, min: 0 %> / 
+    <%= f.number_field :max_hp, min: 0 %>
   </div>
 </div>

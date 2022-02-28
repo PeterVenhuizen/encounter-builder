@@ -1,21 +1,52 @@
 #combat-tracker-controls {
-    justify-content: space-around;
+	justify-content: space-around;
 
-    button {
-        padding: .5em;
-    }
+	button {
+		padding: .5em;
+	}
 
-    input[type="submit"] {
-        width: unset;
-    }
+	input[type="submit"] {
+		width: unset;
+	}
 
-    label { 
-        text-transform: uppercase;
-        font-weight: bold;
-    }
+	label { 
+		text-transform: uppercase;
+		font-weight: bold;
+	}
 
-    span {
-        font-size: 1.25em;
-        font-weight: bold;
-    }
+	span {
+		font-size: 1.25em;
+		font-weight: bold;
+	}
+}
+
+.combatant-row {
+	border: 1px solid var(--border-color);
+	border-radius: 2px;
+	padding: .5em;
+	margin-bottom: .5em;
+	justify-content: space-between;
+	gap: 1em;
+
+	input[type="number"] {
+		text-align: center;
+	}
+
+	.initiative {
+
+	}
+
+	.combatant {
+		flex: 1;
+		padding-inline: .5em;
+		border-left: 1px solid var(--border-color);
+		border-right: 1px solid var(--border-color);
+	}
+
+	.hit-points {
+		// justify-self: flex-end;
+		input[type="number"] {
+			width: 40px;
+		}
+	}
 }
