@@ -54,4 +54,15 @@ RSpec.describe CombatTracker, type: :model do
     combatant.update_attribute(:initiative, 20)
     expect(@combat_tracker.combatants.first).to eq combatant
   end
+
+  it "has a turn counter that goes back to one after the last combatant" do
+    expect(@combat_tracker.turn).to eq 1
+    6.times { @combat_tracker.next_turn }
+    expect(@combat_tracker.turn).to eq 1
+  end
+
+  it "increases the round count at the start of a new round" do
+    6.times { @combat_tracker.next_turn }
+    expect(@combat_tracker.round).to eq 2
+  end
 end

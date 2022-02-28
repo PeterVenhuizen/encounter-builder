@@ -1,0 +1,11 @@
+<div class="monster-row flex-row">
+
+  <%= f.number_field :initiative, min: 0 %>
+
+  <%= f.object.name %>
+
+  <div class="hit-points flex-row">
+    <%= f.number_field :current_hp %> / 
+    <%= f.number_field :max_hp %>
+  </div>
+</div>
