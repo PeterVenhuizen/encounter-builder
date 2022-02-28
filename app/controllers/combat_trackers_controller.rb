@@ -1,5 +1,5 @@
 class CombatTrackersController < ApplicationController
-  before_action :set_combat_tracker, only: %i[show update destroy]
+  before_action :set_combat_tracker, only: %i[show update next_turn destroy]
 
   def show
     # @combat_tracker = CombatTracker.find(params[:id])
@@ -30,6 +30,12 @@ class CombatTrackersController < ApplicationController
                       flash: { warning: "Something has gone wrong :(" } }
       end
     end
+  end
+
+  def next_turn
+    @combat_tracker.next_turn
+    @combat_tracker.save
+    redirect_to combat_tracker_url(@combat_tracker)
   end
 
   private

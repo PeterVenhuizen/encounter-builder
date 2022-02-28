@@ -7,12 +7,8 @@ class CombatTracker < ApplicationRecord
   accepts_nested_attributes_for :combatants, allow_destroy: true
 
   def next_turn
-    if turn < combatants.count
-      self.turn += 1
-    else
-      self.turn = 1
-      next_round
-    end
+    self.turn = (turn % combatants.count) + 1
+    next_round if turn == 1
   end
 
   private

@@ -20,4 +20,6 @@ Rails.application.routes.draw do
   resources :monsters_search, only: [:index]
 
   resources :combat_trackers, only: %i[create show update destroy]
+  post 'next_turn/:id', to: 'combat_trackers#next_turn'
+
 end

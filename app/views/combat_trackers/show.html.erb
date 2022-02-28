@@ -2,10 +2,6 @@
 
 <%= render 'layouts/flash' %>
 
-<% @combat_tracker.combatants.each do |combatant| %>
-  <%= combatant.combatable.name unless combatant.combatable.nil? %>
-<% end %>
-
 <%= form_with(model: @combat_tracker) do |form| %>
 
   <%= form.fields_for :combatants do |cf| %>
@@ -16,7 +12,7 @@
   <%= form.hidden_field :turn %>
 
   <div id="combat-tracker-controls" class="flex-row">
-    <button id="next-round" class="btn trivial">Next</button>
+    <%# <button id="next-round" class="btn trivial">Next</button> %>
     <div class="flex-col align-center">
       <label>Round</label>
       <span class="round"><%= @combat_tracker.round %></span>
@@ -25,9 +21,12 @@
       <label>Turn</label>
       <span class="turn"><%= @combat_tracker.turn %></span>
     </div>
-    <%= form.submit "Save", class: 'trivial' %>
   </div>
 
-  
+  <%= form.submit "Save", class: 'easy' %>
 
 <% end %>
+
+<%# javascript_pack_tag 'combat_trackers' %>
+
+<%= button_to 'Next turn', { action: 'next_turn', id: @combat_tracker.id } %>

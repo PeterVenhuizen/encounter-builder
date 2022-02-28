@@ -64,5 +64,6 @@ RSpec.describe CombatTracker, type: :model do
   it "increases the round count at the start of a new round" do
     6.times { @combat_tracker.next_turn }
     expect(@combat_tracker.round).to eq 2
+    expect(@combat_tracker.turn).to eq 1
   end
 end
