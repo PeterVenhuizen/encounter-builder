@@ -2,7 +2,7 @@ class Combatant < ApplicationRecord
   belongs_to :combat_tracker
   belongs_to :combatable, polymorphic: true
 
-  validates :initiative, numericality: { greater_than_or_equal_to: 0 }
+  validates :initiative, :current_hp, :max_hp, numericality: { greater_than_or_equal_to: 0 }
 
   before_create :set_monster_hp, if: :monster?
 

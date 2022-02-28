@@ -61,6 +61,16 @@ RSpec.describe Combatant, type: :model do
     end
   end
 
+  it "current hp can't be negative" do
+    @player_combatant.current_hp = -1
+    expect(@player_combatant).to_not be_valid
+  end
+
+  it "max hp can't be negative" do
+    @player_combatant.max_hp = -1
+    expect(@player_combatant).to_not be_valid
+  end
+
   it "player combatants have 1 max_hp by default" do
     expect(@player_combatant.max_hp).to eq 1
   end
