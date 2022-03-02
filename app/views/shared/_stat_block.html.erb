@@ -1,4 +1,4 @@
-<% presenter = MonsterPresenter.new(@monster) %>
+<% presenter = MonsterPresenter.new(monster) %>
 <article class="rectangle stat-block">
   <header>
     <h2><%= presenter.big_name %></h2>
@@ -10,7 +10,7 @@
   <section>
     <div class="stat-group">
       <label>Armor Class</label>
-      <span><%= @monster.armor_class %>
+      <span><%= monster.armor_class %>
     </div>
     <div class="stat-group">
       <label>Hit Points</label>
@@ -25,7 +25,7 @@
   <hr>
 
   <section class="ability-scores flex-row space-between">
-    <% @monster.ability_scores.each do |ability, score| %>
+    <% monster.ability_scores.each do |ability, score| %>
       <div class="flex-col align-center">
         <strong><%= presenter.shorten(ability) %></strong>
         <span><%= presenter.score_and_modifier(score) %></span>

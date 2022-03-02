@@ -29,15 +29,16 @@ RSpec.describe 'Combat Tracker', type: :feature, js: true do
       click_on 'Start Encounter'
     }.to change(CombatTracker, :count).by(1)
 
-    # assert redirect_to combat_tracker show
-    # expect(response).to render_template 'combat_trackers/show'
     expect(page).to have_css '.alert-success'
     expect(page).to have_text 'Combat Tracker'
   end
 
   scenario 'initiative is set and turns are played'
     # go to combat_tracker show
+    # visit combat_tracker_path @combat_tracker
+    
     # post initiative
+
     # assert combatants ordered by initiative
     # assert turn goes back to one after five
     # assert round + 1

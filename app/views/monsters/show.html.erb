@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<%= render 'shared/stat_block' %>
+<%= render 'shared/stat_block', monster: @monster %>
 
 <div class="pt-1">
   <%= link_to 'Edit', edit_monster_path(@monster), class: 'btn easy' %>

@@ -1,33 +1,46 @@
 <h1>Combat Tracker</h1>
 
-<%= render 'layouts/flash' %>
+<div id="combat-tracker">
+  <div class="column-left">
+    <%= render 'layouts/flash' %>
 
-<%= form_with(model: @combat_tracker) do |form| %>
+    <%= form_with(model: @combat_tracker) do |form| %>
 
-  <%= form.fields_for :combatants do |cf| %>
-    <%= render 'combatant_form', f: cf unless cf.object.combatable.nil? %>
-  <% end %>
+      <%= form.fields_for :combatants do |cf| %>
+        <%= render 'combatant_form', f: cf unless cf.object.combatable.nil? %>
+      <% end %>
 
-  <%= form.hidden_field :round %>
-  <%= form.hidden_field :turn %>
+      <%= form.hidden_field :round %>
+      <%= form.hidden_field :turn %>
 
-  <div id="combat-tracker-controls" class="flex-row">
-    <%# <button id="next-round" class="btn trivial">Next</button> %>
-    <div class="flex-col align-center">
-      <label>Round</label>
-      <span class="round"><%= @combat_tracker.round %></span>
-    </div>
-    <div class="flex-col align-center">
-      <label>Turn</label>
-      <span class="turn"><%= @combat_tracker.turn %></span>
-    </div>
+      <div id="combat-tracker-controls" class="flex-row">
+        <%# <button id="next-round" class="btn trivial">Next</button> %>
+        <div class="flex-col align-center">
+          <label>Round</label>
+          <span class="round"><%= @combat_tracker.round %></span>
+        </div>
+        <div class="flex-col align-center">
+          <label>Turn</label>
+          <span class="turn"><%= @combat_tracker.turn %></span>
+        </div>
+      </div>
+
+      <%= form.submit "Save", class: 'easy' %>
+
+    <% end %>
+
+    <%= button_to 'Next turn', { action: 'next_turn', id: @combat_tracker.id } %>
   </div>
 
-  <%= form.submit "Save", class: 'easy' %>
-
-<% end %>
-
-<%= button_to 'Next turn', { action: 'next_turn', id: @combat_tracker.id } %>
+  <div class="column-right">
+    <% combatant = @combat_tracker.combatants[@combat_tracker.turn - 1] %>
+    <%= render('shared/stat_block', monster: combatant.combatable) if combatant.monster? %>  
+    <div>
+      <h3>Description</h3>
+      <%= markdown(@combat_tracker.encounter.description).html_safe %>
+    </div>
+  </div>
+</div>
 
 <script>
   var activeCombatant = document.querySelector('.combatant-row:nth-of-type(<%= @combat_tracker.turn %>)');
