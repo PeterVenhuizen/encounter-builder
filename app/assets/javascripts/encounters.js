@@ -8,8 +8,8 @@ jQuery(function() {
         .on('cocoon:after-insert', function() {
             const monsters = document.querySelector('.monsters');
             ($('.monster-fields').last().detach()).appendTo(monsters);
-            calcEncounterStats();
             cloneMonsters();
+            calcEncounterStats();
         })
         .on('cocoon:after-remove', function(e, item) {
             calcEncounterStats();
