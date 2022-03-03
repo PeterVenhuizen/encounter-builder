@@ -51,7 +51,7 @@ td {
   border-color: red !important;
 }
 
-#error-explanation {
+#error_explanation {
   margin-top: 1em;
   padding: 1em;
   // background-color: #f0f0f0; 
@@ -60,7 +60,7 @@ td {
   grid-column: 1 / 3;
 }
 
-#error-explanation h2 {
+#error_explanation h2 {
   text-align: left;
   font-weight: bold;
   font-size: 12px;
@@ -68,7 +68,7 @@ td {
   overflow: hidden;
 }
 
-#error-explanation ul li {
+#error_explanation ul li {
   font-size: 12px;
   margin-left: 1em;
 }

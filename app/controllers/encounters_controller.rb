@@ -68,7 +68,7 @@ class EncountersController < ApplicationController
 
   def search
     @encounter = Encounter.new
-    @monsters = params[:search].empty? ? [] : Monster.where("lower(name) LIKE ?",  "%#{params[:search]}%")
+    @monsters = params[:search].empty? ? [] : Monster.where('lower(name) LIKE ?', "%#{params[:search]}%")
     render layout: false
   end
 

@@ -1,6 +1,6 @@
 <%= form_with model: @monster, local: true, class: 'margin-block' do |form| %>
   <% if @monster.errors.any? %>
-    <div id="error-explanation" class="mb-1">
+    <div id="error_explanation" class="mb-1">
       <h2><%= pluralize(@monster.errors.count, "error") %> prohibited this monster from being saved:</h2>
 
       <ul>

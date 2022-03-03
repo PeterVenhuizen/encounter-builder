@@ -8,7 +8,7 @@ class CombatTrackersController < ApplicationController
   def create
     encounter = Encounter.find(params[:encounter_id])
     @combat_tracker = encounter.build_combat_tracker
-    
+
     respond_to do |format|
       if @combat_tracker.save
         format.html { redirect_to combat_tracker_url(@combat_tracker), 
@@ -39,14 +39,14 @@ class CombatTrackersController < ApplicationController
 
   private
 
-    def set_combat_tracker
-      @combat_tracker = CombatTracker.find(params[:id])
-    end
+  def set_combat_tracker
+    @combat_tracker = CombatTracker.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def combat_tracker_params
-      params.require(:combat_tracker).permit(
-        combatants_attributes: %i[initiative current_hp max_hp _destroy id]
-      )
-    end
+  # Only allow a list of trusted parameters through.
+  def combat_tracker_params
+    params.require(:combat_tracker).permit(
+      combatants_attributes: %i[initiative current_hp max_hp _destroy id]
+    )
+  end
 end
