@@ -29,6 +29,11 @@
 	}
 }
 
+.active-combatant {
+	border: 1px solid var(--easy);
+	background-color: rgba(40, 167, 85, .2);
+}
+
 #combat-tracker-controls {
 	justify-content: space-around;
 
@@ -60,6 +65,6 @@
 	#combat-tracker {
 		display: grid; 
 		grid-template-columns: 1fr 1fr;
-		gap: 1em;
+		gap: 1.5em;
 	}
 }

@@ -92,6 +92,8 @@ hr {
 .pl-1 { padding-left: 1em; }
 .pt-1 { padding-top: 1em; }
 .pb-1 { padding-bottom: 1em; }
+.padding-inline { padding-inline: 1em; }
+.padding-block { padding-block: 1em; }
 
 /* paragraphs */
 p {
@@ -174,6 +176,20 @@ input[type], textarea, select {
     border: 1px solid var(--border-color);
     border-radius: 5px;
 }
+
+/* hide arrows for number fields */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 select { 
     background-color: white;
 }

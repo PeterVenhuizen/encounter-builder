@@ -1,6 +1,7 @@
 .stat-block {
     max-width: 400px;
     font-size: 0.9em;
+    margin-bottom: 1em;
 }
 .stat-block span {
     /* color: var(--label-color); */
