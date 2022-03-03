@@ -37,11 +37,10 @@ RSpec.describe CombatTracker, type: :model do
     expect(@combat_tracker.turn).to eq 1
   end
 
-  it "it create all the Combatants on create but not on find" do
+  it "it creates all the Combatants on create but not on find" do
     combatants = @combat_tracker.combatants
     expect(combatants.count).to eq 6
     expect(Combatant.count).to eq 6
-    expect(combatants).to eq(Combatant.all)
 
     expect {
       CombatTracker.first
@@ -50,7 +49,6 @@ RSpec.describe CombatTracker, type: :model do
 
   it "combatants are ordered based on initiative" do
     combatant = @combat_tracker.combatants.fourth
-    expect(@combat_tracker.combatants.fourth).to eq combatant
     combatant.update_attribute(:initiative, 20)
     expect(@combat_tracker.combatants.first).to eq combatant
   end
@@ -65,5 +63,13 @@ RSpec.describe CombatTracker, type: :model do
     6.times { @combat_tracker.next_turn }
     expect(@combat_tracker.round).to eq 2
     expect(@combat_tracker.turn).to eq 1
+  end
+
+  it 'turn count corresponds to the active combatant' do
+    expect(@combat_tracker.combatants.first.turn?).to be true
+    @combat_tracker.next_turn
+    active_combatant = @combat_tracker.active_combatant
+    expect(@combat_tracker.combatants.second).to eq active_combatant
+    expect(active_combatant.turn?).to be true
   end
 end

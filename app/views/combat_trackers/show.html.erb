@@ -1,51 +1,23 @@
 <% presenter = CombatTrackerPresenter.new(@combat_tracker) %>
+
 <h1 class="pb-1">Combat Tracker - <%= presenter.name %></h1>
 
 <div id="combat-tracker">
   <div class="column-left">
     <%= render 'layouts/flash' %>
 
-    <%= form_with(model: @combat_tracker) do |form| %>
-
-      <%= form.fields_for :combatants do |cf| %>
-        <%= render 'combatant_form', f: cf unless cf.object.combatable.nil? %>
-      <% end %>
-
-      <%= form.hidden_field :round %>
-      <%= form.hidden_field :turn %>
-
-      <div id="combat-tracker-controls" class="flex-row padding-block">
-        <div class="flex-col align-center">
-          <label>Round</label>
-          <span class="round"><%= @combat_tracker.round %></span>
-        </div>
-        <div class="flex-col align-center">
-          <label>Turn</label>
-          <span class="turn"><%= @combat_tracker.turn %></span>
-        </div>
-      </div>
-
-      <%= form.submit "Save", class: 'easy' %>
-
-    <% end %>
+    <%= render 'form' %>
 
     <%= button_to 'Next turn', { action: 'next_turn', id: @combat_tracker.id },
                                { form_class: 'padding-block' } %>
   </div>
 
   <div class="column-right">
-    <!-- render monster stat block -->
-    <% combatant = @combat_tracker.combatants[@combat_tracker.turn - 1] %>
+    <% combatant = @combat_tracker.active_combatant %>
     <%= render('shared/stat_block', monster: combatant.combatable) if combatant.monster? %>
 
-    <!-- description -->
     <div class="encounter-description">
       <%= presenter.description %>
     </div>
   </div>
 </div>
-
-<script>
-  var activeCombatant = document.querySelector('.combatant-row:nth-of-type(<%= @combat_tracker.turn %>)');
-  activeCombatant.classList.add('active-combatant');
-</script>

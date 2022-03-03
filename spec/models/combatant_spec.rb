@@ -84,4 +84,10 @@ RSpec.describe Combatant, type: :model do
     @player_combatant.current_hp = 0
     expect(@player_combatant.inactive?).to be true
   end
+
+  it "can toggle it's turn" do
+    expect(@player_combatant.turn?).to be false
+    @player_combatant.toggle_turn
+    expect(@player_combatant.turn?).to be true
+  end
 end

@@ -4,7 +4,7 @@ class PartyPresenter
   end
 
   def summary
-    "# of characters: #{@party.party_size} | average player level: #{ '%.2f' % @party.average_player_level }"
+    "# of characters: #{@party.party_size} | average player level: #{'%.2f' % @party.average_player_level}"
   end
 
   def xp

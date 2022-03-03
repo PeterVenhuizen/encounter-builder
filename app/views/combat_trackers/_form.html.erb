@@ -1,0 +1,23 @@
+<%= form_with(model: @combat_tracker) do |form| %>
+
+  <%= form.fields_for :combatants do |cf| %>
+    <%= render 'combatant_form', f: cf unless cf.object.combatable.nil? %>
+  <% end %>
+
+  <%= form.hidden_field :round %>
+  <%= form.hidden_field :turn %>
+
+  <div id="round-and-turn" class="flex-row padding-block">
+    <div class="flex-col align-center">
+      <label>Round</label>
+      <span class="round"><%= @combat_tracker.round %></span>
+    </div>
+    <div class="flex-col align-center">
+      <label>Turn</label>
+      <span class="turn"><%= @combat_tracker.turn %></span>
+    </div>
+  </div>
+
+  <%= form.submit "Save", class: 'easy' %>
+
+<% end %>

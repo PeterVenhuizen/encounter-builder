@@ -27,6 +27,10 @@ class Combatant < ApplicationRecord
     current_hp.zero?
   end
 
+  def toggle_turn
+    update_attribute(:turn, !turn)
+  end
+
   private
 
   def set_monster_hp

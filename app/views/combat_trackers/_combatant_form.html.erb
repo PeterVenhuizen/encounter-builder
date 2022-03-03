@@ -1,4 +1,4 @@
-<div class="flex-row combatant-row">
+<div class="flex-row combatant-row <%= 'active-combatant' if f.object.turn? %>">
 
   <div class="initiative">
     <%= f.number_field :initiative, min: 0 %>
