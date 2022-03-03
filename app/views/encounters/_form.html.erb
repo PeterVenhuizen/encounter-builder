@@ -32,9 +32,10 @@
     <div class="flex-col rectangle">
       <h3>Party Select</h3>
       <div class="flex-row form-row">
-        <%# form.label :party_id %>
         <p class="info">Select the party to which this encounter belongs</p>
-        <%= form.select(:party_id, Party.all.collect { |m| [m.name, m.id] }, { prompt: true }, { class: 'party-select' }) %>  
+        <%= form.select(:party_id, Party.all.collect { |m| [m.name, m.id] }, 
+                                   { prompt: true }, 
+                                   { class: 'party-select' }) %>  
       </div>
 
       <div id="party-stats">
@@ -59,7 +60,7 @@
 
     <div class="monsters">
       <%= form.fields_for :fates do |fate_form| %>
-        <%= render 'shared/fate_fields', f: fate_form %>
+        <%= render 'fate_fields', f: fate_form %>
       <% end %>
       
     </div>
@@ -72,7 +73,7 @@
   <div class="monsters-copy rectangle"></div>
 
   <div data-controller='live-search' id='search-monsters' class='rectangle'>
-    <%= render 'shared/search_form' %>
+    <%= render 'monsters_search/form' %>
     <div data-live-search-target='results' class='search-monsters-results'></div>
   </div>
 

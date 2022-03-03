@@ -5,4 +5,9 @@ module ApplicationHelper
                                                space_after_headers: true)
     markdown_to_html.render(text).html_safe
   end
+
+  # Returns the monster instance variable based on id
+  def fetch_monster(id)
+    @monster = Monster.find(id)
+  end
 end

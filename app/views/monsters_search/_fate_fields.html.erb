@@ -1,5 +1,5 @@
 <% monster_id ||= f.object.monster_id %>
-<% group_size = f.object.group_size.nil? ? 1 : f.object.group_size %>
+<% group_size = f.object.group_size || 1 %>
 
 <% if monster_id %>
   <div class='nested-fields monster-fields'>

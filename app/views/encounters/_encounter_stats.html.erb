@@ -1,4 +1,4 @@
-<% if !@encounter.party.nil? %>
+<% unless @encounter.party.nil? %>
   <% stats = @encounter.calculate_statistics %>
 
   <div class="flex-col">
