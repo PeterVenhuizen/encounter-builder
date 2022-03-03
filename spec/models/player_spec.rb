@@ -44,6 +44,4 @@ RSpec.describe Player, type: :model do
   it "can access it's xp" do
     expect(@player.xp).to eq({ easy: 25, medium: 50, hard: 75, deadly: 100 })
   end
-
-  it 'belongs to a party'
 end

@@ -27,9 +27,6 @@ RSpec.describe Party, type: :model do
     expect(@party.party_size).to eq 3
   end
 
-  it 'accepts attributes for player addition'
-  it 'cannot have the same player twice'
-
   it 'accepts attributes for player destroy' do
     @party.update(players_attributes: { id: @party.players.first.id, _destroy: true })
     expect(@party.party_size).to eq 2
