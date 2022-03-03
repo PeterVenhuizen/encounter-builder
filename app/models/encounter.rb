@@ -4,8 +4,14 @@ class Encounter < ApplicationRecord
   has_one :combat_tracker
   belongs_to :party
 
-  validates_presence_of :name, :description
-  validates :fates, presence: { message: 'requires at least one monster for the encounter' }
+  validates :name,
+            :description,
+            presence: true
+
+  validates :fates,
+            presence: {
+              message: 'requires at least one monster for the encounter'
+            }
 
   accepts_nested_attributes_for :fates, allow_destroy: true
 

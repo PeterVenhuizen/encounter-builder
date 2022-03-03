@@ -13,14 +13,13 @@ class CombatTracker < ApplicationRecord
 
   private
 
+  # Create combatants from Players and Monsters
   def create_combatants
-    # create Combatants from players
-    encounter.players.each { |p| self.combatants.create(combatable: p) }
+    encounter.players.each { |p| combatants.create(combatable: p) }
 
-    # create Combatants from monsters
     encounter.fates.each do |fate|
       fate.group_size.times do
-        self.combatants.create(combatable: fate.monster)
+        combatants.create(combatable: fate.monster)
       end
     end
   end

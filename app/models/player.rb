@@ -2,11 +2,14 @@ class Player < ApplicationRecord
   belongs_to :party
   has_many :combatants, as: :combatable
 
-  validates :name, length: { minimum: 2 }
-  validates :level, inclusion: { in: 1..20 }
+  validates :name,
+            length: { minimum: 2 }
+
+  validates :level,
+            inclusion: { in: 1..20 }
 
   XP_BY_CHARACTER_LEVEL = {
-    1 => { easy:    25, medium: 50, hard: 75, deadly: 100 },
+    1 => { easy:    25, medium:   50, hard: 75,   deadly:   100 },
     2 => { easy:    50, medium:  100, hard:  150, deadly:   200 },
     3 => { easy:    75, medium:  150, hard:  225, deadly:   400 },
     4 => { easy:   125, medium:  250, hard:  375, deadly:   500 },
